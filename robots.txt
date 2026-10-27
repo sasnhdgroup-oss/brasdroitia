@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /merci.html
+Disallow: /guides/_gabarit.html
+
+Sitemap: https://brasdroitia.com/sitemap.xml

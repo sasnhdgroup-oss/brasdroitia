@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bras Droit IA : posts, fiche Google et avis faits pour vous</title>
+<meta name="description" content="Chaque mois, 12 posts dont 2 reels, 4 posts Google et 10 réponses aux avis écrits pour votre métier et votre ville. 9 € le 1er mois, sans engagement.">
+<meta property="og:title" content="Bras Droit IA — votre bras droit IA, par métier">
+<meta property="og:description" content="Posts, fiche Google et réponses aux avis faits pour vous, chaque mois. 9 € le premier mois.">
+<meta property="og:image" content="og.jpg">
+<meta property="og:type" content="website">
+<link rel="icon" href="favicon.png">
+<link rel="canonical" href="https://brasdroitia.com/">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"Organization","@id":"https://brasdroitia.com/#org","name":"Bras Droit IA","legalName":"SCALINEA","url":"https://brasdroitia.com/","logo":"https://brasdroitia.com/logo.png","sameAs":["https://www.instagram.com/bras_droit_ia/"]},
+ {"@type":"Service","name":"Contenus du mois","provider":{"@id":"https://brasdroitia.com/#org"},"areaServed":"FR","serviceType":"Rédaction de publications pour réseaux sociaux, posts Google et réponses aux avis","description":"Chaque mois, 12 publications pour Instagram et Facebook dont 2 reels, 4 posts pour la fiche Google et 10 réponses aux avis, écrits pour le métier et la ville du client.","offers":{"@type":"Offer","price":"29.00","priceCurrency":"EUR","url":"https://brasdroitia.com/#prix"}}
+]}
+</script>
+<style>@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Inter-Regular.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Inter-Medium.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/Inter-Bold.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:800;font-display:swap;src:url(fonts/Inter-ExtraBold.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:900;font-display:swap;src:url(fonts/Inter-Black.woff2) format('woff2')}</style>
+<style>
+:root{--navy:#0E1530;--navy2:#1A2350;--lime:#D4FF3F;--cream:#F6F5F0;--muted:#A9B0CC;--line:rgba(246,245,240,.12)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;background:var(--navy);color:var(--cream);line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
+header{position:sticky;top:0;z-index:10;background:rgba(14,21,48,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;text-decoration:none}
+.brand img{width:34px;height:34px;border-radius:9px}
+.tag{background:var(--lime);color:var(--navy);border-radius:999px;padding:1px 9px;font-weight:800}
+.btn{display:inline-block;background:var(--lime);color:var(--navy);font-weight:800;text-decoration:none;border:0;border-radius:14px;padding:15px 24px;font-size:17px;cursor:pointer;transition:transform .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:var(--cream);border:2px solid var(--line)}
+.btn.small{padding:10px 16px;font-size:15px;border-radius:11px}
+section{padding:76px 0;border-bottom:1px solid var(--line)}
+h1{font-size:clamp(36px,6vw,64px);line-height:1.04;letter-spacing:-.03em;font-weight:900}
+h2{font-size:clamp(28px,4.2vw,44px);line-height:1.08;letter-spacing:-.02em;font-weight:900;margin-bottom:14px}
+.lime{color:var(--lime)}
+.lead{font-size:clamp(18px,2.2vw,21px);color:var(--muted);margin-top:18px;max-width:640px}
+.hero{padding:72px 0 64px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.reassure{margin-top:16px;color:var(--muted);font-size:15px}
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:34px}
+.card{background:var(--navy2);border-radius:20px;padding:26px}
+.card .num{width:46px;height:46px;border-radius:13px;background:var(--lime);color:var(--navy);font-weight:900;font-size:22px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.card h3{font-size:20px;font-weight:800;margin-bottom:8px}
+.card p{color:var(--muted)}
+.pains{list-style:none;margin-top:26px;display:grid;gap:12px;max-width:720px}
+.pains li{background:var(--navy2);border-radius:14px;padding:16px 18px;color:var(--muted)}
+.pains li b{color:var(--cream)}
+/* quiz */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.chip{border:2px solid var(--lime);background:transparent;color:var(--cream);border-radius:999px;padding:11px 18px;font:700 16px Inter,sans-serif;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--lime);color:var(--navy)}
+#examples{margin-top:28px;display:none}
+#examples.on{display:block}
+.ex{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:14px}
+.ex .card{border:1px solid var(--line)}
+.ex .k{font-size:13px;font-weight:800;color:var(--lime);text-transform:uppercase;letter-spacing:.06em;margin-bottom:10px}
+.ex .t{white-space:pre-line;color:var(--cream);font-size:15.5px}
+.city{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap;align-items:center;color:var(--muted)}
+.city input{background:var(--navy2);border:2px solid var(--line);color:var(--cream);border-radius:12px;padding:11px 14px;font:500 16px Inter,sans-serif;min-width:220px}
+/* prix */
+.price{background:var(--cream);color:var(--navy);border-radius:28px;padding:36px;max-width:560px;margin-top:30px}
+.price .big{font-size:64px;font-weight:900;letter-spacing:-.03em;line-height:1}
+.price .then{font-size:20px;font-weight:700;margin-top:8px}
+.price ul{list-style:none;margin:24px 0;display:grid;gap:10px}
+.price li::before{content:"✦ ";color:#5a6b00}
+.price .btn{background:var(--navy);color:var(--lime);width:100%;text-align:center}
+.price small{display:block;margin-top:14px;color:#4b5273;font-size:13.5px}
+details{background:var(--navy2);border-radius:14px;padding:18px 20px;margin-top:12px;max-width:780px}
+summary{font-weight:800;cursor:pointer;font-size:17px}
+details p{color:var(--muted);margin-top:10px}
+footer{padding:40px 0 60px;color:var(--muted);font-size:14px}
+footer a{color:var(--muted)}
+footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
+.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none}
+@media(max-width:640px){.sticky{display:block}.sticky .btn{width:100%;text-align:center;box-shadow:0 8px 30px rgba(0,0,0,.4)}section{padding:56px 0}header .btn{display:none}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <a class="brand" href="#"><img src="logo.png" alt="">Bras Droit <span class="tag">IA</span></a>
+ <a class="btn small" href="#prix">Démarrer à 9 €</a>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+ <h1>Vous êtes <span class="lime">pro</span>.<br>Pas community manager.</h1>
+ <p class="lead">Chaque mois, on vous livre vos publications, vos posts Google et vos réponses aux avis, écrits pour <b>votre métier</b> et <b>votre ville</b>. Vous n'avez plus qu'à publier.</p>
+ <div class="ctas">
+  <a class="btn" href="#metier">Voir un exemple pour mon métier</a>
+  <a class="btn ghost" href="#prix">9 € le premier mois</a>
+ </div>
+ <p class="reassure">Sans engagement · Résiliable en ligne à tout moment · Remboursé sous 14 jours si ça ne vous convient pas</p>
+</div></section>
+
+<section><div class="wrap">
+ <h2>Vous vous reconnaissez ?</h2>
+ <ul class="pains">
+  <li><b>« Je ne sais pas quoi poster. »</b> Votre page n'a rien publié depuis des semaines.</li>
+  <li><b>« Je n'ai pas le temps. »</b> Après le travail, écrire un post vous prend la soirée.</li>
+  <li><b>« Mes avis Google restent sans réponse. »</b> Alors que vos futurs clients les lisent.</li>
+ </ul>
+</div></section>
+
+<section id="offre"><div class="wrap">
+ <h2>Chaque mois, vous recevez</h2>
+ <div class="grid3">
+  <div class="card"><div class="num">12</div><h3>Publications prêtes</h3><p>Textes, visuels et 2 reels vidéo pour Facebook et Instagram, au bon ton pour votre clientèle.</p></div>
+  <div class="card"><div class="num">4</div><h3>Posts pour votre fiche Google</h3><p>Pour rester actif dans les recherches locales et attirer les clients près de chez vous.</p></div>
+  <div class="card"><div class="num">✦</div><h3>Vos réponses aux avis</h3><p>Collez vos avis, recevez une réponse personnalisée pour chacun, prête à copier.</p></div>
+ </div>
+</div></section>
+
+<section id="metier"><div class="wrap">
+ <h2>Quel est votre métier ?</h2>
+ <p class="lead">Choisissez-le : voici le genre de contenus que vous recevriez.</p>
+ <div class="chips" role="group" aria-label="Votre métier">
+  <button class="chip" data-m="coiffure">Coiffure / barbier</button>
+  <button class="chip" data-m="immo">Agent / mandataire immobilier</button>
+  <button class="chip" data-m="auto">Auto-école</button>
+  <button class="chip" data-m="garage">Garage</button>
+  <button class="chip" data-m="artisan">Artisan du bâtiment</button>
+  <button class="chip" data-m="coach">Coach sportif</button>
+  <button class="chip" data-m="autre">Autre métier</button>
+ </div>
+ <div class="city"><label for="ville">Votre ville :</label><input id="ville" placeholder="ex. Lyon" autocomplete="address-level2"></div>
+ <div id="examples" aria-live="polite">
+  <div class="ex" id="exgrid"></div>
+  <div class="ctas" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+   <a class="btn" id="cta-metier" href="#prix">Recevoir les miens chaque mois</a>
+  </div>
+ </div>
+</div></section>
+
+<section><div class="wrap">
+ <h2>Comment ça marche</h2>
+ <div class="grid3">
+  <div class="card"><div class="num">1</div><h3>5 minutes de questionnaire</h3><p>Votre métier, votre ville, vos services, votre ton.</p></div>
+  <div class="card"><div class="num">2</div><h3>On prépare tout</h3><p>Les contenus sont rédigés avec l'aide de l'IA, puis relus avant envoi.</p></div>
+  <div class="card"><div class="num">3</div><h3>Vous publiez</h3><p>Dans les 3 jours qui suivent chaque paiement, tout arrive par e-mail, prêt à copier-coller.</p></div>
+ </div>
+</div></section>
+
+<section id="prix"><div class="wrap">
+ <h2>Un prix de <span class="lime">pilote</span></h2>
+ <p class="lead">Réservé aux premiers clients, pendant le lancement.</p>
+ <div class="price">
+  <div class="big">9 €</div>
+  <div class="then">le premier mois, puis 29 € TTC par mois</div>
+  <ul>
+   <li>12 publications Facebook et Instagram, dont 2 reels vidéo</li>
+   <li>4 posts pour votre fiche Google</li>
+   <li>10 réponses à vos avis par mois</li>
+   <li>Adapté à votre métier et à votre ville</li>
+   <li>Sans engagement, résiliable en ligne à tout moment</li>
+  </ul>
+  <a class="btn" id="cta-pay" href="#" rel="noopener">Démarrer à 9 €</a>
+  <small>Paiement sécurisé par Stripe. Remboursement intégral sur simple demande pendant 14 jours. 29 € TTC soit 24,17 € HT.</small>
+ </div>
+</div></section>
+
+<section id="faq"><div class="wrap">
+ <h2>Questions fréquentes</h2>
+ <details><summary>Est-ce que je dois savoir utiliser l'IA ?</summary><p>Non. Vous répondez à un questionnaire de 5 minutes, on s'occupe du reste. Vous recevez des contenus prêts à publier.</p></details>
+ <details><summary>Les textes seront-ils génériques ?</summary><p>Non : ils sont écrits pour votre métier, votre ville et vos services, et relus avant envoi. Vous pouvez demander une retouche par mois.</p></details>
+ <details><summary>Qui publie ?</summary><p>Vous, en copiant-collant : vous gardez la main sur vos comptes. Nous n'avons jamais accès à vos mots de passe.</p></details>
+ <details><summary>Et les réponses aux avis ?</summary><p>Vous nous transmettez vos nouveaux avis via le formulaire mensuel ou par e-mail, vous recevez une réponse personnalisée pour chacun. Nous ne rédigeons jamais de faux avis.</p></details>
+ <details><summary>Puis-je arrêter quand je veux ?</summary><p>Oui, sans engagement. Vous résiliez en ligne depuis votre espace de paiement sécurisé (lien présent dans chaque reçu) ; la résiliation prend effet à la fin de la période déjà payée.</p></details>
+ <details><summary>Et si ça ne me convient pas ?</summary><p>Écrivez-nous dans les 14 jours qui suivent votre inscription : vous êtes remboursé intégralement.</p></details>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+ <div><b>Bras Droit IA</b> est une marque de SCALINEA, SARL à associé unique (EURL). Contenus préparés avec l'aide de l'intelligence artificielle et relus avant envoi. Non affilié à Anthropic, OpenAI, Meta ni Google.</div>
+ <div class="links">
+  <a href="mentions-legales.html">Mentions légales</a>
+  <a href="cgv.html">CGV</a>
+  <a href="confidentialite.html">Confidentialité</a>
+  <a href="/guides/">Guides pratiques</a>
+  <a href="cgv.html#retractation">Renoncer au contrat</a>
+  <a href="https://www.instagram.com/bras_droit_ia/">Instagram</a>
+  <a href="https://m.me/1445083355348580">Nous écrire</a>
+ </div>
+</div></footer>
+
+<div class="sticky"><a class="btn" href="#prix">Démarrer à 9 €</a></div>
+
+<script>
+// Lien de paiement Stripe (abonnement 29 € TTC/mois, code PILOTE9 : -20 € le 1er mois).
+// Lien de paiement de PRODUCTION (Stripe, 27/10/2026) : 9 € le 1er mois avec PILOTE9, puis 29 €/mois.
+const STRIPE_LINK = "https://buy.stripe.com/00w14odWDdx7bTCfMP4gg00?prefilled_promo_code=PILOTE9";
+const EX = {
+ coiffure:[["Post Instagram","✂️ Nouvelle saison, nouvelle coupe !\nCe mois-ci au salon de {V} : dégradés, colorations douces et soins express.\nRéservez votre créneau en message privé."],["Post fiche Google","Votre salon à {V} vous accueille du mardi au samedi. Coupe, couleur, barbe : prenez rendez-vous en ligne en 1 minute."],["Réponse à un avis","Merci beaucoup pour ce gentil message ! Ravis que la coupe vous plaise, à très bientôt au salon."]],
+ immo:[["Post Facebook","🤝 Ce mois-ci à {V} : 3 conseils pour préparer un rendez-vous avec votre conseiller.\nUne question sur votre projet ? Écrivez-moi, je vous réponds personnellement."],["Post fiche Google","Votre conseiller à {V} : accompagnement personnalisé, écoute et disponibilité. Contact en message ou par téléphone."],["Réponse à un avis","Merci pour votre confiance tout au long de notre collaboration ! Ce fut un plaisir de vous accompagner, belle nouvelle étape à vous."]],
+ auto:[["Post Instagram","🚗 Code réussi ? Bravo à tous nos élèves de {V} ce mois-ci !\nProchaine session de code accéléré : renseignements et inscription en message."],["Post fiche Google","Auto-école à {V} : permis B, conduite accompagnée et stages accélérés. Évaluation de départ sur rendez-vous."],["Réponse à un avis","Félicitations pour votre permis ! Merci pour ce retour, toute l'équipe est fière de votre réussite."]],
+ garage:[["Post Facebook","🔧 L'hiver arrive à {V} : pensez au contrôle batterie, pneus et liquide de refroidissement.\nDiagnostic rapide sans rendez-vous le samedi matin."],["Post fiche Google","Garage à {V} : entretien toutes marques, freins, pneus, climatisation. Devis gratuit avant intervention."],["Réponse à un avis","Merci pour votre confiance ! Ravis que votre véhicule soit reparti en pleine forme. À bientôt au garage."]],
+ artisan:[["Post Instagram","🛠️ Avant / après : salle de bain refaite à neuf à {V} en 8 jours.\nVous avez un projet ? Devis gratuit en message privé."],["Post fiche Google","Artisan à {V} : rénovation, dépannage et petits travaux. Intervention rapide et devis détaillé gratuit."],["Réponse à un avis","Merci pour ce retour ! C'était un plaisir de réaliser vos travaux, n'hésitez pas pour vos prochains projets."]],
+ coach:[["Post Instagram","💪 3 exercices à faire chez vous en 10 minutes pour reprendre en douceur.\nCoaching individuel à {V} : première séance découverte en message."],["Post fiche Google","Coach sportif à {V} : remise en forme, préparation physique, séances à domicile ou en extérieur."],["Réponse à un avis","Merci pour votre motivation à chaque séance ! Bravo pour vos progrès, on continue sur cette lancée."]],
+ autre:[["Post Facebook","✨ Ce mois-ci à {V} : découvrez nos nouveautés et notre offre du moment.\nUne question ? Écrivez-nous, réponse rapide."],["Post fiche Google","Votre professionnel de confiance à {V}. Horaires, services et contact : tout est sur notre fiche."],["Réponse à un avis","Merci pour votre avis et votre confiance ! Au plaisir de vous revoir très bientôt."]]
+};
+let current=null;
+const ville=document.getElementById('ville');
+function render(){
+ if(!current) return;
+ const v=(ville.value||'').trim()||'votre ville';
+ document.getElementById('exgrid').innerHTML=EX[current].map(([k,t])=>'<div class="card"><div class="k">'+k+'</div><div class="t">'+t.replaceAll('{V}',v.replace(/[<>&]/g,''))+'</div></div>').join('');
+ document.getElementById('examples').classList.add('on');
+}
+document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{
+ document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed','false'));
+ b.setAttribute('aria-pressed','true'); current=b.dataset.m; render();
+}));
+ville.addEventListener('input',render);
+const pay=document.getElementById('cta-pay');
+pay.addEventListener('click',e=>{
+ if(!STRIPE_LINK){e.preventDefault();location.href='https://m.me/1445083355348580';return;}
+ e.preventDefault();
+ const u=new URL(STRIPE_LINK);
+ const q=new URLSearchParams(location.search);
+ const ref=[current||'na',q.get('utm_campaign')||'',q.get('utm_content')||''].join('_').replace(/[^A-Za-z0-9_-]/g,'').slice(0,190);
+ u.searchParams.set('client_reference_id',ref);
+ if(window.bdiaEvenement) bdiaEvenement('debut_paiement',{value:9,currency:'EUR'});
+ setTimeout(()=>{location.href=u.toString();},window.fbq||window.ttq?350:0);
+});
+</script>
+<script src="consent.js"></script>
+</body>
+</html>
