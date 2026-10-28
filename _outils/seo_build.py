@@ -146,10 +146,12 @@ hub_a = tete_a + f'''<link rel="alternate" type="application/rss+xml" title="Ast
 <ul class="blog">
 {cartes}
 </ul>
+<div data-lettre="astuces"></div>
 <p>Pour aller plus loin, consultez nos <a href="/guides/">guides complets</a>.</p>
 </article>
 </main>
 ''' + '<footer>' + hub.split('<footer>',1)[1]
+hub_a = hub_a.replace('<script src="/consent.js"></script>', '<script src="/consent.js"></script>\n<script src="/lettre.js" defer></script>', 1)
 (astuces_dir / 'index.html').write_text(hub_a, encoding='utf-8')
 def rfc822(d):
     dt = datetime.datetime.strptime(d, '%Y-%m-%d').replace(hour=8, tzinfo=datetime.timezone.utc)
