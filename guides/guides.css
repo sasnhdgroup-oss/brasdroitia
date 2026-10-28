@@ -46,3 +46,6 @@ footer a{color:#A9B0CC}
 .brand{white-space:nowrap}
 header .btn{white-space:nowrap}
 @media (max-width:480px){header .btn{padding:9px 12px;font-size:14px}.brand{font-size:17px}}
+
+header .wrap{gap:16px}
+.menu{display:flex;gap:22px;align-items:center}.menu a{color:var(--cream);text-decoration:none;font-weight:600;font-size:15px;opacity:.9}.menu a:hover{opacity:1;text-decoration:underline}@media (max-width:820px){header .wrap,header .bar{flex-wrap:wrap;height:auto;padding-top:10px;padding-bottom:6px;row-gap:6px}.menu{order:3;width:100%;overflow-x:auto;gap:18px;padding:4px 0 2px;white-space:nowrap}}

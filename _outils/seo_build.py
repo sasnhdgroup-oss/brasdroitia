@@ -74,6 +74,7 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDXSWKZP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header><div class="wrap">
  <a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34">Bras Droit <span class="tag">IA</span></a>
+ <nav class="menu" aria-label="Menu principal"><a href="/#offre">L\'offre</a><a href="/#metier">Exemples</a><a href="/#prix">Prix</a><a href="/guides/" class="g">Guides</a><a href="/#faq">FAQ</a></nav>
  <a class="btn" href="/#metier">Voir un exemple</a>
 </div></header>
 <main class="wrap">
