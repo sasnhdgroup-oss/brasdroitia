@@ -7,7 +7,7 @@
 var BDIA_TRACEURS = {
   metaPixel: '',     // Meta (Facebook, Instagram) : Gestionnaire d'événements > Sources de données
   tiktokPixel: '',   // TikTok Ads Manager > Outils > Événements > Pixel web
-  googleTag: '',     // Google Ads (publicités YouTube) : identifiant AW-XXXXXXXXX
+  googleTag: 'G-4W3MC6K296', // Google Analytics 4 (et plus tard Google Ads AW-…, ajouté par gtag('config'))
   googleConversion: '' // action de conversion Google Ads : AW-XXXXXXXXX/YYYYYYYY
 };
 
@@ -72,6 +72,7 @@ var BDIA_TRACEURS = {
     params = params || {};
     if (window.fbq) fbq('track', nom === 'abonnement' ? 'Purchase' : 'InitiateCheckout', params);
     if (window.ttq) ttq.track(nom === 'abonnement' ? 'CompletePayment' : 'InitiateCheckout', params);
+    if (window.gtag && BDIA_TRACEURS.googleTag) gtag('event', nom === 'abonnement' ? 'purchase' : 'begin_checkout', { value: params.value, currency: params.currency });
     if (window.gtag && nom === 'abonnement' && BDIA_TRACEURS.googleConversion) {
       gtag('event', 'conversion', { send_to: BDIA_TRACEURS.googleConversion, value: params.value, currency: params.currency });
     }
