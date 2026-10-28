@@ -1,13 +1,13 @@
 // Générateur gratuit de réponses aux avis Google (brasdroitia.com/outils/generateur-reponse-avis-google/).
 // Variables d'environnement Netlify : ANTHROPIC_API_KEY (obligatoire), BDIA_MODELE (facultatif),
-// BDIA_PLAFOND_JOUR (facultatif, défaut 200 générations par jour pour tout le site).
+// BDIA_PLAFOND_JOUR (facultatif, défaut 50 générations par jour pour tout le site).
 // Rien n'est conservé : ni l'avis, ni les réponses, ni l'adresse IP (seulement des compteurs anonymes).
 import Anthropic from "@anthropic-ai/sdk";
 import { getStore } from "@netlify/blobs";
 import { createHash } from "node:crypto";
 
 const MODELE = process.env.BDIA_MODELE || "claude-opus-5-5";
-const PLAFOND_JOUR = Number(process.env.BDIA_PLAFOND_JOUR || 200);
+const PLAFOND_JOUR = Number(process.env.BDIA_PLAFOND_JOUR || 50);
 const PLAFOND_VISITEUR = 5; // générations par jour et par visiteur
 let client; // créé à la première demande : sans clé, la page affiche un message au lieu de planter
 
