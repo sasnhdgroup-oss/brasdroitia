@@ -1,0 +1,17 @@
+# Déploiement automatique de brasdroitia.com depuis ce dépôt (branche main).
+
+[build]
+  publish = "."
+  # Retire du site public les notes internes, le plan SEO, le gabarit et les outils.
+  command = "rm -rf *.md *.zip guides/_* _outils && echo 'site prêt'"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

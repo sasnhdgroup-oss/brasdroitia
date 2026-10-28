@@ -27,7 +27,15 @@ var BDIA_TRACEURS = {
     try { localStorage.setItem(CLE, JSON.stringify({ pub: pub, date: Date.now() })); } catch (e) {}
   }
   function actifs() {
-    return BDIA_TRACEURS.metaPixel || BDIA_TRACEURS.tiktokPixel || BDIA_TRACEURS.googleTag;
+    return BDIA_TRACEURS.metaPixel || BDIA_TRACEURS.tiktokPixel || BDIA_TRACEURS.googleTag || window.google_tag_manager || document.querySelector('script[src*="googletagmanager.com/gtm.js"]');
+  }
+  // Mode Consentement de Google (Tag Manager) : les balises attendent l'accord.
+  function consentementGoogle(ok) {
+    var v = ok ? 'granted' : 'denied';
+    window.dataLayer = window.dataLayer || [];
+    if (typeof window.gtag !== 'function') window.gtag = function () { window.dataLayer.push(arguments); };
+    gtag('consent', 'update', { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+    window.dataLayer.push({ event: ok ? 'bdia_consentement_accepte' : 'bdia_consentement_refuse' });
   }
 
   function chargerMeta(id) {
@@ -69,6 +77,9 @@ var BDIA_TRACEURS = {
     }
   }
   window.bdiaEvenement = function (nom, params) {
+    // Pour Tag Manager : l'événement est filtré par le mode Consentement.
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({ event: 'bdia_' + nom, valeur: (params || {}).value, devise: (params || {}).currency });
     var c = lire();
     if (!c || !c.pub) return;
     if (charges) emettre(nom, params); else file.push([nom, params]);
@@ -89,7 +100,7 @@ var BDIA_TRACEURS = {
     d.setAttribute('role', 'dialog');
     d.setAttribute('aria-label', 'Votre choix sur les cookies');
     d.innerHTML =
-      '<p><b>Cookies publicitaires</b><br>Avec votre accord, nous utilisons les traceurs de Meta, TikTok et Google pour mesurer l\'efficacité de nos publicités. Refuser n\'a aucune conséquence sur votre visite. <a href="confidentialite.html#cookies">En savoir plus</a></p>' +
+      '<p><b>Cookies de mesure et publicitaires</b><br>Avec votre accord, nous utilisons des cookies de mesure d\'audience (Google Analytics) et les traceurs de Meta, TikTok et Google pour mesurer la fréquentation du site et l\'efficacité de nos publicités. Refuser n\'a aucune conséquence sur votre visite. <a href="/confidentialite.html#cookies">En savoir plus</a></p>' +
       '<div class="r"><button type="button" class="n" data-c="0">Refuser</button><button type="button" data-c="1">Accepter</button></div>';
     d.addEventListener('click', function (e) {
       var v = e.target.getAttribute && e.target.getAttribute('data-c');
@@ -97,6 +108,7 @@ var BDIA_TRACEURS = {
       var ok = v === '1';
       var avant = lire();
       ecrire(ok);
+      consentementGoogle(ok);
       d.remove();
       if (ok) charger();
       else if (avant && avant.pub && charges) location.reload(); // retrait : décharger les traceurs
