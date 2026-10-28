@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Consentement par défaut refusé (mode Consentement de Google), puis Google Tag Manager -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});try{var bdiaC=JSON.parse(localStorage.getItem('bdia_consentement')||'null');if(bdiaC&&bdiaC.pub&&Date.now()-bdiaC.date<15724800000)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}catch(e){}</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MDXSWKZP');</script>
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<link rel="canonical" href="https://brasdroitia.com/astuces/{{SLUG}}/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="article">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="Bras Droit IA">
+<meta property="og:title" content="{{TITLE}}">
+<meta property="og:description" content="{{DESCRIPTION}}">
+<meta property="og:url" content="https://brasdroitia.com/astuces/{{SLUG}}/">
+<meta property="og:image" content="https://brasdroitia.com/astuces/{{SLUG}}/couverture.jpg">
+<meta property="article:published_time" content="{{DATE_ISO}}">
+<meta property="article:section" content="{{CATEGORIE}}">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="alternate" type="application/rss+xml" title="Astuces Bras Droit IA" href="/astuces/rss.xml">
+<link rel="preload" href="/fonts/Inter-Black.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/guides/guides.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+ {"@type":"BlogPosting","headline":"{{H1}}","description":"{{DESCRIPTION}}","inLanguage":"fr-FR","datePublished":"{{DATE_ISO}}","dateModified":"{{DATE_ISO}}","articleSection":"{{CATEGORIE}}","mainEntityOfPage":"https://brasdroitia.com/astuces/{{SLUG}}/","image":"https://brasdroitia.com/astuces/{{SLUG}}/couverture.jpg","author":{"@type":"Organization","name":"L'équipe Bras Droit IA","url":"https://brasdroitia.com/"},"publisher":{"@type":"Organization","name":"Bras Droit IA (SCALINEA)","url":"https://brasdroitia.com/","logo":{"@type":"ImageObject","url":"https://brasdroitia.com/logo.png"}}},
+ {"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Accueil","item":"https://brasdroitia.com/"},{"@type":"ListItem","position":2,"name":"Astuces","item":"https://brasdroitia.com/astuces/"},{"@type":"ListItem","position":3,"name":"{{FIL}}","item":"https://brasdroitia.com/astuces/{{SLUG}}/"}]}
+]}
+</script>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDXSWKZP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<header><div class="wrap">
+ <a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34">Bras Droit <span class="tag">IA</span></a>
+ <nav class="menu" aria-label="Menu principal"><a href="/#offre">L'offre</a><a href="/#metier">Exemples</a><a href="/#prix">Prix</a><a href="/guides/" class="g">Guides</a><a href="/astuces/" class="g">Astuces</a><a href="/#faq">FAQ</a></nav>
+ <a class="btn" href="/#metier">Voir un exemple</a>
+</div></header>
+<main class="wrap">
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › <a href="/astuces/">Astuces</a> › {{FIL}}</nav>
+<article>
+<p class="cat">{{CATEGORIE}}</p>
+<h1>{{H1}}</h1>
+<p class="maj">Publié le {{DATE_TXT}} · Par l'équipe Bras Droit IA · Lecture : {{MINUTES}} min</p>
+<img class="couv" src="/astuces/{{SLUG}}/couverture.jpg" alt="{{ALT_COUVERTURE}}" width="1200" height="630">
+<p class="chapo">{{CHAPO : l'astuce en une phrase}}</p>
+
+{{CORPS : 400 à 800 mots ; 3 à 5 <h2 id="..."> ; une seule idée concrète ; étapes numérotées ; un exemple avant / après ; encadrés <div class="modele">, <div class="astuce">, <div class="attention"> si utile}}
+
+<div class="astuce"><b>Pour aller plus loin :</b> {{1 phrase + lien vers le guide complet lié : <a href="/guides/slug/">Titre du guide</a>}}</div>
+
+<div class="cta">
+ <h2>Une astuce comme celle-ci, deux fois par semaine</h2>
+ <p>Suivez-nous sur Instagram : une nouvelle astuce chaque mardi et chaque jeudi. Et si vous préférez qu'on écrive vos publications du mois à votre place : 9 € le premier mois, puis 29 € TTC par mois, sans engagement.</p>
+ <a class="btn" href="https://www.instagram.com/bras_droit_ia/">Suivre sur Instagram</a>
+ <a class="btn ghost" href="/?utm_source=seo&amp;utm_medium=astuce&amp;utm_campaign={{SLUG}}#metier">Voir l'exemple pour mon métier</a>
+</div>
+
+<div class="liees"><h2>D'autres astuces</h2><ul>{{2 à 4 liens : <li><a href="/astuces/slug/">Titre</a></li> (ou guides si moins de 2 astuces existent)}}</ul></div>
+</article>
+</main>
+<footer><div class="wrap">
+ <div><b>Bras Droit IA</b> est une marque de SCALINEA SARL. Contenus préparés avec l'aide de l'intelligence artificielle et relus avant publication. Non affilié à Anthropic, OpenAI, Meta ni Google.</div>
+ <div class="links"><a href="/">Accueil</a><a href="/guides/">Guides</a><a href="/astuces/">Astuces</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a></div>
+</div></footer>
+<script src="/consent.js"></script>
+</body>
+</html>

@@ -58,5 +58,15 @@
 | E | 48 | ia-pour-agent-immobilier | IA pour agent immobilier, prompt chatgpt immobilier | IA | 41 |
 | E | 49 | ia-pour-garage-automobile | IA pour garage automobile | IA | 41 |
 | E | 50 | marketing-immobilier-reseaux-sociaux | marketing immobilier | IA, métier | 41 |
+| F | 51 | qr-code-avis-google | qr code avis google | Avis | 1 |
+| F | 52 | avis-google-une-etoile-sans-commentaire | avis google 1 étoile sans commentaire | Avis | 1 |
+| F | 53 | fiche-google-sans-adresse | fiche google my business sans adresse | Fiche Google | 15 |
+| F | 54 | programmer-post-google-my-business | programmer post google my business | Fiche Google | 15 |
+| F | 55 | chatgpt-annonce-immobiliere | chatgpt annonce immobilière | IA | 41 |
+| G | 56 | idee-story-instagram-entreprise | story instagram professionnel, idée story instagram entreprise | Réseaux | 21 |
+| G | 57 | idee-post-linkedin-entreprise | idée post linkedin entreprise, post linkedin présentation entreprise | Réseaux | 21 |
+| G | 58 | whatsapp-business-professionnel | whatsapp business | Réseaux | 21 |
+| G | 59 | message-remerciement-client | message remerciement client satisfait | Méthode | 41 |
+| G | 60 | bio-instagram-professionnel | bio instagram idée (professionnel) | Réseaux | 21 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.

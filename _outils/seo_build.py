@@ -53,7 +53,7 @@ doublons = [(ph, sorted(sl)) for ph, sl in vues.items() if len(sl) > 1]
 
 # Page /guides/ : classement par cocon, d'après le plan.
 plan = (guides / '_plan_seo.md').read_text(encoding='utf-8')
-cocon = {m.group(1): m.group(2).split(',')[0].strip() for m in re.finditer(r'^\| [A-E] \| \d+ \| ([a-z0-9-]+) \| [^|]+\| ([^|]+)\|', plan, flags=re.M)}
+cocon = {m.group(1): m.group(2).split(',')[0].strip() for m in re.finditer(r'^\| [A-Z] \| \d+ \| ([a-z0-9-]+) \| [^|]+\| ([^|]+)\|', plan, flags=re.M)}
 ordre = ['Avis', 'Fiche Google', 'Réseaux', 'Prospection', 'Méthode', 'Prix', 'IA']
 noms = {'Avis': 'Avis Google : répondre, obtenir, gérer', 'Fiche Google': 'Fiche Google et référencement local', 'Réseaux': 'Idées de publications par métier', 'Prospection': 'Trouver des clients', 'Méthode': 'Organiser sa communication', 'Prix': 'Combien ça coûte ?', 'IA': "L'IA au service des pros"}
 blocs = []
@@ -95,9 +95,81 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 '''
 (guides / 'index.html').write_text(hub, encoding='utf-8')
 
-urls = [('/', '1.0'), ('/guides/', '0.8')] + [(f'/guides/{p["slug"]}/', '0.7') for p in pages] + [('/cgv.html', '0.2'), ('/mentions-legales.html', '0.1'), ('/confidentialite.html', '0.1')]
-(racine / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{SITE}{u}</loc><lastmod>2026-10-27</lastmod><priority>{pr}</priority></url>\n' for u, pr in urls) + '</urlset>\n', encoding='utf-8')
-(racine / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /merci.html\nDisallow: /guides/_gabarit.html\n\nSitemap: {SITE}/sitemap.xml\n', encoding='utf-8')
+# ---------- Astuces (blog) ----------
+import datetime
+astuces_dir = racine / 'astuces'
+astuces = []
+mois = ['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre']
+for f in sorted(astuces_dir.glob('*/index.html')):
+    slug = f.parent.name
+    s2 = f.read_text(encoding='utf-8')
+    date = balise(s2, r'<meta property="article:published_time" content="(.*?)">')
+    a = {'slug': slug, 'title': balise(s2, r'<title>(.*?)</title>'), 'desc': balise(s2, r'<meta name="description" content="(.*?)">'),
+         'h1': balise(s2, r'<h1>(.*?)</h1>'), 'cat': balise(s2, r'<meta property="article:section" content="(.*?)">'), 'date': date,
+         'mots': len(texte(balise(s2, r'<article>(.*?)</article>')).split())}
+    e = []
+    if '{{' in s2: e.append('balise {{ restante')
+    if s2.count('<h1') != 1: e.append('h1')
+    if not 30 <= len(a['title']) <= 65: e.append(f"title {len(a['title'])} car.")
+    if not 120 <= len(a['desc']) <= 160: e.append(f"description {len(a['desc'])} car.")
+    if not re.match(r'\d{4}-\d{2}-\d{2}$', date): e.append('date de publication')
+    if a['mots'] < 350: e.append(f"{a['mots']} mots")
+    if not (f.parent / 'couverture.jpg').exists(): e.append('couverture.jpg absente')
+    for bloc in re.findall(r'<script type="application/ld\+json">(.*?)</script>', s2, flags=re.S):
+        try: json.loads(bloc)
+        except Exception as x: e.append(f'JSON-LD invalide ({x})')
+    for lien in set(re.findall(r'href="/guides/([^"/#]+)/', s2)):
+        if lien not in slugs: e.append(f'lien mort /guides/{lien}/')
+    autres = [d.name for d in astuces_dir.iterdir() if d.is_dir()]
+    for lien in set(re.findall(r'href="/astuces/([^"/#]+)/', s2)):
+        if lien not in autres: e.append(f'lien mort /astuces/{lien}/')
+    if e: erreurs.append(('astuces/' + slug, e))
+    astuces.append(a)
+astuces.sort(key=lambda a: a['date'], reverse=True)
+def date_txt(d):
+    y, m, j = d.split('-'); return f'{int(j)} {mois[int(m)-1]} {y}'
+cartes = '\n'.join(f'  <li><a href="/astuces/{a["slug"]}/"><img src="/astuces/{a["slug"]}/couverture.jpg" alt="" width="1200" height="630" loading="lazy"><div class="t"><b>{html.escape(a["h1"])}</b><span>{html.escape(a["cat"])} · {date_txt(a["date"])}</span></div></a></li>' for a in astuces)
+tete_a = (gabarit.split('<script type="application/ld+json">')[0]
+          .replace('{{TITLE}}', 'Astuces pour les pros : images, avis, fiche Google | Bras Droit IA')
+          .replace('{{DESCRIPTION}}', 'Une astuce concrète chaque mardi et chaque jeudi pour les artisans, commerçants et indépendants : photos, fiche Google, avis, réseaux sociaux.')
+          .replace('https://brasdroitia.com/guides/{{SLUG}}/', 'https://brasdroitia.com/astuces/')
+          .replace('content="article"', 'content="website"'))
+hub_a = tete_a + f'''<link rel="alternate" type="application/rss+xml" title="Astuces Bras Droit IA" href="/astuces/rss.xml">
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDXSWKZP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+''' + hub.split('<body>\n',1)[1].split('<main class="wrap">')[0].split('</noscript>\n',1)[-1] + f'''<main class="wrap">
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › Astuces</nav>
+<article>
+<h1>Astuces pour les pros : visibles en 5 minutes</h1>
+<p class="chapo">Une astuce concrète, chaque mardi et chaque jeudi : photos à publier, fiche Google, avis, réseaux sociaux. À appliquer tout de suite, sans agence.</p>
+<ul class="blog">
+{cartes}
+</ul>
+<p>Pour aller plus loin, consultez nos <a href="/guides/">guides complets</a>.</p>
+</article>
+</main>
+''' + '<footer>' + hub.split('<footer>',1)[1]
+(astuces_dir / 'index.html').write_text(hub_a, encoding='utf-8')
+def rfc822(d):
+    dt = datetime.datetime.strptime(d, '%Y-%m-%d').replace(hour=8, tzinfo=datetime.timezone.utc)
+    return dt.strftime('%a, %d %b %Y %H:%M:%S +0000')
+items = ''.join(f'<item><title>{html.escape(a["h1"])}</title><link>{SITE}/astuces/{a["slug"]}/</link><guid>{SITE}/astuces/{a["slug"]}/</guid><pubDate>{rfc822(a["date"])}</pubDate><category>{html.escape(a["cat"])}</category><description>{html.escape(a["desc"])}</description></item>\n' for a in astuces)
+(astuces_dir / 'rss.xml').write_text(f'<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0"><channel><title>Astuces Bras Droit IA</title><link>{SITE}/astuces/</link><description>Une astuce concrète chaque mardi et chaque jeudi pour les pros.</description><language>fr-FR</language>\n{items}</channel></rss>\n', encoding='utf-8')
+
+# ---------- Sitemap ----------
+def mod_guide(slug):
+    s3 = (guides / slug / 'index.html').read_text(encoding='utf-8')
+    m = re.search(r'"dateModified":"(\d{4}-\d{2}-\d{2})"', s3)
+    return m.group(1) if m else '2026-10-27'
+derniere = max([a['date'] for a in astuces] + ['2026-10-27'])
+urls = [('/', '1.0', derniere), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
+urls += [(f'/guides/{p["slug"]}/', '0.7', mod_guide(p['slug'])) for p in pages]
+urls += [(f'/astuces/{a["slug"]}/', '0.6', a['date']) for a in astuces]
+urls += [('/cgv.html', '0.2', '2026-10-28'), ('/mentions-legales.html', '0.1', '2026-10-27'), ('/confidentialite.html', '0.1', '2026-10-28')]
+(racine / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{SITE}{u}</loc><lastmod>{d}</lastmod><priority>{pr}</priority></url>\n' for u, pr, d in urls) + '</urlset>\n', encoding='utf-8')
+(racine / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /merci.html\nDisallow: /guides/_gabarit.html\nDisallow: /astuces/_gabarit.html\n\nSitemap: {SITE}/sitemap.xml\n', encoding='utf-8')
+print(f'{len(astuces)} astuces')
 
 print(f'{len(pages)} guides, {sum(p["mots"] for p in pages)} mots au total')
 for slug, e in erreurs: print('ERREUR', slug, ':', '; '.join(e))

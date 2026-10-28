@@ -3,7 +3,7 @@
 [build]
   publish = "."
   # Retire du site public les notes internes, le plan SEO, le gabarit et les outils.
-  command = "rm -rf *.md *.zip guides/_* _outils && echo 'site prêt'"
+  command = "rm -rf *.md *.zip guides/_* astuces/_* _outils && echo site-pret"
 
 [[headers]]
   for = "/*"
