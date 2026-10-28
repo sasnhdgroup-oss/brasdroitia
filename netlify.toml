@@ -5,6 +5,10 @@
   # Retire du site public les notes internes, le plan SEO, le gabarit et les outils.
   command = "rm -rf *.md *.zip guides/_* astuces/_* _outils && echo site-pret"
 
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
+
 [[headers]]
   for = "/*"
   [headers.values]

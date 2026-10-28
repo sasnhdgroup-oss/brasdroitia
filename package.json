@@ -1,0 +1,10 @@
+{
+  "name": "brasdroitia-site",
+  "private": true,
+  "type": "module",
+  "description": "Site Bras Droit IA : pages statiques et fonctions Netlify (générateur de réponses aux avis Google).",
+  "dependencies": {
+    "@anthropic-ai/sdk": "latest",
+    "@netlify/blobs": "latest"
+  }
+}

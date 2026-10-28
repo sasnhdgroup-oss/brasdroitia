@@ -163,7 +163,7 @@ def mod_guide(slug):
     m = re.search(r'"dateModified":"(\d{4}-\d{2}-\d{2})"', s3)
     return m.group(1) if m else '2026-10-27'
 derniere = max([a['date'] for a in astuces] + ['2026-10-27'])
-urls = [('/', '1.0', derniere), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
+urls = [('/', '1.0', derniere), ('/outils/generateur-reponse-avis-google/', '0.9', '2026-10-28'), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
 urls += [(f'/guides/{p["slug"]}/', '0.7', mod_guide(p['slug'])) for p in pages]
 urls += [(f'/astuces/{a["slug"]}/', '0.6', a['date']) for a in astuces]
 urls += [('/cgv.html', '0.2', '2026-10-28'), ('/mentions-legales.html', '0.1', '2026-10-27'), ('/confidentialite.html', '0.1', '2026-10-28')]
