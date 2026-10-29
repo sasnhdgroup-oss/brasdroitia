@@ -1,5 +1,5 @@
 // Visuels d'une astuce : couverture du site (1200 x 630) et visuel Instagram/Facebook (1080 x 1350).
-// Usage : node _outils/couverture.js astuces/<slug>/visuel.json
+// Usage : node _outils/couverture.cjs astuces/<slug>/visuel.json
 // visuel.json : {"categorie":"Fiche Google","titre":"…","points":["…","…","…"],"accroche":"…"}
 const { chromium } = require('playwright');
 const fs = require('fs');
