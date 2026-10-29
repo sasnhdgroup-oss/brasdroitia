@@ -128,7 +128,7 @@
   {k:'points_forts',t:'Ce qui vous distingue ?',aide:'Facultatif. Exemple : « spécialiste des dégradés, ouvert le lundi, parking devant ».',type:'long',ph:'Vos spécialités, vos services, ce que vos clients aiment…'},
   {k:'ton',t:'Quel ton vous ressemble ?',type:'un',o:[['🤗','Chaleureux et proche'],['👔','Professionnel et rassurant'],['😄','Décontracté, avec de l\'humour']]}
  ];
- var R = {reseaux:[]}, i = 0, z = document.getElementById('quiz'), PLAN = null, SIG = '';
+ var R = {reseaux:[]}, i = 0, z = document.getElementById('quiz'), PARTIES = null;
  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
  function ev(n){try{(window.dataLayer=window.dataLayer||[]).push({event:n});}catch(e){}}
  function rempli(q){var v=R[q.k];return q.type==='long'||(q.type==='plusieurs'?v&&v.length:!!(v&&String(v).trim()));}
@@ -158,22 +158,20 @@
  var ETAPES=['Lecture de vos réponses','Choix du rythme de publication','Thèmes des 4 semaines','Idées de publications jour par jour','Rédaction de 2 publications prêtes à copier','Conseil pour votre fiche Google'];
  function generer(){
   z.innerHTML='<div class="attente"><p>L\'IA prépare votre plan…</p><div class="pc" id="pc">0 %</div><div class="barre"><i id="pb"></i></div><ul id="et">'+ETAPES.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul></div>';
-  var recu='', attendu=4200;
-  fetch('/api/plan',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({metier:R.metier,ville:R.ville,reseaux:R.reseaux,frequence:R.frequence,objectif:R.objectif,clientele:R.clientele,points_forts:R.points_forts,ton:R.ton})})
-  .then(function(rep){
-   if((rep.headers.get('content-type')||'').indexOf('application/json')>-1)return rep.json().then(function(d){throw new Error(d.message||'');});
-   var lec=rep.body.getReader(),dec=new TextDecoder();
-   function lire(){return lec.read().then(function(x){if(x.done)return;recu+=dec.decode(x.value,{stream:true});var p=Math.min(97,Math.round(recu.length/attendu*100));document.getElementById('pc').textContent=p+' %';document.getElementById('pb').style.width=p+'%';var n=Math.floor(p/100*ETAPES.length);[].forEach.call(document.querySelectorAll('#et li'),function(li,j){if(j<=n)li.className='ok';});return lire();});}
-   return lire();
-  })
-  .then(function(){
-   var k=recu.lastIndexOf('\n#');var fin=k>-1?recu.slice(k+2):'';var texte=k>-1?recu.slice(0,k):recu;
-   if(fin.indexOf('SIG:')!==0)throw new Error('');
-   SIG=fin.slice(4).trim();PLAN=texte;var p=JSON.parse(texte);
-   if(!p.est_valide)throw new Error(p.message_si_refus||'Décrivez une activité professionnelle pour obtenir votre plan.');
+  // 3 parties rédigées en parallèle ; la barre avance avec le temps écoulé et les parties terminées.
+  var t0=Date.now(),faites=0,fini=false;
+  function maj(){if(fini)return;var p=Math.min(95,Math.round((1-Math.exp(-(Date.now()-t0)/9000))*80+faites*5));document.getElementById('pc').textContent=p+' %';document.getElementById('pb').style.width=p+'%';var n=Math.floor(p/100*ETAPES.length);[].forEach.call(document.querySelectorAll('#et li'),function(li,j){if(j<=n)li.className='ok';});setTimeout(maj,250);}
+  maj();
+  var corps={metier:R.metier,ville:R.ville,reseaux:R.reseaux,frequence:R.frequence,objectif:R.objectif,clientele:R.clientele,points_forts:R.points_forts,ton:R.ton};
+  function partie(k){return fetch('/api/plan',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({partie:k},corps))}).then(function(r){return r.json().catch(function(){return {ok:false};});}).then(function(d){if(!d.ok)throw new Error(d.message||'');faites++;return d;});}
+  Promise.all([partie('a'),partie('b'),partie('c')])
+  .then(function(l){
+   fini=true;PARTIES={};var p={semaines:[]};
+   l.forEach(function(d){PARTIES[d.partie]={texte:d.texte,sig:d.sig};var x=JSON.parse(d.texte);p.semaines=p.semaines.concat(x.semaines||[]);['diagnostic','rythme','conseil_google','posts_rediges'].forEach(function(c){if(x[c]!==undefined)p[c]=x[c];});});
+   p.semaines.sort(function(x,y){return x.numero-y.numero;});
    ev('bdia_plan_genere');resultat(p);
   })
-  .catch(function(err){z.innerHTML='<p class="erreur">'+esc(err&&err.message||'La préparation du plan a échoué. Réessayez dans une minute.')+'</p><div class="nav"><button type="button" class="suite" id="re">Réessayer</button></div>';document.getElementById('re').onclick=generer;});
+  .catch(function(err){fini=true;z.innerHTML='<p class="erreur">'+esc(err&&err.message||'La préparation du plan a échoué. Réessayez dans une minute.')+'</p><div class="nav"><button type="button" class="suite" id="re">Réessayer</button></div>';document.getElementById('re').onclick=generer;});
  }
 
  function semaine(s){return '<div class="sem"><h3>Semaine '+esc(s.numero)+' : '+esc(s.theme)+'</h3><table>'+(s.publications||[]).map(function(x){return '<tr><td><b>'+esc(x.jour)+'</b><br>'+esc(x.heure)+'</td><td><span class="fmt">'+esc(x.reseau)+' · '+esc(x.format)+'</span>'+esc(x.idee)+'</td></tr>';}).join('')+'</table></div>';}
@@ -208,7 +206,7 @@
  }
  z.addEventListener('submit',function(e){
   if(e.target.id!=='env')return;e.preventDefault();var f=e.target,m=f.querySelector('.msg');m.textContent='Envoi…';
-  fetch('/api/plan-envoi',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,plan:PLAN,sig:SIG,metier:R.metier,ville:R.ville})})
+  fetch('/api/plan-envoi',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,parties:PARTIES,metier:R.metier,ville:R.ville})})
   .then(function(r){return r.json();}).then(function(d){m.textContent=d.message;if(d.ok){ev('bdia_plan_email');var msg=d.message;complet(window.__plan);var n=document.createElement('p');n.className='diag';n.textContent=msg;var t=document.querySelector('.offre');t.parentNode.insertBefore(n,t);}})
   .catch(function(){m.textContent='L\'envoi n\'a pas pu aboutir. Réessayez.';});
  });

@@ -51,11 +51,20 @@ export default async (req, context) => {
   if (e.site) return json({ ok: true, message: "Envoyé !" }); // champ piège pour les robots
   const email = String(e.email || "").trim().toLowerCase();
   if (!/^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,}$/.test(email)) return json({ ok: false, message: "Adresse e-mail invalide." }, 400);
-  const texte = String(e.plan || "");
   if (!process.env.BREVO_API_KEY) return json({ ok: false, message: "L'envoi par e-mail ouvre très bientôt." }, 503);
-  if (texte.length > 40000 || !egal(e.sig || "", signerPlan(texte))) return json({ ok: false, message: "Ce plan ne peut pas être envoyé. Préparez-en un nouveau." }, 400);
-  let p;
-  try { p = JSON.parse(texte); } catch { return json({ ok: false, message: "Plan illisible." }, 400); }
+  // Le plan arrive en 3 parties signées (a, b, c) : chacune est vérifiée, puis elles sont réunies.
+  const p = { semaines: [] };
+  try {
+    for (const k of ["a", "b", "c"]) {
+      const part = (e.parties || {})[k] || {};
+      const texte = String(part.texte || "");
+      if (texte.length > 20000 || !egal(part.sig || "", signerPlan(k + texte))) throw new Error("signature");
+      const d = JSON.parse(texte);
+      p.semaines.push(...(d.semaines || []));
+      for (const c of ["diagnostic", "rythme", "conseil_google", "posts_rediges"]) if (d[c] !== undefined) p[c] = d[c];
+    }
+  } catch { return json({ ok: false, message: "Ce plan ne peut pas être envoyé. Préparez-en un nouveau." }, 400); }
+  p.semaines.sort((x, y) => x.numero - y.numero);
   const metier = String(e.metier || "").slice(0, 60), ville = String(e.ville || "").slice(0, 60);
 
   const jour = new Date().toISOString().slice(0, 10);
