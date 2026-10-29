@@ -68,5 +68,15 @@
 | G | 58 | whatsapp-business-professionnel | whatsapp business | Réseaux | 21 |
 | G | 59 | message-remerciement-client | message remerciement client satisfait | Méthode | 41 |
 | G | 60 | bio-instagram-professionnel | bio instagram idée (professionnel) | Réseaux | 21 |
+| H | 61 | page-facebook-professionnelle | facebook page pro ou perso, créer page professionnelle | Réseaux | 21 |
+| H | 62 | passer-compte-professionnel-instagram | passer en compte professionnel instagram | Réseaux | 21 |
+| H | 63 | meilleure-heure-publier-instagram | meilleure heure pour publier sur instagram | Méthode | 41 |
+| H | 64 | carrousel-instagram-exemple | carrousel instagram exemple | Réseaux | 21 |
+| H | 65 | dimension-post-facebook-instagram | dimension post facebook et instagram, publication instagram format | Méthode | 41 |
+| I | 66 | reponse-avis-google-restaurant | réponse avis google restaurant | Avis | 1 |
+| I | 67 | reels-facebook-entreprise | reels facebook | Réseaux | 21 |
+| I | 68 | newsletter-entreprise-exemple | newsletter entreprise exemple | Méthode | 41 |
+| I | 69 | fidelisation-client-exemple | fidélisation client exemple | Méthode | 41 |
+| I | 70 | questionnaire-satisfaction-client-exemple | questionnaire satisfaction client exemple | Méthode | 41 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
