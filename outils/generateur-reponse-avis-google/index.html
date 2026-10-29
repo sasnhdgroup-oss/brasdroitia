@@ -99,9 +99,10 @@
 </section>
 
 <div class="cta">
- <h2>Vos 10 réponses aux avis, chaque mois, sans y penser</h2>
- <p>Avec Bras Droit IA, vous recevez chaque mois 10 réponses aux avis, 12 publications pour Instagram et Facebook dont 2 reels, et 4 posts Google, écrits pour votre métier et votre ville. 9 € le premier mois, puis 29 € TTC par mois, sans engagement.</p>
+ <h2>Les avis, c'est ici. Vos publications du mois, c'est nous.</h2>
+ <p>Ce générateur reste gratuit pour vos avis. Pour le reste, Bras Droit IA vous envoie chaque mois 20 publications pour Instagram et Facebook dont 6 reels vidéo, 8 posts pour votre fiche Google et le plan du mois (quoi publier, quel jour, à quelle heure), écrits pour votre métier et votre ville, relus avant envoi. 9 € le premier mois pour toute inscription jusqu'au 30 novembre, puis 29 € TTC par mois, sans engagement.</p>
  <a class="btn" href="/?utm_source=seo&amp;utm_medium=outil&amp;utm_campaign=generateur-avis#metier">Voir l'exemple pour mon métier</a>
+ <a class="btn ghost" href="/plan/">Votre plan gratuit en 2 minutes</a>
 </div>
 </article>
 </main>
@@ -124,7 +125,7 @@
   .then(function(x){return x.json();})
   .then(function(d){
    if(!d.ok||!d.reponses||!d.reponses.length){r.innerHTML='<p class="erreur">'+esc(d.message||'Une erreur est survenue.')+'</p>';return;}
-   r.innerHTML=d.reponses.map(function(x,i){return '<div class="rep"><b>'+esc(x.ton)+'</b><p id="rep'+i+'">'+esc(x.texte)+'</p><button type="button" class="copier" data-i="'+i+'">Copier</button></div>';}).join('')+'<p class="note">Relisez avant de publier. <a href="/#metier">Recevoir 10 réponses par mois avec Bras Droit IA</a></p>';
+   r.innerHTML=d.reponses.map(function(x,i){return '<div class="rep"><b>'+esc(x.ton)+'</b><p id="rep'+i+'">'+esc(x.texte)+'</p><button type="button" class="copier" data-i="'+i+'">Copier</button></div>';}).join('')+'<p class="note">Relisez avant de publier. <a href="/#metier">Recevoir aussi vos publications du mois avec Bras Droit IA</a></p>';
    if(window.bdiaEvenement){try{dataLayer.push({event:'bdia_generateur_avis'});}catch(e){}}
   })
   .catch(function(){r.innerHTML='<p class="erreur">Le générateur est momentanément indisponible.</p>';})

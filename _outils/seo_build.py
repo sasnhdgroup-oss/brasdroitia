@@ -168,7 +168,7 @@ derniere = max([a['date'] for a in astuces] + ['2026-10-27'])
 urls = [('/', '1.0', derniere), ('/plan/', '0.9', '2026-10-29'), ('/outils/generateur-reponse-avis-google/', '0.9', '2026-10-28'), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
 urls += [(f'/guides/{p["slug"]}/', '0.7', mod_guide(p['slug'])) for p in pages]
 urls += [(f'/astuces/{a["slug"]}/', '0.6', a['date']) for a in astuces]
-urls += [('/cgv.html', '0.2', '2026-10-28'), ('/mentions-legales.html', '0.1', '2026-10-27'), ('/confidentialite.html', '0.1', '2026-10-28')]
+urls += [('/cgv.html', '0.2', '2026-10-29'), ('/mentions-legales.html', '0.1', '2026-10-27'), ('/confidentialite.html', '0.1', '2026-10-28')]
 (racine / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{SITE}{u}</loc><lastmod>{d}</lastmod><priority>{pr}</priority></url>\n' for u, pr, d in urls) + '</urlset>\n', encoding='utf-8')
 (racine / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /merci.html\nDisallow: /guides/_gabarit.html\nDisallow: /astuces/_gabarit.html\n\nSitemap: {SITE}/sitemap.xml\n', encoding='utf-8')
 print(f'{len(astuces)} astuces')
