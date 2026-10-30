@@ -10,3 +10,7 @@ Site de Bras Droit IA, une marque de SCALINEA : page de vente, guides pratiques 
 - `/api/reponse-avis` : générateur de réponses aux avis Google (IA fournie par Netlify ; `BDIA_MODELE`, `BDIA_PLAFOND_JOUR` facultatifs).
 - `/api/inscription` et `/api/desinscription` : lettre « L'astuce du mardi » (Brevo). Variables : `BREVO_API_KEY` (secrète), `BREVO_MODELE_CONFIRMATION` (modèle n° 1), `BREVO_LISTE` (défaut 3).
 - Toute variable ajoutée ou modifiée dans Netlify ne s'applique qu'au déploiement suivant.
+
+## Hébergement
+
+Netlify, offre Personal (1 000 crédits par mois) depuis le 30/10/2026 : chaque mise en ligne coûte 15 crédits, donc regrouper les modifications en une mise en ligne par jour.
