@@ -78,5 +78,15 @@
 | I | 68 | newsletter-entreprise-exemple | newsletter entreprise exemple | Méthode | 41 |
 | I | 69 | fidelisation-client-exemple | fidélisation client exemple | Méthode | 41 |
 | I | 70 | questionnaire-satisfaction-client-exemple | questionnaire satisfaction client exemple | Méthode | 41 |
+| J | 71 | publication-facebook-avec-ia | publication facebook avec ia | IA | 41 |
+| J | 72 | canva-reseaux-sociaux-entreprise | canva ia, canva pour réseaux sociaux | Méthode | 41 |
+| J | 73 | idee-feed-instagram | idée feed instagram | Réseaux | 21 |
+| J | 74 | debuter-instagram-professionnel | instagram pour les nuls | Réseaux | 21 |
+| J | 75 | publier-facebook-et-instagram-en-meme-temps | publication facebook sur instagram | Réseaux | 21 |
+| K | 76 | marketing-local-digital | marketing local digital | Méthode | 41 |
+| K | 77 | coin-photo-instagrammable-commerce | photo instagrammable | Réseaux | 21 |
+| K | 78 | texte-promotionnel-exemple | texte promotionnel exemple, message promotionnel | Méthode | 41 |
+| K | 79 | lien-en-bio-instagram | lien en bio instagram | Réseaux | 21 |
+| K | 80 | idee-publication-noel-commerce | idée publication noël | Méthode | 41 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
