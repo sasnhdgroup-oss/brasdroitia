@@ -158,13 +158,13 @@
  var ETAPES=['Lecture de vos réponses','Choix du rythme de publication','Thèmes des 4 semaines','Idées de publications jour par jour','Rédaction de 2 publications prêtes à copier','Conseil pour votre fiche Google'];
  function generer(){
   z.innerHTML='<div class="attente"><p>L\'IA prépare votre plan…</p><div class="pc" id="pc">0 %</div><div class="barre"><i id="pb"></i></div><ul id="et">'+ETAPES.map(function(t){return '<li>'+t+'</li>';}).join('')+'</ul></div>';
-  // 3 parties rédigées en parallèle ; la barre avance avec le temps écoulé et les parties terminées.
+  // 5 parties rédigées en parallèle ; la barre avance avec le temps écoulé et les parties terminées.
   var t0=Date.now(),faites=0,fini=false;
-  function maj(){if(fini)return;var p=Math.min(95,Math.round((1-Math.exp(-(Date.now()-t0)/9000))*80+faites*5));document.getElementById('pc').textContent=p+' %';document.getElementById('pb').style.width=p+'%';var n=Math.floor(p/100*ETAPES.length);[].forEach.call(document.querySelectorAll('#et li'),function(li,j){if(j<=n)li.className='ok';});setTimeout(maj,250);}
+  function maj(){if(fini)return;var p=Math.min(95,Math.round((1-Math.exp(-(Date.now()-t0)/9000))*75+faites*4));document.getElementById('pc').textContent=p+' %';document.getElementById('pb').style.width=p+'%';var n=Math.floor(p/100*ETAPES.length);[].forEach.call(document.querySelectorAll('#et li'),function(li,j){if(j<=n)li.className='ok';});setTimeout(maj,250);}
   maj();
   var corps={metier:R.metier,ville:R.ville,reseaux:R.reseaux,frequence:R.frequence,objectif:R.objectif,clientele:R.clientele,points_forts:R.points_forts,ton:R.ton};
   function partie(k){return fetch('/api/plan',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({partie:k},corps))}).then(function(r){return r.json().catch(function(){return {ok:false};});}).then(function(d){if(!d.ok)throw new Error(d.message||'');faites++;return d;});}
-  Promise.all([partie('a'),partie('b'),partie('c')])
+  Promise.all(['a','b','c','d','e'].map(partie))
   .then(function(l){
    fini=true;PARTIES={};var p={semaines:[]};
    l.forEach(function(d){PARTIES[d.partie]={texte:d.texte,sig:d.sig};var x=JSON.parse(d.texte);p.semaines=p.semaines.concat(x.semaines||[]);['diagnostic','rythme','conseil_google','posts_rediges'].forEach(function(c){if(x[c]!==undefined)p[c]=x[c];});});

@@ -52,10 +52,10 @@ export default async (req, context) => {
   const email = String(e.email || "").trim().toLowerCase();
   if (!/^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,}$/.test(email)) return json({ ok: false, message: "Adresse e-mail invalide." }, 400);
   if (!process.env.BREVO_API_KEY) return json({ ok: false, message: "L'envoi par e-mail ouvre très bientôt." }, 503);
-  // Le plan arrive en 3 parties signées (a, b, c) : chacune est vérifiée, puis elles sont réunies.
+  // Le plan arrive en 5 parties signées (a à e) : chacune est vérifiée, puis elles sont réunies.
   const p = { semaines: [] };
   try {
-    for (const k of ["a", "b", "c"]) {
+    for (const k of ["a", "b", "c", "d", "e"]) {
       const part = (e.parties || {})[k] || {};
       const texte = String(part.texte || "");
       if (texte.length > 20000 || !egal(part.sig || "", signerPlan(k + texte))) throw new Error("signature");
