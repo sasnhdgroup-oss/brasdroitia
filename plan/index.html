@@ -207,7 +207,7 @@
  z.addEventListener('submit',function(e){
   if(e.target.id!=='env')return;e.preventDefault();var f=e.target,m=f.querySelector('.msg');m.textContent='Envoi…';
   fetch('/api/plan-envoi',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,parties:PARTIES,metier:R.metier,ville:R.ville})})
-  .then(function(r){return r.json();}).then(function(d){m.textContent=d.message;if(d.ok){ev('bdia_plan_email');var msg=d.message;complet(window.__plan);var n=document.createElement('p');n.className='diag';n.textContent=msg;var t=document.querySelector('.offre');t.parentNode.insertBefore(n,t);}})
+  .then(function(r){return r.json();}).then(function(d){m.textContent=d.message;if(d.ok){ev('bdia_plan_email');if(window.bdiaEvenement)bdiaEvenement('prospect');var msg=d.message;complet(window.__plan);var n=document.createElement('p');n.className='diag';n.textContent=msg;var t=document.querySelector('.offre');t.parentNode.insertBefore(n,t);}})
   .catch(function(){m.textContent='L\'envoi n\'a pas pu aboutir. Réessayez.';});
  });
  z.addEventListener('click',function(e){

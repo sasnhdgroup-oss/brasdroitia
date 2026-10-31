@@ -5,7 +5,7 @@
 
    Identifiants à renseigner (laisser vide = traceur désactivé) : */
 var BDIA_TRACEURS = {
-  metaPixel: '',     // Meta (Facebook, Instagram) : Gestionnaire d'événements > Sources de données
+  metaPixel: '2193266434649516', // Meta (Facebook, Instagram), pixel fourni par Abdellah le 31/10/2026
   tiktokPixel: '',   // TikTok Ads Manager > Outils > Événements > Pixel web
   googleTag: 'G-4W3MC6K296', // Google Analytics 4 (et plus tard Google Ads AW-…, ajouté par gtag('config'))
   googleConversion: '' // action de conversion Google Ads : AW-XXXXXXXXX/YYYYYYYY
@@ -68,11 +68,19 @@ var BDIA_TRACEURS = {
 
   // Événements de conversion : « debut_paiement » (clic sur le bouton de paiement)
   // et « abonnement » (page merci, après le paiement Stripe).
+  // Événements : « debut_paiement » (clic sur le bouton de paiement), « abonnement » (page merci,
+  // après le paiement Stripe) et « prospect » (plan IA reçu par e-mail sur /plan/).
+  var NOMS = {
+    abonnement: { meta: 'Purchase', tiktok: 'CompletePayment', google: 'purchase' },
+    debut_paiement: { meta: 'InitiateCheckout', tiktok: 'InitiateCheckout', google: 'begin_checkout' },
+    prospect: { meta: 'Lead', tiktok: 'SubmitForm', google: 'generate_lead' }
+  };
   function emettre(nom, params) {
     params = params || {};
-    if (window.fbq) fbq('track', nom === 'abonnement' ? 'Purchase' : 'InitiateCheckout', params);
-    if (window.ttq) ttq.track(nom === 'abonnement' ? 'CompletePayment' : 'InitiateCheckout', params);
-    if (window.gtag && BDIA_TRACEURS.googleTag) gtag('event', nom === 'abonnement' ? 'purchase' : 'begin_checkout', { value: params.value, currency: params.currency });
+    var n = NOMS[nom] || NOMS.debut_paiement;
+    if (window.fbq) fbq('track', n.meta, params);
+    if (window.ttq) ttq.track(n.tiktok, params);
+    if (window.gtag && BDIA_TRACEURS.googleTag) gtag('event', n.google, { value: params.value, currency: params.currency });
     if (window.gtag && nom === 'abonnement' && BDIA_TRACEURS.googleConversion) {
       gtag('event', 'conversion', { send_to: BDIA_TRACEURS.googleConversion, value: params.value, currency: params.currency });
     }
