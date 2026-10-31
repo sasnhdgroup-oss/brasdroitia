@@ -135,4 +135,17 @@ var BDIA_TRACEURS = {
     else if (c.pub) charger();
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+
+  // Liens externes : ouverture dans un nouvel onglet, pour garder brasdroitia.com ouvert (sauf le paiement).
+  // Écoute au niveau du document : couvre aussi les liens ajoutés par script (plan IA, générateur).
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href]');
+    if (!a || a.target) return;
+    var u;
+    try { u = new URL(a.href, location.href); } catch (x) { return; }
+    // Le paiement Stripe reste dans le même onglet : il revient ensuite sur la page merci du site.
+    if (!/^https?:$/.test(u.protocol) || u.host === location.host || u.host === 'buy.stripe.com') return;
+    a.target = '_blank';
+    a.rel = ((a.rel || '') + ' noopener noreferrer').trim();
+  });
 })();
