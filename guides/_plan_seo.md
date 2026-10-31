@@ -88,5 +88,15 @@
 | K | 78 | texte-promotionnel-exemple | texte promotionnel exemple, message promotionnel | Méthode | 41 |
 | K | 79 | lien-en-bio-instagram | lien en bio instagram | Réseaux | 21 |
 | K | 80 | idee-publication-noel-commerce | idée publication noël | Méthode | 41 |
+| L | 81 | statistiques-instagram-professionnel | statistiques instagram | Réseaux | 21 |
+| L | 82 | photo-avant-apres-facebook | photo avant après facebook | Réseaux | 21 |
+| L | 83 | video-pour-entreprise | video pour entreprise, video pour professionnel | Méthode | 41 |
+| L | 84 | creer-contenu-instagram-entreprise | créer contenu instagram | Réseaux | 21 |
+| L | 85 | creer-contenu-avec-ia | créer contenu avec ia | IA | 41 |
+| M | 86 | faire-connaitre-son-entreprise-localement | faire connaître son entreprise localement | Méthode | 41 |
+| M | 87 | attirer-clients-magasin | attirer des clients dans son magasin | Méthode | 41 |
+| M | 88 | plaque-nfc-avis-google | google avis nfc | Avis | 1 |
+| M | 89 | musique-video-entreprise | musique pour vidéo entreprise | Méthode | 41 |
+| M | 90 | fiche-google-photo-en-attente | fiche google photo en attente | Fiche Google | 15 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
