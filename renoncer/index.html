@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Fonction de rétractation en ligne : aucun traceur, aucune mesure d'audience sur cette page. -->
+<title>Renoncer au contrat ici | Bras Droit IA</title>
+<meta name="description" content="Rétractez-vous en ligne de votre abonnement Bras Droit IA pendant le délai de 14 jours : accusé de réception immédiat par e-mail.">
+<meta name="robots" content="noindex,follow">
+<meta name="referrer" content="no-referrer">
+<link rel="canonical" href="https://brasdroitia.com/renoncer/">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/guides/guides.css">
+<style>
+.carte{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin:10px 0 26px}
+@media (min-width:600px){.carte{padding:26px}}
+.qn{margin:0 0 18px}
+.qn label.l{display:block;font-weight:700;margin:0 0 4px}
+.aide{color:var(--muted);font-size:15px;margin:0 0 6px}
+.req{color:#B3261E;font-weight:800}
+.qn input[type=text],.qn input[type=email],.qn input[type=date]{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid #BDBBB2;border-radius:10px;background:#FBFAF6;color:var(--ink);min-height:48px}
+.case{display:flex;gap:12px;align-items:flex-start;background:#F6F5F0;border-radius:12px;padding:12px 14px;cursor:pointer;line-height:1.45}
+.case input{flex:0 0 22px;width:22px;height:22px;margin-top:2px;accent-color:var(--navy)}
+.err{display:none;color:#B3261E;font-weight:700;font-size:15px;margin:6px 0 0}
+.qn.invalide .err{display:block}
+.qn.invalide input,.qn.invalide .case{border:2px solid #B3261E}
+.bouton{display:block;width:100%;font:800 18px Inter,sans-serif;border-radius:12px;padding:15px 18px;cursor:pointer;border:0;background:var(--navy);color:var(--lime);min-height:54px}
+.bouton.second{background:transparent;color:var(--ink);border:1px solid #BDBBB2;font-weight:700;font-size:16px;margin-top:10px}
+.bouton:focus-visible,.qn input:focus-visible{outline:3px solid #2B47C9;outline-offset:2px}
+.bouton[disabled]{opacity:.5;cursor:wait}
+.piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.recap{width:100%;border-collapse:collapse;font-size:15px;margin:0 0 16px}
+.recap th,.recap td{text-align:left;vertical-align:top;padding:8px;border-bottom:1px solid var(--line)}
+.recap th{color:var(--muted);font-weight:600;width:38%}
+.ok{background:#EEF6D0;border-radius:12px;padding:14px 16px}
+.erreur{background:#FDECEA;border-radius:12px;padding:12px 14px}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34">Bras Droit <span class="tag">IA</span></a>
+</div></header>
+<main class="wrap">
+<nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › Renoncer au contrat</nav>
+<article>
+<h1>Renoncer au contrat ici</h1>
+<p class="chapo">Vous avez souscrit l'abonnement Bras Droit IA « Contenus du mois » il y a moins de 14 jours ? Vous pouvez vous rétracter ici, sans motif et sans frais. Vous recevez immédiatement un accusé de réception par e-mail, avec la date et l'heure de votre demande.</p>
+
+<div class="carte" id="zone" aria-live="polite">
+<form id="f" novalidate>
+ <div class="qn" data-k="nom"><label class="l" for="nom">Votre nom <span class="req" aria-hidden="true">*</span></label><p class="aide" id="nom_aide">Nom et prénom, ou nom de votre entreprise, tels qu'indiqués lors du paiement.</p><input type="text" id="nom" name="nom" maxlength="120" autocomplete="name" required aria-required="true" aria-describedby="nom_aide nom_err"><p class="err" id="nom_err"></p></div>
+ <div class="qn" data-k="email"><label class="l" for="email">Votre adresse e-mail <span class="req" aria-hidden="true">*</span></label><p class="aide" id="email_aide">Celle utilisée pour votre commande, de préférence. L'accusé de réception y est envoyé.</p><input type="email" id="email" name="email" maxlength="200" autocomplete="email" inputmode="email" required aria-required="true" aria-describedby="email_aide email_err"><p class="err" id="email_err"></p></div>
+ <div class="qn" data-k="date_commande"><label class="l" for="date_commande">Date de votre commande <span class="req" aria-hidden="true">*</span></label><p class="aide" id="date_aide">Elle figure sur votre reçu Stripe. Une date approximative suffit.</p><input type="date" id="date_commande" name="date_commande" min="2026-01-01" required aria-required="true" aria-describedby="date_aide date_commande_err"><p class="err" id="date_commande_err"></p></div>
+ <div class="qn" data-k="reference"><label class="l" for="reference">Numéro de facture ou de reçu (facultatif)</label><input type="text" id="reference" name="reference" maxlength="200" autocomplete="off"></div>
+ <div class="qn" data-k="declaration"><label class="case"><input type="checkbox" id="declaration" name="declaration" required aria-required="true" aria-describedby="declaration_err"><span>Je vous notifie par la présente ma rétractation du contrat d'abonnement Bras Droit IA « Contenus du mois » (prestation de services numériques) conclu avec SCALINEA. <span class="req" aria-hidden="true">*</span></span></label><p class="err" id="declaration_err"></p></div>
+ <div class="piege" aria-hidden="true"><label>Site <input name="site" id="site" tabindex="-1" autocomplete="off"></label></div>
+ <button type="submit" class="bouton">Continuer</button>
+ <p class="aide" style="margin-top:10px">Vous pourrez vérifier votre demande avant de la confirmer.</p>
+</form>
+</div>
+
+<h2>Ce qu'il faut savoir</h2>
+<ul>
+ <li><b>Délai :</b> 14 jours à compter de la souscription de l'abonnement (<a href="/cgv.html#retractation">CGV, article B.2</a>). La garantie « satisfait ou remboursé » de 14 jours s'applique aussi aux clients professionnels (<a href="/cgv.html">CGV, article A.8</a>).</li>
+ <li><b>Remboursement intégral</b>, même si vous avez déjà reçu votre premier pack, sur le moyen de paiement utilisé, au plus tard 14 jours après la réception de votre demande. L'abonnement prend fin à la date de la demande.</li>
+ <li><b>Autres moyens :</b> vous pouvez aussi envoyer le <a href="/cgv.html#annexe2">formulaire de rétractation de l'annexe 2 des CGV</a>, ou toute déclaration sans ambiguïté, à contact@brasdroitia.com.</li>
+ <li>Vous souhaitez seulement <b>arrêter l'abonnement</b> pour les mois suivants, sans remboursement ? Utilisez la page <a href="/cgv.html#resiliation">Résilier mon abonnement</a>.</li>
+</ul>
+<p class="aide">Les informations saisies servent uniquement à traiter votre demande et à en garder la preuve (5 ans après la fin de l'abonnement). Voir la <a href="/confidentialite.html">politique de confidentialité</a>.</p>
+</article>
+</main>
+<footer><div class="wrap">
+ <div><b>Bras Droit IA</b> est une marque de SCALINEA SARL. Contenus préparés avec l'aide de l'intelligence artificielle et relus avant envoi. Non affilié à Anthropic, OpenAI, Meta ni Google.</div>
+ <div class="links"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="/renoncer/">Renoncer au contrat ici</a></div>
+</div></footer>
+<script>
+(function(){
+ var z=document.getElementById('zone'), f=document.getElementById('f'), D=null, formHTML=null;
+ var P=new URLSearchParams(location.search);if(P.get('e'))f.email.value=P.get('e');
+ f.date_commande.max=new Date().toISOString().slice(0,10);
+ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+ function erreur(k,m){var b=document.querySelector('.qn[data-k="'+k+'"]');if(!b)return null;b.classList.add('invalide');document.getElementById(k+'_err').textContent=m;var c=b.querySelector('input');c.setAttribute('aria-invalid','true');return b;}
+ function nettoyer(){[].forEach.call(document.querySelectorAll('.qn.invalide'),function(b){b.classList.remove('invalide');b.querySelector('input').removeAttribute('aria-invalid');});}
+ function dateFr(v){var d=new Date(v+'T12:00:00Z');return isNaN(d)?v:d.toLocaleDateString('fr-FR',{timeZone:'UTC',day:'numeric',month:'long',year:'numeric'});}
+ var DECL=document.querySelector('#declaration+span').firstChild.textContent.trim();
+
+ function etape1(e){
+  e.preventDefault();nettoyer();
+  D={nom:f.nom.value.trim(),email:f.email.value.trim(),date_commande:f.date_commande.value,reference:f.reference.value.trim(),declaration:f.declaration.checked,site:f.site.value};
+  var p=null,x;
+  if(D.nom.length<2){x=erreur('nom','Indiquez votre nom.');p=p||x;}
+  if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(D.email)){x=erreur('email','Indiquez une adresse e-mail valide : l\'accusé de réception y sera envoyé.');p=p||x;}
+  if(!D.date_commande){x=erreur('date_commande','Indiquez la date de votre commande (même approximative).');p=p||x;}
+  if(!D.declaration){x=erreur('declaration','Cochez la déclaration de rétractation.');p=p||x;}
+  if(p){p.querySelector('input').focus();return;}
+  formHTML=z.innerHTML;
+  z.innerHTML='<h2 id="t2" tabindex="-1" style="margin-top:0">Vérifiez votre demande</h2><table class="recap"><tr><th scope="row">Nom</th><td>'+esc(D.nom)+'</td></tr><tr><th scope="row">E-mail</th><td>'+esc(D.email)+'</td></tr><tr><th scope="row">Contrat</th><td>Abonnement Bras Droit IA « Contenus du mois », commandé le '+esc(dateFr(D.date_commande))+(D.reference?'<br>Référence : '+esc(D.reference):'')+'</td></tr><tr><th scope="row">Déclaration</th><td>« '+esc(DECL)+' »</td></tr></table><button type="button" class="bouton" id="confirmer">Confirmer la rétractation</button><button type="button" class="bouton second" id="modifier">Modifier</button><p class="msg" role="alert"></p>';
+  document.getElementById('t2').focus();
+ }
+ f.addEventListener('submit',etape1);
+ z.addEventListener('click',function(e){
+  if(e.target.id==='modifier'){z.innerHTML=formHTML;f=document.getElementById('f');f.nom.value=D.nom;f.email.value=D.email;f.date_commande.value=D.date_commande;f.reference.value=D.reference;f.declaration.checked=true;f.addEventListener('submit',etape1);f.nom.focus();return;}
+  if(e.target.id!=='confirmer')return;
+  var b=e.target;b.disabled=true;b.textContent='Envoi…';
+  fetch('/api/renoncer',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(Object.assign({},D,{confirme:true}))})
+  .then(function(r){return r.json().catch(function(){return {ok:false,message:'Réponse illisible du serveur.'};});})
+  .then(function(d){
+   if(!d.ok){b.disabled=false;b.textContent='Confirmer la rétractation';z.querySelector('.msg').innerHTML='<span class="erreur" style="display:block">'+esc(d.message||'L\'envoi n\'a pas abouti.')+' Vous pouvez aussi écrire à contact@brasdroitia.com.</span>';return;}
+   z.innerHTML='<div class="ok" tabindex="-1" id="fin"><h2 style="margin-top:0">Votre rétractation est enregistrée</h2><p>Demande n° <b>'+esc(d.numero)+'</b>, reçue le <b>'+esc(d.recu)+'</b>.</p>'+(d.envoye?'<p>Un accusé de réception reprenant votre demande vient d\'être envoyé à '+esc(d.email)+'. Pensez à regarder dans les courriers indésirables.</p>':'<p><b>L\'e-mail d\'accusé de réception n\'a pas pu partir.</b> Votre demande est bien enregistrée à cette date et cette heure ; conservez cette page (capture d\'écran) et nous vous écrivons rapidement.</p>')+'<p>Le remboursement intégral est effectué sur le moyen de paiement utilisé, au plus tard 14 jours après la réception de votre demande.</p></div><table class="recap" style="margin-top:14px"><tr><th scope="row">Nom</th><td>'+esc(d.nom)+'</td></tr><tr><th scope="row">E-mail</th><td>'+esc(d.email)+'</td></tr><tr><th scope="row">Contrat</th><td>Abonnement Bras Droit IA « Contenus du mois », commandé le '+esc(d.date_commande)+(d.reference?'<br>Référence : '+esc(d.reference):'')+'</td></tr><tr><th scope="row">Déclaration</th><td>« '+esc(d.declaration)+' »</td></tr></table>';
+   document.getElementById('fin').focus();
+  })
+  .catch(function(){b.disabled=false;b.textContent='Confirmer la rétractation';z.querySelector('.msg').innerHTML='<span class="erreur" style="display:block">La connexion a échoué. Réessayez, ou écrivez à contact@brasdroitia.com.</span>';});
+ });
+})();
+</script>
+</body>
+</html>

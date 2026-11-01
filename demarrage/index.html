@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- Page privée (lien personnel signé) : aucun traceur, aucune mesure d'audience. -->
+<title>Votre questionnaire de démarrage | Bras Droit IA</title>
+<meta name="description" content="Questionnaire de démarrage des clients Bras Droit IA.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="referrer" content="no-referrer">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/guides/guides.css">
+<style>
+.quiz{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin:10px 0 26px}
+@media (min-width:600px){.quiz{padding:26px}}
+.barre{height:8px;background:#ECEBE4;border-radius:8px;overflow:hidden;margin-bottom:6px}
+.barre i{display:block;height:100%;width:0;background:var(--navy);transition:width .3s}
+.etape-n{font-size:14px;color:var(--muted);margin:0 0 4px}
+.quiz h2{margin:0 0 16px;font-size:24px;line-height:1.25;color:var(--navy);font-weight:900}
+.qn{margin:0 0 22px;border:0;padding:0;min-width:0}
+.qn>legend,.qn>label.l{display:block;font-weight:700;font-size:17px;margin:0 0 4px;padding:0;color:var(--ink)}
+.req{color:#B3261E;font-weight:800}
+.aide{color:var(--muted);margin:0 0 8px;font-size:15px;line-height:1.5}
+.qn input[type=text],.qn input[type=url],.qn textarea{width:100%;font:inherit;font-size:16px;padding:12px 14px;border:1px solid #BDBBB2;border-radius:10px;background:#FBFAF6;color:var(--ink)}
+.qn textarea{min-height:120px;resize:vertical}
+.qn input:focus-visible,.qn textarea:focus-visible,.opt input:focus-visible+span,.nav button:focus-visible,.fich button:focus-visible{outline:3px solid #2B47C9;outline-offset:2px}
+.opts{display:grid;gap:8px}
+@media (min-width:600px){.opts.grille{grid-template-columns:1fr 1fr}}
+.opt{position:relative;display:block;cursor:pointer}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt span{display:flex;align-items:center;gap:10px;min-height:48px;font-weight:600;font-size:16px;background:#F6F5F0;border:2px solid transparent;border-radius:12px;padding:10px 14px;line-height:1.35}
+.opt span:before{content:"";flex:0 0 18px;height:18px;border:2px solid #8C8A82;border-radius:50%;background:#fff}
+.opt input[type=checkbox]+span:before{border-radius:5px}
+.opt input:checked+span{border-color:var(--navy);background:#EEF6D0}
+.opt input:checked+span:before{background:var(--navy);border-color:var(--navy);box-shadow:inset 0 0 0 3px #fff}
+.case{display:flex;gap:12px;align-items:flex-start;background:#F6F5F0;border-radius:12px;padding:12px 14px;cursor:pointer;font-size:16px;line-height:1.45}
+.case input{flex:0 0 22px;width:22px;height:22px;margin-top:1px;accent-color:var(--navy)}
+.err{display:none;color:#B3261E;font-weight:700;font-size:15px;margin:6px 0 0}
+.qn.invalide .err{display:block}
+.qn.invalide input[type=text],.qn.invalide input[type=url],.qn.invalide textarea,.qn.invalide .case{border:2px solid #B3261E}
+.vh{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.ajout{display:inline-flex;align-items:center;gap:8px;min-height:48px;font:700 16px Inter,sans-serif;background:#F6F5F0;border:2px dashed #8C8A82;border-radius:12px;padding:10px 16px;cursor:pointer}
+.ajout:hover{border-color:var(--navy)}
+.vh:focus-visible+.ajout{outline:3px solid #2B47C9;outline-offset:2px}
+.fich ul{list-style:none;padding:0;margin:10px 0 0;display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:8px}
+.fich li{position:relative;background:#F6F5F0;border-radius:10px;overflow:hidden;font-size:12px}
+.fich li img{display:block;width:100%;height:84px;object-fit:cover;background:#ddd}
+.fich li span{display:block;padding:4px 6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fich li button{position:absolute;top:4px;right:4px;width:30px;height:30px;border:0;border-radius:50%;background:rgba(14,21,48,.85);color:#fff;font:700 16px Inter,sans-serif;cursor:pointer}
+.fich .etat{font-size:14px;color:var(--muted);margin:6px 0 0}
+.nav{display:flex;gap:10px;margin-top:8px}
+.nav button{font:800 17px Inter,sans-serif;border-radius:12px;padding:14px 18px;cursor:pointer;border:0;min-height:52px}
+.nav .suite{flex:1;background:var(--navy);color:var(--lime)}
+.nav .suite[disabled]{opacity:.5;cursor:wait}
+.nav .retour{background:transparent;color:var(--ink);border:1px solid #BDBBB2}
+.piege{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.boite{background:#F6F5F0;border-radius:12px;padding:14px 16px;margin:0 0 16px}
+.erreur{background:#FDECEA;border-radius:12px;padding:14px 16px;margin:0 0 16px}
+.fini{text-align:center;padding:10px 4px}
+.fini .ok{font-size:46px;line-height:1;margin:6px 0 10px}
+.fini p{text-align:left}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+ <a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34">Bras Droit <span class="tag">IA</span></a>
+</div></header>
+<main class="wrap">
+<article>
+<h1 id="titre">Votre questionnaire de démarrage</h1>
+<p class="chapo" id="chapo">5 minutes, pas plus. Vos réponses servent uniquement à écrire vos contenus. Votre premier pack arrive par e-mail <b>dans les 3 jours</b> qui suivent l'envoi de ce questionnaire.</p>
+<p class="aide">Nous ne vous demanderons <b>jamais</b> vos mots de passe Facebook, Instagram ou Google. Les questions marquées <span class="req" aria-hidden="true">*</span> sont nécessaires.</p>
+<div class="quiz" id="zone" aria-live="polite"><p>Chargement de votre questionnaire…</p><noscript><p>Ce questionnaire a besoin de JavaScript. Vous pouvez aussi répondre par e-mail à contact@brasdroitia.com.</p></noscript></div>
+<p class="aide">Une question ? Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a>.</p>
+</article>
+</main>
+<footer><div class="wrap">
+ <div><b>Bras Droit IA</b> est une marque de SCALINEA SARL. Contenus préparés avec l'aide de l'intelligence artificielle et relus avant envoi. Non affilié à Anthropic, OpenAI, Meta ni Google.</div>
+ <div class="links"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="/renoncer/">Renoncer au contrat ici</a></div>
+</div></footer>
+<script>
+(function(){
+ var z=document.getElementById('zone'), P=new URLSearchParams(location.search);
+ var ID={e:P.get('e')||'',c:P.get('c')||'',t:P.get('t')||''}, MOIS=!!P.get('mois');
+ var ETAPES=[], R={}, i=0, envois=0, NOMS={};
+ if(MOIS){document.getElementById('titre').textContent='Votre formulaire du mois';document.title='Votre formulaire du mois | Bras Droit IA';document.getElementById('chapo').innerHTML='1 minute pour votre pack du mois prochain : une offre à mettre en avant, des changements, de nouvelles photos. Sans réponse, nous préparons votre pack avec les informations que nous avons déjà.';}
+ function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
+ function refus(m){z.innerHTML='<div class="erreur"><p style="margin:0 0 8px"><b>Nous ne pouvons pas ouvrir votre questionnaire.</b></p><p style="margin:0">'+esc(m)+'</p></div><p>Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a> en indiquant l\'adresse e-mail utilisée pour votre paiement : nous vous renvoyons votre lien personnel.</p>';}
+ if(!ID.e||!ID.c||!ID.t){refus('Ce lien est incomplet. Ouvrez à nouveau le lien reçu par e-mail, sans le modifier.');return;}
+
+ function visible(q){var s=q.si;if(!s)return true;var v=R[s.k];if(v==='*')return true;if(s.rempli)return Array.isArray(v)?v.length>0:!!v;var l=[].concat(v||[]);if(s.dans)return l.some(function(x){return s.dans.indexOf(x)>-1;});if(s.sauf)return l.some(function(x){return x!==s.sauf;});return true;}
+ function etapesVisibles(){return ETAPES.filter(visible);}
+ function vide(v){return v===undefined||v===''||v===false||(Array.isArray(v)&&!v.length);}
+
+ function champ(q){
+  var id='q_'+q.k, d=q.aide?'<p class="aide" id="'+id+'_aide">'+esc(q.aide)+'</p>':'', err='<p class="err" id="'+id+'_err" role="alert"></p>', req=q.req?' <span class="req" aria-hidden="true">*</span>':'', desc=' aria-describedby="'+(q.aide?id+'_aide ':'')+id+'_err"';
+  var v=R[q.k];
+  if(q.type==='un'||q.type==='plusieurs'){
+   var t=q.type==='un'?'radio':'checkbox', grille=q.options.length>5?' grille':'';
+   return '<fieldset class="qn" data-k="'+q.k+'"'+desc+'><legend>'+esc(q.label)+req+'</legend>'+d+'<div class="opts'+grille+'">'+q.options.map(function(o,n){var on=q.type==='un'?v===o:[].concat(v||[]).indexOf(o)>-1;return '<label class="opt"><input type="'+t+'" name="'+id+'" value="'+esc(o)+'"'+(on?' checked':'')+(q.req&&t==='radio'?' required':'')+'><span>'+esc(o)+'</span></label>';}).join('')+'</div>'+err+'</fieldset>';
+  }
+  if(q.type==='case'){
+   var lab=esc(q.label);if(q.lien)lab=lab.replace('politique de confidentialité','<a href="'+q.lien+'" target="_blank" rel="noopener">politique de confidentialité</a>');
+   return '<div class="qn" data-k="'+q.k+'"><label class="case"><input type="checkbox" id="'+id+'"'+(v?' checked':'')+(q.req?' required aria-required="true"':'')+desc+'><span>'+lab+req+'</span></label>'+err+'</div>';
+  }
+  if(q.type==='fichiers'){
+   var l=[].concat(v||[]);
+   return '<div class="qn fich" data-k="'+q.k+'"><label class="l" for="'+id+'">'+esc(q.label)+'</label>'+d+'<input type="file" class="vh" id="'+id+'" accept="image/jpeg,image/png,image/webp,image/heic,image/heif"'+(q.maxFichiers>1?' multiple':'')+desc+'><label class="ajout" for="'+id+'">'+(q.maxFichiers>1?'📷 Ajouter des photos':'🖼️ Choisir mon logo')+'</label><p class="etat" id="'+id+'_etat">'+(q.maxFichiers>1?q.maxFichiers+' fichiers au plus, réduits automatiquement avant l\'envoi.':'Un fichier.')+'</p><ul>'+l.map(function(f){return '<li><img src="'+(NOMS[f]&&NOMS[f].apercu||'')+'" alt=""><span>'+esc(NOMS[f]?NOMS[f].nom:f)+'</span><button type="button" data-retirer="'+esc(f)+'" aria-label="Retirer '+esc(NOMS[f]?NOMS[f].nom:'ce fichier')+'">×</button></li>';}).join('')+'</ul>'+err+'</div>';
+  }
+  var max=q.max?' maxlength="'+q.max+'"':'';
+  var input=q.type==='long'?'<textarea id="'+id+'"'+max+(q.req?' required aria-required="true"':'')+desc+'>'+esc(v||'')+'</textarea>':'<input type="'+(q.type==='lien'?'url':'text')+'" id="'+id+'"'+max+(q.type==='lien'?' inputmode="url" placeholder="https://…"':'')+(q.req?' required aria-required="true"':'')+' value="'+esc(v||'')+'"'+desc+' autocomplete="off">';
+  return '<div class="qn" data-k="'+q.k+'"><label class="l" for="'+id+'">'+esc(q.label)+req+'</label>'+d+input+err+'</div>';
+ }
+
+ function afficher(focus){
+  var ev=etapesVisibles(); if(i>=ev.length)i=ev.length-1; var e=ev[i], n=ev.length;
+  var h='<div class="barre" aria-hidden="true"><i style="width:'+Math.round(i/n*100)+'%"></i></div><p class="etape-n">Étape '+(i+1)+' sur '+n+'</p><h2 id="et_titre" tabindex="-1">'+esc(e.titre)+'</h2><form id="f" novalidate>';
+  e.questions.forEach(function(q){if(visible(q))h+=champ(q);});
+  h+='<div class="piege" aria-hidden="true"><label>Site <input name="site" id="site" tabindex="-1" autocomplete="off"></label></div>';
+  h+='<div class="nav">'+(i?'<button type="button" class="retour">← Retour</button>':'')+'<button type="submit" class="suite">'+(i===n-1?'Envoyer mes réponses':'Continuer')+'</button></div></form>';
+  z.innerHTML=h;
+  if(focus!==false){var t=document.getElementById('et_titre');t.focus({preventScroll:true});z.scrollIntoView({behavior:'smooth',block:'start'});}
+ }
+
+ // Lecture des champs de l'étape affichée vers R.
+ function lire(){
+  [].forEach.call(z.querySelectorAll('.qn'),function(b){
+   var k=b.getAttribute('data-k'), id='q_'+k;
+   var radios=b.querySelectorAll('input[type=radio]'), cases=b.querySelectorAll('.opts input[type=checkbox]');
+   if(radios.length){var c=b.querySelector('input:checked');R[k]=c?c.value:'';}
+   else if(cases.length){R[k]=[].filter.call(cases,function(x){return x.checked;}).map(function(x){return x.value;});}
+   else if(b.classList.contains('fich')){}
+   else{var el=document.getElementById(id);if(el)R[k]=el.type==='checkbox'?el.checked:el.value;}
+  });
+ }
+ function erreur(k,m){var b=z.querySelector('.qn[data-k="'+k+'"]');if(!b)return null;b.classList.add('invalide');var p=document.getElementById('q_'+k+'_err');p.textContent=m;var c=b.querySelector('input,textarea');if(c)c.setAttribute('aria-invalid','true');return b;}
+ function verifier(){
+  var e=etapesVisibles()[i], premier=null;
+  [].forEach.call(z.querySelectorAll('.qn.invalide'),function(b){b.classList.remove('invalide');var c=b.querySelector('[aria-invalid]');if(c)c.removeAttribute('aria-invalid');});
+  e.questions.forEach(function(q){
+   if(!visible(q))return;var v=R[q.k],m='';
+   if(q.req&&vide(v))m=q.type==='case'?'Cochez cette case pour continuer.':(q.type==='un'||q.type==='plusieurs')?'Choisissez une réponse.':'Cette réponse est nécessaire.';
+   else if(q.maxChoix&&v&&v.length>q.maxChoix)m=q.maxChoix+' choix au plus.';
+   else if(q.type==='lien'&&v&&!/^(https?:\/\/)?[^\s]+\.[^\s]{2,}/i.test(v.trim()))m='Ce lien ne semble pas valide. Copiez-le depuis votre navigateur.';
+   if(m){var b=erreur(q.k,m);if(!premier)premier=b;}
+  });
+  if(premier){var c=premier.querySelector('input,textarea');if(c)c.focus();premier.scrollIntoView({behavior:'smooth',block:'center'});return false;}
+  return true;
+ }
+
+ z.addEventListener('change',function(e){
+  var t=e.target;
+  if(t.type==='file'){fichiers(t);return;}
+  var avant=JSON.stringify(etapesVisibles().map(function(x){return x.questions.filter(visible).length;}));
+  lire();
+  var b=t.closest('.qn');if(b&&b.classList.contains('invalide')){b.classList.remove('invalide');t.removeAttribute('aria-invalid');}
+  if(JSON.stringify(etapesVisibles().map(function(x){return x.questions.filter(visible).length;}))!==avant){var y=window.scrollY;afficher(false);window.scrollTo(0,y);var n=document.querySelector('[name="'+t.name+'"][value="'+(t.value||'').replace(/"/g,'\\"')+'"]')||document.getElementById(t.id);if(n)n.focus();}
+ });
+ z.addEventListener('click',function(e){
+  var b=e.target.closest('button');if(!b)return;
+  if(b.classList.contains('retour')){lire();i--;afficher();return;}
+  var r=b.getAttribute('data-retirer');if(r){lire();var k=b.closest('.qn').getAttribute('data-k');R[k]=[].concat(R[k]||[]).filter(function(x){return x!==r;});afficher(false);var f=document.getElementById('q_'+k);if(f)f.focus();}
+ });
+ z.addEventListener('submit',function(e){
+  e.preventDefault();if(envois)return;lire();if(!verifier())return;
+  if(i<etapesVisibles().length-1){i++;afficher();return;}
+  envoyer();
+ });
+
+ // Photos et logo : réduits dans le navigateur (1600 px, JPEG ; logo PNG 1000 px), puis envoyés un par un.
+ function reduire(f,logo){
+  return new Promise(function(ok,ko){
+   var u=URL.createObjectURL(f), im=new Image();
+   im.onload=function(){var max=logo?1000:1600,s=Math.min(1,max/Math.max(im.naturalWidth,im.naturalHeight)),c=document.createElement('canvas');c.width=Math.round(im.naturalWidth*s);c.height=Math.round(im.naturalHeight*s);c.getContext('2d').drawImage(im,0,0,c.width,c.height);URL.revokeObjectURL(u);
+    var type=logo&&f.type==='image/png'?'image/png':'image/jpeg';var d=c.toDataURL(type,.84);if(d.length>3300000&&type==='image/png'){type='image/jpeg';d=c.toDataURL(type,.84);}
+    var a=document.createElement('canvas'),r=96/Math.max(c.width,c.height);a.width=Math.max(1,Math.round(c.width*r));a.height=Math.max(1,Math.round(c.height*r));a.getContext('2d').drawImage(c,0,0,a.width,a.height);
+    ok({type:type,donnees:d.split(',')[1],apercu:a.toDataURL('image/jpeg',.7)});};
+   im.onerror=function(){URL.revokeObjectURL(u);ko(new Error('Image illisible (format non pris en charge par ce navigateur). Essayez une photo JPG ou PNG.'));};
+   im.src=u;
+  });
+ }
+ function fichiers(input){
+  lire();
+  var k=input.closest('.qn').getAttribute('data-k'), q=null;ETAPES.forEach(function(e){e.questions.forEach(function(x){if(x.k===k)q=x;});});
+  var deja=[].concat(R[k]||[]), place=q.maxFichiers===1?1:q.maxFichiers-deja.length, liste=[].slice.call(input.files||[]).slice(0,Math.max(0,place));
+  var etat=document.getElementById('q_'+k+'_etat'), suite=z.querySelector('.suite');
+  if(!liste.length){etat.textContent='Vous avez déjà '+q.maxFichiers+' fichiers : retirez-en un pour en ajouter un autre.';return;}
+  if(q.maxFichiers===1)deja=[];
+  suite.disabled=true;var n=0,erreurs=[];
+  (function suivant(){
+   if(n>=liste.length){suite.disabled=false;R[k]=deja;afficher(false);var e2=document.getElementById('q_'+k+'_etat');if(e2)e2.textContent=erreurs.length?erreurs.join(' '):'Envoyé ✓';var f=document.getElementById('q_'+k);if(f)f.focus();return;}
+   var f=liste[n++];etat.textContent='Envoi de l\'image '+n+' sur '+liste.length+'…';
+   reduire(f,k==='logo').then(function(x){
+    return fetch('/api/demarrage',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({e:ID.e,c:ID.c,t:ID.t,action:'fichier',champ:k,nom:f.name,type:x.type,donnees:x.donnees})}).then(function(r){return r.json();}).then(function(d){if(!d.ok)throw new Error(d.message||'Envoi impossible.');NOMS[d.id]={nom:d.nom,apercu:x.apercu};deja.push(d.id);});
+   }).catch(function(err){erreurs.push(f.name+' : '+(err.message||'envoi impossible')+'.');}).then(suivant);
+  })();
+ }
+
+ function envoyer(){
+  var b=z.querySelector('.suite');b.disabled=true;b.textContent='Envoi…';envois=1;
+  var corps={e:ID.e,c:ID.c,t:ID.t,mode:MOIS?'mois':'accueil',site:(document.getElementById('site')||{}).value||'',reponses:R};
+  fetch('/api/demarrage',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corps)})
+  .then(function(r){return r.json().catch(function(){return {ok:false,message:'Réponse illisible du serveur.'};});})
+  .then(function(d){
+   envois=0;
+   if(d.ok){z.innerHTML='<div class="fini" tabindex="-1" id="fini"><p class="ok" aria-hidden="true">✅</p><h2>Merci, c\'est tout bon</h2><p>'+esc(d.message)+'</p>'+(MOIS?'':'<p>Chaque mois, un formulaire d\'une minute vous permettra de nous envoyer votre offre du moment et vos nouvelles photos.</p><p>Pour répondre à vos avis Google, utilisez notre <a href="/outils/generateur-reponse-avis-google/">générateur gratuit</a>.</p>')+'</div>';document.getElementById('fini').focus();return;}
+   if(d.erreurs){var cles=Object.keys(d.erreurs),ev=etapesVisibles();for(var j=0;j<ev.length;j++){if(ev[j].questions.some(function(q){return cles.indexOf(q.k)>-1;})){i=j;break;}}afficher(false);cles.forEach(function(k){erreur(k,d.erreurs[k]);});var p=z.querySelector('.qn.invalide');if(p){p.scrollIntoView({block:'center'});var c=p.querySelector('input,textarea');if(c)c.focus();}return;}
+   b.disabled=false;b.textContent='Réessayer l\'envoi';var m=z.querySelector('.erreur');if(!m){m=document.createElement('p');m.className='erreur';m.setAttribute('role','alert');b.parentNode.parentNode.insertBefore(m,b.parentNode);}m.textContent=d.message||'L\'envoi n\'a pas abouti. Réessayez dans une minute.';
+  })
+  .catch(function(){envois=0;b.disabled=false;b.textContent='Réessayer l\'envoi';alert('L\'envoi n\'a pas abouti (connexion ?). Vos réponses sont toujours là : réessayez.');});
+ }
+
+ fetch('/api/demarrage?'+new URLSearchParams({e:ID.e,c:ID.c,t:ID.t}).toString()+(MOIS?'&mois=1':''))
+ .then(function(r){return r.json().catch(function(){return {ok:false,message:'Le service est momentanément indisponible. Réessayez dans quelques minutes.'};});})
+ .then(function(d){
+  if(!d.ok){refus(d.message||'Ce lien n\'est pas valide.');return;}
+  ETAPES=d.etapes;if(MOIS)R.metier=d.metier||'*';
+  afficher(false);
+  if(d.deja&&!MOIS){var p=document.createElement('p');p.className='boite';p.textContent='Nous avons déjà reçu votre questionnaire le '+new Date(d.deja).toLocaleDateString('fr-FR',{day:'numeric',month:'long'})+'. Vous pouvez le renvoyer pour le corriger : c\'est la dernière version qui compte.';z.insertBefore(p,z.firstChild);}
+ })
+ .catch(function(){refus('Le service est momentanément indisponible. Réessayez dans quelques minutes.');});
+})();
+</script>
+</body>
+</html>
