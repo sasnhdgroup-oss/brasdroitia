@@ -5,7 +5,7 @@
 
    Identifiants à renseigner (laisser vide = traceur désactivé) : */
 var BDIA_TRACEURS = {
-  metaPixel: '2193266434649516', // Meta (Facebook, Instagram), pixel fourni par Abdellah le 31/10/2026
+  metaPixel: '1719625853506666', // Meta (Facebook, Instagram), pixel du portefeuille BRAS DROIT IA (France) créé le 01/11/2026
   tiktokPixel: '',   // TikTok Ads Manager > Outils > Événements > Pixel web
   googleTag: 'G-4W3MC6K296', // Google Analytics 4 (et plus tard Google Ads AW-…, ajouté par gtag('config'))
   googleConversion: '' // action de conversion Google Ads : AW-XXXXXXXXX/YYYYYYYY
