@@ -98,5 +98,15 @@
 | M | 88 | plaque-nfc-avis-google | google avis nfc | Avis | 1 |
 | M | 89 | musique-video-entreprise | musique pour vidéo entreprise | Méthode | 41 |
 | M | 90 | fiche-google-photo-en-attente | fiche google photo en attente | Fiche Google | 15 |
+| N | 91 | ajouter-entreprise-google-maps | google maps ajouter entreprise | Fiche Google | 15 |
+| N | 92 | avis-google-diffamation | avis négatif google diffamation | Avis | 1 |
+| N | 93 | story-facebook-entreprise | story facebook | Réseaux | 21 |
+| N | 94 | sondage-instagram-idees | sondage instagram idée | Réseaux | 21 |
+| N | 95 | hashtag-instagram-visibilite | hashtag instagram visibilité | Réseaux | 21 |
+| O | 96 | duree-reel-instagram | réel instagram durée | Réseaux | 21 |
+| O | 97 | communication-reseaux-sociaux-entreprise | communication réseaux sociaux entreprise | Méthode | 41 |
+| O | 98 | black-friday-petit-commerce | promotion black friday 2026 | Méthode | 41 |
+| O | 99 | post-reseaux-sociaux-exemple | publication réseaux sociaux entreprise | Méthode | 41 |
+| O | 100 | message-accueil-whatsapp-business | message d'accueil client whatsapp business | Réseaux | 21 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
