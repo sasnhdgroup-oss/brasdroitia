@@ -108,5 +108,15 @@
 | O | 98 | black-friday-petit-commerce | promotion black friday 2026 | Méthode | 41 |
 | O | 99 | post-reseaux-sociaux-exemple | publication réseaux sociaux entreprise | Méthode | 41 |
 | O | 100 | message-accueil-whatsapp-business | message d'accueil client whatsapp business | Réseaux | 21 |
+| P | 101 | publication-instagram-format-mixte | publication instagram format mixte | Réseaux | 21 |
+| P | 102 | reel-instagram-c-est-quoi | reel instagram c'est quoi | Réseaux | 21 |
+| P | 103 | boutique-instagram-commerce-manager | instagram commerce manager, boutique instagram | Réseaux | 21 |
+| P | 104 | google-business-profile-gratuit | google business profile gratuit | Fiche Google | 15 |
+| P | 105 | story-instagram-plusieurs-photos | story instagram plusieurs photos | Réseaux | 21 |
+| P | 106 | publication-instagram-texte | publication instagram texte | Réseaux | 21 |
+| P | 107 | publier-instagram-le-dimanche | publication instagram dimanche | Réseaux | 21 |
+| P | 108 | logo-entreprise-ia | logo entreprise ia | IA | 41 |
+| P | 109 | photo-produit-ia | photo produit ia | IA | 41 |
+| P | 110 | story-instagram-duree-format | story instagram durée, story instagram format | Réseaux | 21 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
