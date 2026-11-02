@@ -14,3 +14,4 @@ Site de Bras Droit IA, une marque de SCALINEA : page de vente, guides pratiques 
 ## Hébergement
 
 Netlify, offre Personal (1 000 crédits par mois) depuis le 30/10/2026 : chaque mise en ligne coûte 15 crédits, donc regrouper les modifications en une mise en ligne par jour.
+- 02/11/2026 : bascule professionnels mise en ligne (CGV v2.0).
