@@ -1,4 +1,5 @@
-// Export des questionnaires et des demandes de rétractation reçus, pour le script nhd-qg
+// Export des questionnaires reçus, pour le script nhd-qg. Le type « retractations » ne lit plus que
+// d'anciennes demandes : la fonction /api/renoncer a été retirée le 02/11/2026 (offre réservée aux professionnels).
 // tools/stripe/bienvenue_clients.mjs --export (qui les écrit hors du dépôt Git).
 // Accès réservé : en-têtes x-bdia-ts (secondes) et x-bdia-sig = signerExport(ts, chemin + paramètres),
 // clé BREVO_API_KEY, valable 10 minutes. Lecture seule.

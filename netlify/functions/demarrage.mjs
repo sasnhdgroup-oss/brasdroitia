@@ -75,7 +75,7 @@ async function deposerFichier(store, id, e, jour) {
 function mailClient(mode, propres, quand, id) {
   const lien = (p) => `https://brasdroitia.com${p}`;
   const recap = tableau(lignes(mode === "mois" ? MOIS : ACCUEIL, propres, () => "reçu"));
-  const pied = `<a href="${lien("/cgv.html")}" style="color:#8A8E9A">CGV</a> · <a href="${PORTAIL}" style="color:#8A8E9A">Gérer ou résilier mon abonnement</a> · <a href="${lien("/renoncer/?e=" + encodeURIComponent(id.email))}" style="color:#8A8E9A">Renoncer au contrat ici</a> (pendant 14 jours)<br>`;
+  const pied = `<a href="${lien("/cgv.html")}" style="color:#8A8E9A">CGV</a> · <a href="${PORTAIL}" style="color:#8A8E9A">Gérer ou résilier mon abonnement</a> · Service réservé aux professionnels<br>`;
   if (mode === "mois") {
     return {
       objet: "Bien reçu : vos informations pour le pack du mois prochain",

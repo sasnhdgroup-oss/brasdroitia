@@ -1,4 +1,4 @@
-// Envois transactionnels Brevo et petites aides communes aux fonctions clients (/api/demarrage, /api/renoncer).
+// Envois transactionnels Brevo et petites aides communes aux fonctions clients (/api/demarrage).
 export const EXPEDITEUR = { name: "L'équipe Bras Droit IA", email: "contact@brasdroitia.com" };
 export const CONTACT = "contact@brasdroitia.com";
 

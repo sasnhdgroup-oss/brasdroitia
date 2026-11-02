@@ -87,7 +87,7 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 </main>
 <footer><div class="wrap">
  <div><b>Bras Droit IA</b> est une marque de SCALINEA EURL.</div>
- <div class="links"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="/renoncer/">Renoncer au contrat ici</a></div>
+ <div class="links"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a></div>
 </div></footer>
 <script src="/consent.js"></script>
 </body>

@@ -38,7 +38,7 @@ function corps(p, metier, ville, email) {
   <p style="font-size:13px;color:#5B6070">Les heures sont des points de départ : regardez vos statistiques au bout de 2 semaines et gardez les créneaux qui marchent le mieux chez vous.</p>
   <div style="background:#0E1530;color:#F6F5F0;border-radius:14px;padding:20px;margin:26px 0">
   <p style="margin:0 0 8px;font-size:18px"><b>Pas le temps de tout écrire ?</b></p>
-  <p style="margin:0 0 14px;color:#C9CEE3">Chaque mois, Bras Droit IA vous livre 20 publications dont 6 reels vidéo, 8 posts Google et le plan du mois, écrits pour votre métier et votre ville, relus avant envoi. 9 € le premier mois, puis 29 € TTC par mois, sans engagement.</p>
+  <p style="margin:0 0 14px;color:#C9CEE3">Chaque mois, Bras Droit IA vous livre 20 publications dont 6 reels vidéo, 8 posts Google et le plan du mois, écrits pour votre métier et votre ville, relus avant envoi. 9 € le premier mois, puis 29 € TTC par mois, sans engagement. Réservé aux professionnels.</p>
   <a href="https://brasdroitia.com/?${utm}#prix" style="display:inline-block;background:#D4FF3F;color:#0E1530;font-weight:bold;text-decoration:none;border-radius:10px;padding:12px 18px">Démarrer à 9 €</a></div>
   <p style="font-size:12px;color:#8A8E9A">Plan rédigé par une intelligence artificielle à partir de vos réponses : relisez-le avant de l'appliquer. Vous recevez cet e-mail parce que vous avez demandé votre plan sur brasdroitia.com. Nous pourrons vous écrire 2 ou 3 fois au sujet de Bras Droit IA. <a href="${lienD}" style="color:#8A8E9A">Se désinscrire</a>.<br>Bras Droit IA, une marque de SCALINEA.</p>
   </div></body></html>`;

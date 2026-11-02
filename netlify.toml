@@ -9,6 +9,19 @@
   directory = "netlify/functions"
   node_bundler = "esbuild"
 
+# Offre réservée aux professionnels (CGV v2.0 du 02/11/2026) : l'ancienne page de rétractation renvoie vers la garantie commerciale.
+[[redirects]]
+  from = "/renoncer/*"
+  to = "/cgv.html#garantie"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/renoncer"
+  to = "/cgv.html#garantie"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]

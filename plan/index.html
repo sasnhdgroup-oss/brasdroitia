@@ -110,7 +110,7 @@
 </main>
 <footer><div class="wrap">
  <div><b>Bras Droit IA</b> est une marque de SCALINEA EURL. Contenus préparés avec l'aide de l'intelligence artificielle et relus avant publication. Non affilié à Anthropic, OpenAI, Meta ni Google.</div>
- <div class="links"><a href="/">Accueil</a><a href="/guides/">Guides</a><a href="/astuces/">Astuces</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="/renoncer/">Renoncer au contrat ici</a></div>
+ <div class="links"><a href="/">Accueil</a><a href="/guides/">Guides</a><a href="/astuces/">Astuces</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a></div>
 </div></footer>
 <script src="/consent.js"></script>
 <script>
@@ -196,8 +196,8 @@
  function offre(){
   var actif=Date.now()<FIN_OFFRE.getTime();
   return '<div class="offre"><h2>Ce plan, on l\'écrit pour vous chaque mois</h2><ul><li>20 publications pour Instagram et Facebook, dont 6 reels vidéo</li><li>8 posts pour votre fiche Google</li><li>Le plan du mois : quoi publier, quel jour, à quelle heure</li><li>Écrits pour votre métier et votre ville, relus avant envoi. Vous copiez, vous publiez.</li></ul>'+
-   (actif?'<div class="prix">9 € <small>le premier mois, puis 29 € TTC par mois, sans engagement</small></div><div class="compte" id="compte"></div>':'<div class="prix">29 € <small>TTC par mois, sans engagement</small></div>')+
-   '<a class="btn" id="payer" href="'+STRIPE+'">'+(actif?'Démarrer à 9 €':'Démarrer')+'</a><p class="note">50 nouveaux commerces par mois au plus : chaque pack est relu avant envoi. Remboursement intégral sur simple demande pendant 14 jours. Paiement sécurisé par Stripe.</p></div>';
+   (actif?'<div class="prix">9 € <small>TTC le premier mois, puis 29 € TTC (24,17 € HT) par mois, sans engagement</small></div><div class="compte" id="compte"></div>':'<div class="prix">29 € <small>TTC (24,17 € HT) par mois, sans engagement</small></div>')+
+   '<a class="btn" id="payer" href="'+STRIPE+'">'+(actif?'Démarrer à 9 €':'Démarrer')+'</a><p class="note"><b>Réservé aux professionnels</b> (SIREN demandé au paiement). 50 nouveaux commerces par mois au plus : chaque pack est relu avant envoi. Premier paiement remboursé sur simple demande pendant 14 jours. Paiement sécurisé par Stripe.</p></div>';
  }
  function minuteur(){
   var c=document.getElementById('compte');if(!c)return;
