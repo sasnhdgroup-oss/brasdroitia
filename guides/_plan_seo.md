@@ -118,5 +118,15 @@
 | P | 108 | logo-entreprise-ia | logo entreprise ia | IA | 41 |
 | P | 109 | photo-produit-ia | photo produit ia | IA | 41 |
 | P | 110 | story-instagram-duree-format | story instagram durée, story instagram format | Réseaux | 21 |
+| Q | 111 | carte-de-visite-professionnelle | carte de visite professionnelle | Méthode | 41 |
+| Q | 112 | flyer-commerce-exemple | flyer commerce, flyer magasin | Méthode | 41 |
+| Q | 113 | site-internet-artisan-prix | prix site internet artisan | Méthode | 41 |
+| Q | 114 | voir-avis-google-entreprise | google avis entreprise, voir les avis google | Avis | 1 |
+| Q | 115 | photo-profil-instagram-entreprise | photo instagram profil | Réseaux | 21 |
+| Q | 116 | linkedin-pour-artisan | linkedin artisan | Réseaux | 21 |
+| Q | 117 | idees-promotion-magasin | promotion magasin | Méthode | 41 |
+| Q | 118 | carte-de-visite-virtuelle | carte de visite virtuelle | Méthode | 41 |
+| Q | 119 | logo-avis-google-site | google avis logo | Avis | 1 |
+| Q | 120 | laisser-avis-google-sans-compte | google avis compte, laisser un avis google sans compte | Avis | 1 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
