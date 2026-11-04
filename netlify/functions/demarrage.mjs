@@ -80,16 +80,16 @@ function mailClient(mode, propres, quand, id) {
     return {
       objet: "Bien reçu : vos informations pour le pack du mois prochain",
       html: gabarit("Merci, c'est bien reçu", `<p>Bonjour,</p>
-<p>Nous avons bien reçu votre formulaire du mois le ${esc(quand)}. Nous en tenons compte pour votre prochain pack, préparé après votre prochain paiement et livré dans les 3 jours qui suivent.</p>
+<p>Nous avons bien reçu votre formulaire du mois le ${esc(quand)}. Nous en tenons compte pour votre prochain pack, préparé après votre prochain paiement et livré dans les 24 heures qui suivent.</p>
 <p>Un oubli ou une correction ? Répondez simplement à cet e-mail.</p>${recap}
 <p>À très vite,<br>L'équipe Bras Droit IA</p>`, pied),
     };
   }
   return {
-    objet: "Questionnaire bien reçu : votre premier pack arrive sous 3 jours",
+    objet: "Questionnaire bien reçu : votre premier pack arrive sous 24 h",
     html: gabarit("Merci, votre questionnaire est bien reçu", `<p>Bonjour,</p>
 <p>Nous avons bien reçu votre questionnaire de démarrage le ${esc(quand)}.</p>
-<p style="background:#EEF6D0;border-radius:10px;padding:12px 14px"><b>Votre premier pack arrive par e-mail dans les 3 jours</b>, au plus tard le ${esc(ajouterJours(3))} : 20 publications Instagram et Facebook avec leurs visuels, dont 6 reels, 8 posts pour votre fiche Google et votre plan du mois.</p>
+<p style="background:#EEF6D0;border-radius:10px;padding:12px 14px"><b>Votre premier pack arrive par e-mail dans les 24 heures</b>, au plus tard le ${esc(ajouterJours(1))} : 20 publications Instagram et Facebook avec leurs visuels, dont 6 reels, 8 posts pour votre fiche Google et votre plan du mois.</p>
 <p>Un oubli ou une correction ? Répondez simplement à cet e-mail. Pour vos avis Google, notre <a href="${lien("/outils/generateur-reponse-avis-google/")}">générateur gratuit</a> vous propose une réponse en quelques secondes.</p>
 <p style="font-size:14px;color:#5B6070">Vos réponses, pour mémoire :</p>${recap}
 <p>À très vite,<br>L'équipe Bras Droit IA</p>`, pied),
@@ -103,7 +103,7 @@ function mailCopie(mode, propres, quand, id, cle, fichiers) {
     objet: `[${mode === "mois" ? "Formulaire du mois" : "Questionnaire"}] ${etab || id.email}${propres.ville ? " · " + propres.ville : ""} · ${id.client}`,
     html: gabarit(mode === "mois" ? "Formulaire du mois reçu" : "Questionnaire de démarrage reçu", `
 <p><b>Client :</b> ${esc(id.email)} · ${esc(id.client)}<br><b>Reçu le :</b> ${esc(quand)}<br><b>Enregistrement :</b> ${esc(cle)}</p>
-${mode === "accueil" ? `<p style="background:#EEF6D0;border-radius:10px;padding:10px 12px"><b>Délai de 3 jours (CGV A.5) : livrer au plus tard le ${esc(ajouterJours(3))}.</b> Noter <code>questionnaire_recu</code> dans Stripe.</p>` : ""}
+${mode === "accueil" ? `<p style="background:#EEF6D0;border-radius:10px;padding:10px 12px"><b>Délai annoncé : 24 h (CGV A.5 : 3 jours au plus). Livrer au plus tard le ${esc(ajouterJours(1))}.</b> Noter <code>questionnaire_recu</code> dans Stripe.</p>` : ""}
 ${fichiers.length ? `<p>${fichiers.length} fichier(s) joint(s) : à récupérer avec <code>node tools/stripe/bienvenue_clients.mjs --export</code> (nhd-qg).</p>` : ""}
 ${tableau(lignes(mode === "mois" ? MOIS : ACCUEIL, propres, (x) => nomF[x] || x))}
 <p>Répondre à cet e-mail écrit directement au client.</p>`),
@@ -175,7 +175,7 @@ export default async (req, context) => {
     if (propres.conseils_email) { listes = [Number(process.env.BREVO_LISTE || 3)]; attributs.DATE_INSCRIPTION = jour; }
     await majContact(id.email, attributs, listes).catch((x) => console.error("Brevo contact", x?.message));
   }
-  const delai = mode === "accueil" ? ` Votre premier pack arrive par e-mail dans les 3 jours, au plus tard le ${ajouterJours(3)}.` : " Nous en tenons compte pour votre prochain pack.";
+  const delai = mode === "accueil" ? ` Votre premier pack arrive par e-mail dans les 24 heures, au plus tard le ${ajouterJours(1)}.` : " Nous en tenons compte pour votre prochain pack.";
   return json({
     ok: true,
     message: `Merci, c'est bien reçu (${quand}).${delai}` + (okClient ? " Un e-mail de confirmation vient de partir : pensez à regarder dans les indésirables." : " L'e-mail de confirmation n'a pas pu partir, mais vos réponses sont bien enregistrées."),
