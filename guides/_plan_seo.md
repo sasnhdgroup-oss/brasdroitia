@@ -128,5 +128,15 @@
 | Q | 118 | carte-de-visite-virtuelle | carte de visite virtuelle | Méthode | 41 |
 | Q | 119 | logo-avis-google-site | google avis logo | Avis | 1 |
 | Q | 120 | laisser-avis-google-sans-compte | google avis compte, laisser un avis google sans compte | Avis | 1 |
+| R | 121 | programmer-publication-instagram | instagram planifier publication, instagram planifier post | Réseaux | 21 |
+| R | 122 | programmer-story-instagram | instagram planifier story | Réseaux | 21 |
+| R | 123 | meta-business-suite-instagram | meta business suite instagram | Réseaux | 21 |
+| R | 124 | prix-publicite-instagram | publicité instagram tarif, pub instagram prix | Réseaux | 21 |
+| R | 125 | publicite-instagram-non-diffusee | publicité instagram non diffusée, boost instagram non diffusé | Réseaux | 21 |
+| R | 126 | pinterest-pour-entreprise | pinterest pour entreprise | Réseaux | 21 |
+| R | 127 | canva-ia | canva ia, canva ia image | IA | 41 |
+| R | 128 | whatsapp-business-ordinateur | whatsapp business sur ordinateur, whatsapp business pc | Réseaux | 21 |
+| R | 129 | threads-instagram-entreprise | threads instagram c'est quoi | Réseaux | 21 |
+| R | 130 | chatgpt-entreprise-confidentialite | chatgpt entreprise confidentialité | IA | 41 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
