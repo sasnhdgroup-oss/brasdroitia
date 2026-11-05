@@ -3,7 +3,8 @@
 // tools/stripe/bienvenue_clients.mjs --export (qui les écrit hors du dépôt Git).
 // Accès réservé : en-têtes x-bdia-ts (secondes) et x-bdia-sig = signerExport(ts, chemin + paramètres),
 // clé BREVO_API_KEY, valable 10 minutes. Lecture seule.
-//   GET /api/demarrage-export?type=reponses|retractations&depuis=2026-11-01T00:00:00Z   liste (JSON)
+//   GET /api/demarrage-export?type=reponses|retractations&depuis=2026-11-01T00:00:00Z   liste (JSON) ; chaque réponse a un
+//       champ type : « accueil » (démarrage), « mois » (formulaire du mois) ou « fiche » (Fiche Google complète, 05/11/2026)
 //   GET /api/demarrage-export?fichier=fichiers/cus_…/….jpg                               un fichier (binaire)
 import { getStore } from "@netlify/blobs";
 import { signerExport, egal, FENETRE_EXPORT } from "../lib/signature.mjs";
@@ -21,7 +22,7 @@ export default async (req) => {
 
   const fichier = url.searchParams.get("fichier");
   if (fichier) {
-    if (!/^fichiers\/cus_[A-Za-z0-9]{6,40}\/[A-Za-z0-9_.-]{1,120}$/.test(fichier)) return json({ ok: false }, 400);
+    if (!/^fichiers\/(cus_[A-Za-z0-9]{6,40}|cs_(live|test)_[A-Za-z0-9]{10,120})\/[A-Za-z0-9_.-]{1,120}$/.test(fichier)) return json({ ok: false }, 400);
     const r = await store.getWithMetadata(fichier, { type: "arrayBuffer" });
     if (!r) return json({ ok: false, message: "Fichier introuvable." }, 404);
     return new Response(r.data, { headers: { "content-type": r.metadata?.type || "application/octet-stream", "cache-control": "no-store" } });

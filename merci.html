@@ -65,6 +65,15 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
 <p class="meta">Votre paiement a bien été enregistré. Bienvenue chez Bras Droit IA.</p>
 
 <div id="kit" class="box lime" hidden><p><b>Option Kit vitrine activée.</b> Chaque mois, en même temps que votre pack, vous recevez votre affiche A4/A3, votre flyer A5, votre chevalet de comptoir avec QR code et leur version story, sur le thème de votre offre du mois, en PDF prêts à imprimer. Rien d'autre à faire : nous utilisons les informations de votre questionnaire et de votre formulaire du mois.</p></div>
+<div id="fiche" hidden>
+<p>Dans la minute, vous recevez un e-mail avec le lien de votre questionnaire (5 minutes). Votre fiche arrive par e-mail sous 24 heures après vos réponses.</p>
+<h2>La suite, en 3 étapes</h2>
+<ol>
+ <li><b>Ouvrez l'e-mail « Votre Fiche Google complète : 5 minutes pour démarrer »</b> (Stripe vous envoie aussi votre reçu). Pensez à regarder dans les courriers indésirables.</li>
+ <li><b>Répondez au questionnaire</b> : votre métier, vos services, vos horaires, vos jours fériés et les questions que vos clients vous posent.</li>
+ <li><b>Recevez votre Fiche Google complète en PDF</b>, puis copiez les textes dans votre fiche. Vous la saisissez vous-même : nous n'avons jamais accès à votre compte Google. Une correction est incluse si vous la demandez dans les 7 jours qui suivent la livraison.</li>
+</ol>
+</div>
 <div id="suite">
 <h2>La suite, en 3 étapes</h2>
 <ol>
@@ -79,7 +88,7 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
 
 </div>
 <h2>Une question&nbsp;?</h2>
-<p>Pas d'e-mail au bout de quelques minutes, même dans les indésirables ? Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a> avec l'adresse utilisée pour le paiement : nous vous renvoyons votre lien. Vous pouvez gérer ou résilier votre abonnement à tout moment depuis le lien <a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a>.</p>
+<p>Pas d'e-mail au bout de quelques minutes, même dans les indésirables ? Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a> avec l'adresse utilisée pour le paiement : nous vous renvoyons votre lien.<span id="abo"> Vous pouvez gérer ou résilier votre abonnement à tout moment depuis le lien <a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a>.</span></p>
 <p><a class="btn" href="index.html">Retour à l'accueil</a></p>
 </main>
 
@@ -94,6 +103,8 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
  </div>
 </footer>
 <script src="consent.js"></script>
-<script>var bdiaKit=/[?&]option=kit\b/.test(location.search);if(bdiaKit){document.getElementById('kit').hidden=false;document.getElementById('suite').hidden=true;document.querySelector('h1').textContent='Merci, votre option Kit vitrine est confirmée !';}if(window.bdiaEvenement) bdiaEvenement(bdiaKit?'option_kit':'abonnement',{value:bdiaKit?10:9,currency:'EUR'});</script>
+<script>var bdiaKit=/[?&]option=kit\b/.test(location.search),bdiaFiche=/[?&]option=fiche\b/.test(location.search);if(bdiaKit){document.getElementById('kit').hidden=false;document.getElementById('suite').hidden=true;document.querySelector('h1').textContent='Merci, votre option Kit vitrine est confirmée !';}
+if(bdiaFiche){document.getElementById('fiche').hidden=false;document.getElementById('suite').hidden=true;document.getElementById('abo').hidden=true;document.querySelector('h1').textContent='Merci, votre Fiche Google complète est commandée !';document.querySelector('.meta').textContent='Votre paiement a bien été enregistré. Paiement unique, sans abonnement.';document.title='Merci — Fiche Google complète | Bras Droit IA';}
+if(window.bdiaEvenement){if(bdiaFiche)bdiaEvenement('fiche_google',{value:39,currency:'EUR'});else bdiaEvenement(bdiaKit?'option_kit':'abonnement',{value:bdiaKit?10:9,currency:'EUR'});}</script>
 </body>
 </html>

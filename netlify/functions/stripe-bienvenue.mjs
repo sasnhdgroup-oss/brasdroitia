@@ -3,6 +3,10 @@
 // clé Brevo : seul Stripe le connaît. Le script horaire de nhd-qg reste en secours : il ne renvoie rien si l'attribut
 // Brevo BIENVENUE_ENVOYEE est déjà rempli.
 // Une seule bienvenue par client : marque dans Netlify Blobs (magasin « bienvenue ») et attribut Brevo.
+// Prestation unique « Fiche Google complète » (39 € TTC, 05/11/2026) : session en mode « payment » avec la métadonnée
+// offre=fiche_google → e-mail avec le lien du questionnaire en mode fiche (/demarrage/?…&fiche=1), une seule fois par
+// session (magasin « fiche »), alerte à contact@. Un paiement unique ne crée un client Stripe que si le lien de paiement
+// a customer_creation = « always » (sinon s.customer est vide) : le lien utilise alors l'id de la session (cs_…).
 import { createHmac } from "node:crypto";
 import { getStore } from "@netlify/blobs";
 import { CONTACT, EMAIL_OK, envoyer, esc, json, majContact } from "../lib/brevo.mjs";
@@ -40,6 +44,65 @@ function mailBienvenue(c) {
   };
 }
 
+// ---------- Fiche Google complète (paiement unique) ----------
+const SESSION_OK = /^cs_(live|test)_[A-Za-z0-9]{10,120}$/;
+
+function mailFiche(c) {
+  const bonjour = c.nom ? `Bonjour ${esc(c.nom)},` : "Bonjour,";
+  return {
+    objet: "Votre Fiche Google complète : 5 minutes pour démarrer",
+    html: gabarit(`<p style="font-size:13px;color:#5B6070;margin:0">Bras Droit IA · Fiche Google complète</p>
+<h1 style="font-size:23px;margin:8px 0 14px">Merci pour votre commande !</h1>
+<p>${bonjour}</p>
+<p>Votre Fiche Google complète est commandée. Il ne reste qu'une étape : notre questionnaire de 5 minutes (votre métier, vos services, vos horaires, vos jours fériés et les questions que vos clients vous posent).</p>
+<p style="margin:22px 0"><a href="${c.lien}" style="display:inline-block;background:#D4FF3F;color:#0E1530;font-weight:bold;text-decoration:none;border-radius:10px;padding:14px 20px">Remplir mon questionnaire</a></p>
+<p>Votre fiche arrive par e-mail, en PDF, <b>sous 24 heures</b> après vos réponses : description longue et courte, présentation de vos services, catégories et attributs recommandés, plan de vos 10 photos, horaires exceptionnels de l'année, FAQ de 8 questions et contrôle de votre nom.</p>
+<p>Vous saisissez vous-même les textes dans votre fiche : nous n'avons jamais accès à votre compte Google. Une correction est incluse si vous la demandez dans les 7 jours qui suivent la livraison. Il s'agit d'un paiement unique, sans abonnement.</p>
+<p>Ce lien est personnel : ne le transférez pas.</p>
+<p>Nos <a href="${SITE}/cgv.html">conditions générales de vente</a>, réservées aux professionnels, restent accessibles à tout moment.</p>
+<p>Une question ? Répondez simplement à cet e-mail.</p>
+<p>À très vite,<br>L'équipe Bras Droit IA</p>`, pied),
+  };
+}
+
+// Champs personnalisés du lien de paiement (SIREN, raison sociale) : texte, nombre ou liste.
+const champs = (s) => (Array.isArray(s.custom_fields) ? s.custom_fields : [])
+  .map((f) => [f.label?.custom || f.key, f.text?.value ?? f.numeric?.value ?? f.dropdown?.value ?? ""]);
+
+async function fiche(s) {
+  const email = String(s.customer_details?.email || s.customer_email || "").trim().toLowerCase();
+  const cus = typeof s.customer === "string" ? s.customer : s.customer?.id;
+  // Client Stripe si le lien en crée un (customer_creation = « always »), sinon l'id de la session.
+  const id = /^cus_[A-Za-z0-9]{6,40}$/.test(cus || "") ? cus : SESSION_OK.test(s.id || "") ? s.id : "";
+  if (!id || !EMAIL_OK.test(email)) return json({ ok: true, ignore: "fiche sans identifiant ou e-mail" });
+
+  const magasin = getStore("fiche");
+  if (await magasin.get(s.id)) return json({ ok: true, deja: true, offre: "fiche_google" });
+
+  const c = {
+    id, email, nom: s.customer_details?.name || "", lien: `${lien(email, id)}&fiche=1`,
+    paye: new Date((s.created || Date.now() / 1000) * 1000).toLocaleString("fr-FR", { timeZone: "Europe/Paris" }),
+    montant: `${((s.amount_total || 0) / 100).toFixed(2)} ${String(s.currency || "eur").toUpperCase()}`,
+  };
+  const m = mailFiche(c);
+  const ok = await envoyer({ a: email, objet: m.objet, html: m.html, tags: ["bdia-fiche-google-client"] });
+  if (!ok) return json({ ok: false }, 502); // Stripe réessaiera.
+  await magasin.set(s.id, JSON.stringify({ quand: new Date().toISOString(), client: id, email }));
+
+  const infos = champs(s).map(([k, v]) => `${esc(k)} : <b>${esc(v || "(vide)")}</b>`).join("<br>");
+  const societe = s.customer_details?.business_name || champs(s).find(([k]) => /raison|soci/i.test(k))?.[1] || "";
+  await envoyer({
+    a: CONTACT, repondreA: email, tags: ["bdia-alerte-fiche-google"],
+    objet: `[Fiche Google] ${societe || c.nom || email} · ${id} · commande payée`,
+    html: gabarit(`<h1 style="font-size:20px">Fiche Google complète commandée (39 € TTC)</h1>
+<p><b>${esc(c.nom || "(sans nom)")}</b> · ${esc(email)} · ${esc(id)}${id === s.id ? " (pas de client Stripe : id de la session)" : ""}<br>Payé le ${esc(c.paye)} · ${esc(c.montant)} · session ${esc(s.id)}</p>
+${infos ? `<p>${infos}</p>` : ""}
+<p>E-mail avec le lien du questionnaire envoyé dans la minute. À suivre : questionnaire (copie automatique à contact@, type « fiche » dans l'export), puis PDF livré sous 24 h (CGV art. 5 bis : 3 jours au plus), production avec <code>prompt_fiche_google.md</code> (nhd-qg). Pas de relance automatique : relancer à la main sans réponse sous 3 jours.</p>
+<p><a href="${c.lien}">Questionnaire Fiche Google du client</a></p>`, "Alerte automatique de /api/stripe-bienvenue (brasdroitia.com)."),
+  });
+  return json({ ok: true, offre: "fiche_google" });
+}
+
 const mailAlerte = (c) => ({
   objet: `[Nouveau client] ${c.nom || c.email} · ${c.id} · bienvenue envoyée`,
   html: gabarit(`<h1 style="font-size:20px">Nouvel abonné Bras Droit IA</h1>
@@ -56,6 +119,10 @@ export default async (req) => {
   let ev;
   try { ev = await req.json(); } catch { return json({ ok: false }, 400); }
   const s = ev?.data?.object;
+  // Fiche Google complète : paiement unique abouti (traité avant le filtre des abonnements).
+  if (ev?.type === "checkout.session.completed" && s && s.mode === "payment" && s.payment_status === "paid" && s.metadata?.offre === "fiche_google") {
+    return fiche(s);
+  }
   // Seuls les paiements d'abonnement aboutis nous intéressent ; le reste est accusé sans rien faire.
   if (ev?.type !== "checkout.session.completed" || !s || s.mode !== "subscription" || !["paid", "no_payment_required"].includes(s.payment_status)) {
     return json({ ok: true, ignore: true });

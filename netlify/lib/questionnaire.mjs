@@ -174,3 +174,49 @@ export function lignes(etapes, r, nomFichier = (x) => x) {
   }
   return out;
 }
+
+// Prestation unique « Fiche Google complète » (39 € TTC, 05/11/2026) : lien /demarrage/?…&fiche=1.
+// Même base que le questionnaire de démarrage, sans ce qui ne sert qu'aux publications (réseaux, priorité du trimestre,
+// émojis, temps forts, jours calmes, logo, photos, couleurs, biens immobiliers du mois), plus une étape propre à la fiche.
+const SANS_FICHE = new Set(["reseaux", "priorite", "emojis", "temps_forts", "jours_calmes", "logo", "photos", "droits_photos", "couleurs", "immo_biens"]);
+const AIDES_FICHE = {
+  etablissement: "Votre nom réel, tel qu'il figure sur votre devanture, vos factures ou votre site : sans slogan, ni ville, ni métier ajouté. Nous le comparons au nom de votre fiche.",
+  fiche_google: "Sur Google Maps : ouvrez votre fiche, « Partager », « Copier le lien ». Il nous permet de voir ce qui est déjà rempli. Pas encore de fiche ? Laissez vide.",
+  services: "Une ligne par service, avec son prix si vous voulez l'afficher. Exemple : « Coupe femme, 38 € » ou « Vidange + filtre, à partir de 89 € ». Nous reprenons vos prix à l'identique, sans en inventer.",
+  fermetures: "Par exemple « fermé du 24/12 au 2/01 », « congés du 1er au 21 août ». Nous les ajoutons à vos horaires exceptionnels.",
+};
+const ETAPE_FICHE = {
+  titre: "Votre fiche Google aujourd'hui",
+  questions: [
+    { k: "fiche_categorie", n: "FG1", type: "texte", max: 150, label: "Catégorie principale actuelle de votre fiche", aide: "Elle s'affiche sous le nom de votre fiche, par exemple « Coiffeur » ou « Garage automobile ». Laissez vide si vous ne savez pas." },
+    { k: "fiche_type", n: "FG2", type: "un", req: true, label: "Vous recevez vos clients…", options: ["Dans mon local (adresse affichée)", "Chez eux uniquement (adresse masquée, zone desservie)", "Les deux"] },
+    { k: "fiche_creation", n: "FG3", type: "texte", max: 40, label: "Année de création de votre activité (facultatif)" },
+    { k: "fiche_paiements", n: "FG4", type: "plusieurs", label: "Moyens de paiement acceptés", options: ["Carte bancaire", "Paiement sans contact", "Paiement mobile", "Espèces", "Chèques", "Virement", "Paiement en plusieurs fois"] },
+    { k: "fiche_accessibilite", n: "FG5", type: "plusieurs", label: "Accessibilité de votre local", aide: "Ne cochez que ce qui est vrai : ces informations sont affichées par Google.", options: ["Entrée accessible en fauteuil roulant", "Parking accessible en fauteuil roulant", "Toilettes accessibles en fauteuil roulant", "Pas de local recevant du public", "Je ne sais pas"] },
+    { k: "fiche_langues", n: "FG6", type: "texte", max: 150, label: "Langues parlées avec vos clients, en plus du français (facultatif)" },
+    { k: "fiche_feries", n: "FG7", type: "un", req: true, label: "Les jours fériés, vous êtes…", options: ["Fermé tous les jours fériés", "Ouvert certains jours fériés (précisez ci-dessous)", "Ouvert tous les jours fériés aux horaires habituels"] },
+    { k: "fiche_feries_precis", n: "FG7b", type: "texte", req: true, max: 300, si: { k: "fiche_feries", dans: ["Ouvert certains jours fériés (précisez ci-dessous)"] }, label: "Quels jours fériés êtes-vous ouvert, et à quels horaires ?" },
+    { k: "fiche_alsace", n: "FG8", type: "un", label: "Votre établissement est-il en Alsace ou en Moselle ?", aide: "Deux jours fériés de plus y sont prévus (Vendredi saint et 26 décembre).", options: ["Oui", "Non"] },
+    { k: "fiche_questions", n: "FG9", type: "long", max: 2000, label: "Les questions que vos clients vous posent le plus souvent (facultatif)", aide: "Une par ligne : « Faut-il prendre rendez-vous ? », « Faites-vous les devis gratuitement ? »… Elles nous servent à écrire votre FAQ." },
+  ],
+};
+const q = (k) => ACCUEIL.flatMap((e) => e.questions).find((x) => x.k === k);
+// Mentions publicitaires de l'immobilier : utiles aux publications, facultatives pour la fiche.
+const FACULTATIF_FICHE = new Set(["immo_mentions", "immo_bareme"]);
+const avecAide = (x) => ({ ...x, ...(AIDES_FICHE[x.k] ? { aide: AIDES_FICHE[x.k] } : {}), ...(FACULTATIF_FICHE.has(x.k) ? { req: false } : {}) });
+const ETAPES_COMMUNES = ACCUEIL.filter((e) => ["Votre activité", "Vos services et vos prix", "Votre ton", "Questions propres à votre métier"].includes(e.titre));
+export const FICHE = [
+  ...ETAPES_COMMUNES.map((e) => ({
+    ...e,
+    titre: e.titre === "Votre ton" ? "Votre ton, et ce qu'il ne faut jamais écrire" : e.titre,
+    questions: [...e.questions, ...(e.titre === "Votre ton" ? [q("interdits")] : [])].filter((x) => !SANS_FICHE.has(x.k)).map(avecAide),
+  })),
+  { ...ETAPE_FICHE, questions: [...ETAPE_FICHE.questions.slice(0, 8), avecAide(q("fermetures")), ...ETAPE_FICHE.questions.slice(8)] },
+  {
+    titre: "Validation",
+    questions: [
+      { k: "info_donnees", n: "V1", type: "case", req: true, label: "J'ai lu la politique de confidentialité. Mes réponses servent uniquement à rédiger ma Fiche Google complète ; elles sont conservées 6 mois après la livraison, puis supprimées.", lien: "/confidentialite.html" },
+      { k: "conseils_email", n: "V4", type: "case", label: "(Facultatif) Je souhaite recevoir les conseils et nouveautés de Bras Droit IA par e-mail (désinscription en un clic)." },
+    ],
+  },
+];

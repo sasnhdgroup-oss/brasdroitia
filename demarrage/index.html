@@ -81,9 +81,10 @@
 <script>
 (function(){
  var z=document.getElementById('zone'), P=new URLSearchParams(location.search);
- var ID={e:P.get('e')||'',c:P.get('c')||'',t:P.get('t')||''}, MOIS=!!P.get('mois');
+ var ID={e:P.get('e')||'',c:P.get('c')||'',t:P.get('t')||''}, MOIS=!!P.get('mois'), FICHE=!MOIS&&!!P.get('fiche');
  var ETAPES=[], R={}, i=0, envois=0, NOMS={};
  if(MOIS){document.getElementById('titre').textContent='Votre formulaire du mois';document.title='Votre formulaire du mois | Bras Droit IA';document.getElementById('chapo').innerHTML='1 minute pour votre pack du mois prochain : une offre à mettre en avant, des changements, de nouvelles photos. Sans réponse, nous préparons votre pack avec les informations que nous avons déjà.';}
+ if(FICHE){document.getElementById('titre').textContent='Votre Fiche Google complète';document.title='Votre Fiche Google complète | Bras Droit IA';document.getElementById('chapo').innerHTML='5 minutes, pas plus. Vos réponses servent uniquement à rédiger les textes de votre fiche Google. Votre Fiche Google complète arrive par e-mail, en PDF, <b>sous 24 heures</b> après l\'envoi de ce questionnaire. Vous la saisissez vous-même : nous n\'avons jamais accès à votre compte Google.';}
  function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
  function refus(m){z.innerHTML='<div class="erreur"><p style="margin:0 0 8px"><b>Nous ne pouvons pas ouvrir votre questionnaire.</b></p><p style="margin:0">'+esc(m)+'</p></div><p>Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a> en indiquant l\'adresse e-mail utilisée pour votre paiement : nous vous renvoyons votre lien personnel.</p>';}
  if(!ID.e||!ID.c||!ID.t){refus('Ce lien est incomplet. Ouvrez à nouveau le lien reçu par e-mail, sans le modifier.');return;}
@@ -198,19 +199,19 @@
 
  function envoyer(){
   var b=z.querySelector('.suite');b.disabled=true;b.textContent='Envoi…';envois=1;
-  var corps={e:ID.e,c:ID.c,t:ID.t,mode:MOIS?'mois':'accueil',site:(document.getElementById('site')||{}).value||'',reponses:R};
+  var corps={e:ID.e,c:ID.c,t:ID.t,mode:MOIS?'mois':FICHE?'fiche':'accueil',site:(document.getElementById('site')||{}).value||'',reponses:R};
   fetch('/api/demarrage',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(corps)})
   .then(function(r){return r.json().catch(function(){return {ok:false,message:'Réponse illisible du serveur.'};});})
   .then(function(d){
    envois=0;
-   if(d.ok){z.innerHTML='<div class="fini" tabindex="-1" id="fini"><p class="ok" aria-hidden="true">✅</p><h2>Merci, c\'est tout bon</h2><p>'+esc(d.message)+'</p>'+(MOIS?'':'<p>Chaque mois, un formulaire d\'une minute vous permettra de nous envoyer votre offre du moment et vos nouvelles photos.</p><p>Pour répondre à vos avis Google, utilisez notre <a href="/outils/generateur-reponse-avis-google/">générateur gratuit</a>.</p>')+'</div>';document.getElementById('fini').focus();return;}
+   if(d.ok){z.innerHTML='<div class="fini" tabindex="-1" id="fini"><p class="ok" aria-hidden="true">✅</p><h2>Merci, c\'est tout bon</h2><p>'+esc(d.message)+'</p>'+(MOIS||FICHE?'':'<p>Chaque mois, un formulaire d\'une minute vous permettra de nous envoyer votre offre du moment et vos nouvelles photos.</p><p>Pour répondre à vos avis Google, utilisez notre <a href="/outils/generateur-reponse-avis-google/">générateur gratuit</a>.</p>')+'</div>';document.getElementById('fini').focus();return;}
    if(d.erreurs){var cles=Object.keys(d.erreurs),ev=etapesVisibles();for(var j=0;j<ev.length;j++){if(ev[j].questions.some(function(q){return cles.indexOf(q.k)>-1;})){i=j;break;}}afficher(false);cles.forEach(function(k){erreur(k,d.erreurs[k]);});var p=z.querySelector('.qn.invalide');if(p){p.scrollIntoView({block:'center'});var c=p.querySelector('input,textarea');if(c)c.focus();}return;}
    b.disabled=false;b.textContent='Réessayer l\'envoi';var m=z.querySelector('.erreur');if(!m){m=document.createElement('p');m.className='erreur';m.setAttribute('role','alert');b.parentNode.parentNode.insertBefore(m,b.parentNode);}m.textContent=d.message||'L\'envoi n\'a pas abouti. Réessayez dans une minute.';
   })
   .catch(function(){envois=0;b.disabled=false;b.textContent='Réessayer l\'envoi';alert('L\'envoi n\'a pas abouti (connexion ?). Vos réponses sont toujours là : réessayez.');});
  }
 
- fetch('/api/demarrage?'+new URLSearchParams({e:ID.e,c:ID.c,t:ID.t}).toString()+(MOIS?'&mois=1':''))
+ fetch('/api/demarrage?'+new URLSearchParams({e:ID.e,c:ID.c,t:ID.t}).toString()+(MOIS?'&mois=1':FICHE?'&fiche=1':''))
  .then(function(r){return r.json().catch(function(){return {ok:false,message:'Le service est momentanément indisponible. Réessayez dans quelques minutes.'};});})
  .then(function(d){
   if(!d.ok){refus(d.message||'Ce lien n\'est pas valide.');return;}

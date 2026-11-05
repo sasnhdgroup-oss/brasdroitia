@@ -1,7 +1,9 @@
 // Questionnaire de démarrage et formulaire du mois des clients Bras Droit IA (page brasdroitia.com/demarrage/).
 // Accès par lien personnel signé : ?e=<email>&c=<id client Stripe>&t=<signerClient(email, id)>, envoyé par
 // le script nhd-qg tools/stripe/bienvenue_clients.mjs. Sans signature valide, rien n'est lu ni enregistré.
-//   GET  /api/demarrage?e&c&t[&mois=1]        vérifie le lien, renvoie les questions à afficher
+// Prestation unique « Fiche Google complète » (05/11/2026) : lien envoyé par /api/stripe-bienvenue avec &fiche=1 ;
+// c = id client Stripe (cus_…) ou, si Stripe n'a pas créé de client (paiement unique), id de la session (cs_live_…).
+//   GET  /api/demarrage?e&c&t[&mois=1|&fiche=1] vérifie le lien, renvoie les questions à afficher
 //   POST { e, c, t, action: "fichier", ... }   dépose une photo ou le logo (déjà réduit par le navigateur)
 //   POST { e, c, t, mode, reponses, site }     enregistre les réponses, accusé de réception au client, copie à contact@
 // Stockage : Netlify Blobs, magasin « clients » (reponses/…, fichiers/<client>/…), lu par /api/demarrage-export.
@@ -10,7 +12,7 @@
 import { getStore } from "@netlify/blobs";
 import { randomBytes } from "node:crypto";
 import { signerClient, egal } from "../lib/signature.mjs";
-import { ACCUEIL, MOIS, valider, lignes } from "../lib/questionnaire.mjs";
+import { ACCUEIL, MOIS, FICHE, valider, lignes } from "../lib/questionnaire.mjs";
 import { json, esc, gabarit, tableau, envoyer, majContact, heureParis, tampon, EMAIL_OK, CONTACT } from "../lib/brevo.mjs";
 
 const PLAFOND_JOUR = Number(process.env.BDIA_PLAFOND_QUESTIONNAIRES || 200);
@@ -18,7 +20,9 @@ const PLAFOND_CLIENT = 6; // envois de formulaire par jour et par client
 const PLAFOND_FICHIERS = 30; // fichiers par jour et par client
 const TAILLE_MAX = 2.5 * 1024 * 1024; // octets, après réduction par le navigateur
 const TYPES = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp" };
-const CLIENT_OK = /^cus_[A-Za-z0-9]{6,40}$/;
+const CLIENT_OK = /^(cus_[A-Za-z0-9]{6,40}|cs_(live|test)_[A-Za-z0-9]{10,120})$/; // cs_… : Fiche Google payée sans client Stripe
+const ETAPES = { accueil: ACCUEIL, mois: MOIS, fiche: FICHE };
+const modeDe = (v) => (v === "mois" || v === "fiche" ? v : "accueil");
 const PORTAIL = "https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00";
 const REFUS = "Ce lien n'est pas valide ou a été copié de façon incomplète. Ouvrez à nouveau le lien reçu par e-mail, ou écrivez-nous à contact@brasdroitia.com : nous vous renvoyons votre lien personnel.";
 
@@ -40,10 +44,10 @@ async function compter(store, cle, plafond) {
   return true;
 }
 
-// Dernières réponses au questionnaire de démarrage de ce client (pour le métier dans le formulaire du mois).
-async function dernierAccueil(store, client) {
+// Dernières réponses de ce client à un questionnaire (démarrage par défaut : métier du formulaire du mois).
+async function dernierAccueil(store, client, mode = "accueil") {
   const { blobs } = await store.list({ prefix: "reponses/" });
-  const cles = blobs.map((b) => b.key).filter((k) => k.includes(`_${client}_accueil`)).sort();
+  const cles = blobs.map((b) => b.key).filter((k) => k.endsWith(`_${client}_${mode}.json`)).sort();
   if (!cles.length) return null;
   return store.get(cles[cles.length - 1], { type: "json" });
 }
@@ -74,8 +78,22 @@ async function deposerFichier(store, id, e, jour) {
 
 function mailClient(mode, propres, quand, id) {
   const lien = (p) => `https://brasdroitia.com${p}`;
-  const recap = tableau(lignes(mode === "mois" ? MOIS : ACCUEIL, propres, () => "reçu"));
-  const pied = `<a href="${lien("/cgv.html")}" style="color:#8A8E9A">CGV</a> · <a href="${PORTAIL}" style="color:#8A8E9A">Gérer ou résilier mon abonnement</a> · Service réservé aux professionnels<br>`;
+  const recap = tableau(lignes(ETAPES[mode], propres, () => "reçu"));
+  const pied = mode === "fiche"
+    ? `<a href="${lien("/cgv.html")}" style="color:#8A8E9A">CGV</a> · Prestation unique, sans abonnement · Service réservé aux professionnels<br>`
+    : `<a href="${lien("/cgv.html")}" style="color:#8A8E9A">CGV</a> · <a href="${PORTAIL}" style="color:#8A8E9A">Gérer ou résilier mon abonnement</a> · Service réservé aux professionnels<br>`;
+  if (mode === "fiche") {
+    return {
+      objet: "Questionnaire bien reçu : votre Fiche Google arrive sous 24 h",
+      html: gabarit("Merci, votre questionnaire est bien reçu", `<p>Bonjour,</p>
+<p>Nous avons bien reçu votre questionnaire « Fiche Google complète » le ${esc(quand)}.</p>
+<p style="background:#EEF6D0;border-radius:10px;padding:12px 14px"><b>Votre Fiche Google arrive par e-mail sous 24 heures</b>, au plus tard le ${esc(ajouterJours(1))}, en PDF : description longue et courte, présentation de vos services, catégories et attributs recommandés, plan de vos 10 photos, horaires exceptionnels de l'année, FAQ de 8 questions et contrôle de votre nom.</p>
+<p>Vous saisirez vous-même ces textes dans votre fiche : nous n'avons jamais accès à votre compte Google. Une correction est incluse si vous la demandez dans les 7 jours qui suivent la livraison.</p>
+<p>Un oubli ou une correction ? Répondez simplement à cet e-mail.</p>
+<p style="font-size:14px;color:#5B6070">Vos réponses, pour mémoire :</p>${recap}
+<p>À très vite,<br>L'équipe Bras Droit IA</p>`, pied),
+    };
+  }
   if (mode === "mois") {
     return {
       objet: "Bien reçu : vos informations pour le pack du mois prochain",
@@ -99,13 +117,15 @@ function mailClient(mode, propres, quand, id) {
 function mailCopie(mode, propres, quand, id, cle, fichiers) {
   const nomF = Object.fromEntries(fichiers.map((f) => [f.id, `${f.nom} (${Math.round(f.taille / 1024)} ko)`]));
   const etab = propres.etablissement || "";
+  const nom = { mois: "Formulaire du mois", fiche: "Fiche Google", accueil: "Questionnaire" }[mode];
   return {
-    objet: `[${mode === "mois" ? "Formulaire du mois" : "Questionnaire"}] ${etab || id.email}${propres.ville ? " · " + propres.ville : ""} · ${id.client}`,
-    html: gabarit(mode === "mois" ? "Formulaire du mois reçu" : "Questionnaire de démarrage reçu", `
+    objet: `[${nom}] ${etab || id.email}${propres.ville ? " · " + propres.ville : ""} · ${id.client}`,
+    html: gabarit({ mois: "Formulaire du mois reçu", fiche: "Questionnaire Fiche Google reçu", accueil: "Questionnaire de démarrage reçu" }[mode], `
 <p><b>Client :</b> ${esc(id.email)} · ${esc(id.client)}<br><b>Reçu le :</b> ${esc(quand)}<br><b>Enregistrement :</b> ${esc(cle)}</p>
 ${mode === "accueil" ? `<p style="background:#EEF6D0;border-radius:10px;padding:10px 12px"><b>Délai annoncé : 24 h (CGV A.5 : 3 jours au plus). Livrer au plus tard le ${esc(ajouterJours(1))}.</b> Noter <code>questionnaire_recu</code> dans Stripe.</p>` : ""}
+${mode === "fiche" ? `<p style="background:#EEF6D0;border-radius:10px;padding:10px 12px"><b>Fiche Google complète (39 € TTC). Délai annoncé : 24 h (CGV art. 5 bis : 3 jours au plus). Livrer le PDF au plus tard le ${esc(ajouterJours(1))}.</b> Production : <code>prompt_fiche_google.md</code> (nhd-qg). Une correction incluse sous 7 jours.</p>` : ""}
 ${fichiers.length ? `<p>${fichiers.length} fichier(s) joint(s) : à récupérer avec <code>node tools/stripe/bienvenue_clients.mjs --export</code> (nhd-qg).</p>` : ""}
-${tableau(lignes(mode === "mois" ? MOIS : ACCUEIL, propres, (x) => nomF[x] || x))}
+${tableau(lignes(ETAPES[mode], propres, (x) => nomF[x] || x))}
 <p>Répondre à cet e-mail écrit directement au client.</p>`),
   };
 }
@@ -116,13 +136,13 @@ export default async (req, context) => {
     const url = new URL(req.url);
     const id = identite(Object.fromEntries(url.searchParams));
     if (!id) return json({ ok: false, message: REFUS }, 403);
-    const mode = url.searchParams.get("mois") ? "mois" : "accueil";
+    const mode = url.searchParams.get("mois") ? "mois" : url.searchParams.get("fiche") ? "fiche" : "accueil";
     let metier = null, deja = null;
     try {
-      const d = await dernierAccueil(store, id.client);
+      const d = await dernierAccueil(store, id.client, mode === "fiche" ? "fiche" : "accueil");
       if (d) { metier = d.reponses?.metier || null; deja = d.recu; }
     } catch (x) { console.error("Blobs lecture", x?.message); }
-    return json({ ok: true, mode, metier, deja, etapes: mode === "mois" ? MOIS : ACCUEIL });
+    return json({ ok: true, mode, metier, deja, etapes: ETAPES[mode] });
   }
   if (req.method !== "POST") return json({ ok: false, message: "Méthode non autorisée." }, 405);
   let e;
@@ -135,8 +155,8 @@ export default async (req, context) => {
 
   if (e.action === "fichier") return deposerFichier(store, id, e, jour);
 
-  const mode = e.mode === "mois" ? "mois" : "accueil";
-  const etapes = mode === "mois" ? MOIS : ACCUEIL;
+  const mode = modeDe(e.mode);
+  const etapes = ETAPES[mode];
   const { blobs } = await store.list({ prefix: `fichiers/${id.client}/` });
   const fichiersClient = new Map(blobs.map((b) => [b.key.split("/").pop(), b.key]));
   const brut = { ...(e.reponses || {}) };
@@ -174,8 +194,15 @@ export default async (req, context) => {
     let listes;
     if (propres.conseils_email) { listes = [Number(process.env.BREVO_LISTE || 3)]; attributs.DATE_INSCRIPTION = jour; }
     await majContact(id.email, attributs, listes).catch((x) => console.error("Brevo contact", x?.message));
+  } else if (mode === "fiche" && propres.conseils_email) {
+    // Pas d'attribut QUESTIONNAIRE_RECU : il sert aux relances du questionnaire de l'abonnement (nhd-qg).
+    await majContact(id.email, { DATE_INSCRIPTION: jour }, [Number(process.env.BREVO_LISTE || 3)]).catch((x) => console.error("Brevo contact", x?.message));
   }
-  const delai = mode === "accueil" ? ` Votre premier pack arrive par e-mail dans les 24 heures, au plus tard le ${ajouterJours(1)}.` : " Nous en tenons compte pour votre prochain pack.";
+  const delai = {
+    accueil: ` Votre premier pack arrive par e-mail dans les 24 heures, au plus tard le ${ajouterJours(1)}.`,
+    fiche: ` Votre Fiche Google arrive par e-mail sous 24 heures, au plus tard le ${ajouterJours(1)}.`,
+    mois: " Nous en tenons compte pour votre prochain pack.",
+  }[mode];
   return json({
     ok: true,
     message: `Merci, c'est bien reçu (${quand}).${delai}` + (okClient ? " Un e-mail de confirmation vient de partir : pensez à regarder dans les indésirables." : " L'e-mail de confirmation n'a pas pu partir, mais vos réponses sont bien enregistrées."),

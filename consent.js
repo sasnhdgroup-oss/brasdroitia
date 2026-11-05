@@ -72,6 +72,9 @@ var BDIA_TRACEURS = {
   // après le paiement Stripe) et « prospect » (plan IA reçu par e-mail sur /plan/).
   var NOMS = {
     abonnement: { meta: 'Purchase', tiktok: 'CompletePayment', google: 'purchase' },
+    // Achats ponctuels (page merci) : sans cette ligne, ils seraient émis comme « debut_paiement ».
+    option_kit: { meta: 'Purchase', tiktok: 'CompletePayment', google: 'purchase' },
+    fiche_google: { meta: 'Purchase', tiktok: 'CompletePayment', google: 'purchase' },
     debut_paiement: { meta: 'InitiateCheckout', tiktok: 'InitiateCheckout', google: 'begin_checkout' },
     prospect: { meta: 'Lead', tiktok: 'SubmitForm', google: 'generate_lead' }
   };
