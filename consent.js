@@ -6,7 +6,7 @@
    Identifiants à renseigner (laisser vide = traceur désactivé) : */
 var BDIA_TRACEURS = {
   metaPixel: '1719625853506666', // Meta (Facebook, Instagram), pixel du portefeuille BRAS DROIT IA (France) créé le 01/11/2026
-  tiktokPixel: '',   // TikTok Ads Manager > Outils > Événements > Pixel web
+  tiktokPixel: 'DBMC8NJC77UFMFQAANOG', // TikTok, compte publicitaire Bras Droit IA (SCALINEA), ajouté le 05/11/2026
   googleTag: 'G-4W3MC6K296', // Google Analytics 4 (et plus tard Google Ads AW-…, ajouté par gtag('config'))
   googleConversion: '' // action de conversion Google Ads : AW-XXXXXXXXX/YYYYYYYY
 };
