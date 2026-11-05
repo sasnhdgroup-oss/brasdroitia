@@ -25,6 +25,7 @@ const gabarit = (corps, pied) => `<!doctype html><html lang="fr"><body style="ma
 <p style="font-size:12px;color:#8A8E9A;margin-top:28px">${pied}</p></div></body></html>`;
 
 const pied = `Bras Droit IA, une marque de SCALINEA · <a href="${SITE}/cgv.html" style="color:#8A8E9A">Conditions générales de vente</a> · <a href="${PORTAIL}" style="color:#8A8E9A">Résilier mon abonnement</a> · Service réservé aux professionnels · Nous ne vous demanderons jamais vos mots de passe.`;
+const piedFiche = `Bras Droit IA, une marque de SCALINEA · <a href="${SITE}/cgv.html#options" style="color:#8A8E9A">Conditions générales de vente</a> · Prestation unique, sans abonnement · Service réservé aux professionnels · Nous ne vous demanderons jamais vos mots de passe.`;
 
 function mailBienvenue(c) {
   const bonjour = c.nom ? `Bonjour ${esc(c.nom)},` : "Bonjour,";
@@ -61,7 +62,7 @@ function mailFiche(c) {
 <p>Ce lien est personnel : ne le transférez pas.</p>
 <p>Nos <a href="${SITE}/cgv.html">conditions générales de vente</a>, réservées aux professionnels, restent accessibles à tout moment.</p>
 <p>Une question ? Répondez simplement à cet e-mail.</p>
-<p>À très vite,<br>L'équipe Bras Droit IA</p>`, pied),
+<p>À très vite,<br>L'équipe Bras Droit IA</p>`, piedFiche),
   };
 }
 
