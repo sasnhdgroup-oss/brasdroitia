@@ -138,5 +138,15 @@
 | R | 128 | whatsapp-business-ordinateur | whatsapp business sur ordinateur, whatsapp business pc | Réseaux | 21 |
 | R | 129 | threads-instagram-entreprise | threads instagram c'est quoi | Réseaux | 21 |
 | R | 130 | chatgpt-entreprise-confidentialite | chatgpt entreprise confidentialité | IA | 41 |
+| S | 131 | post-collaboration-instagram | instagram collaboration post | Réseaux | 21 |
+| S | 132 | notes-instagram | instagram note, idées notes instagram | Réseaux | 21 |
+| S | 133 | reels-d-essai-instagram | instagram trial reels (reels d'essai) | Réseaux | 21 |
+| S | 134 | groupe-facebook-entreprise | groupe facebook entreprise | Réseaux | 21 |
+| S | 135 | video-fiche-google | google business vidéo, video google business | Fiche Google | 15 |
+| S | 136 | calendrier-marketing-decembre | calendrier marketing décembre | Méthode | 41 |
+| S | 137 | carte-cadeau-commerce | carte cadeau commerce local, bon cadeau commerce | Méthode | 41 |
+| S | 138 | programmer-publication-facebook | programmer publication facebook | Réseaux | 21 |
+| S | 139 | epingler-commentaire-instagram | instagram épingler commentaire | Réseaux | 21 |
+| S | 140 | qr-code-menu-restaurant | qr code menu restaurant | Méthode | 41 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
