@@ -60,6 +60,12 @@ export default async (req) => {
   if (ev?.type !== "checkout.session.completed" || !s || s.mode !== "subscription" || !["paid", "no_payment_required"].includes(s.payment_status)) {
     return json({ ok: true, ignore: true });
   }
+  if (s.metadata?.offre === "kit_vitrine") { // option Kit vitrine (05/11/2026) : pas de bienvenue, une alerte à contact@
+    const em = String(s.customer_details?.email || "").trim().toLowerCase();
+    await envoyer({ a: CONTACT, objet: `[Option Kit vitrine] ${s.customer_details?.name || em}`, repondreA: EMAIL_OK.test(em) ? em : undefined, tags: ["bdia-alerte-option-kit"],
+      html: gabarit(`<h1 style="font-size:20px">Option Kit vitrine souscrite</h1><p><b>${esc(s.customer_details?.name || "(sans nom)")}</b> · ${esc(em)} · ${esc(s.customer || "")}</p><p>À produire avec le prochain pack : affiche A4/A3, flyer A5, chevalet avec QR code, version story (PDF).</p>`, "Alerte automatique de /api/stripe-bienvenue (brasdroitia.com).") });
+    return json({ ok: true, option: "kit_vitrine" });
+  }
   const id = typeof s.customer === "string" ? s.customer : s.customer?.id;
   const email = String(s.customer_details?.email || s.customer_email || "").trim().toLowerCase();
   if (!/^cus_[A-Za-z0-9]+$/.test(id || "") || !EMAIL_OK.test(email)) return json({ ok: true, ignore: "sans client ou e-mail" });

@@ -64,9 +64,11 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
 <h1>Merci, votre abonnement est confirmé&nbsp;!</h1>
 <p class="meta">Votre paiement a bien été enregistré. Bienvenue chez Bras Droit IA.</p>
 
+<div id="kit" class="box lime" hidden><p><b>Option Kit vitrine activée.</b> Chaque mois, en même temps que votre pack, vous recevez votre affiche A4/A3, votre flyer A5, votre chevalet de comptoir avec QR code et leur version story, sur le thème de votre offre du mois, en PDF prêts à imprimer. Rien d'autre à faire : nous utilisons les informations de votre questionnaire et de votre formulaire du mois.</p></div>
+<div id="suite">
 <h2>La suite, en 3 étapes</h2>
 <ol>
- <li><b>Dans l'heure, vous recevez un e-mail de bienvenue</b> avec le lien de votre questionnaire de démarrage (Stripe vous envoie aussi votre reçu de paiement). Pensez à regarder dans les courriers indésirables.</li>
+ <li><b>Dans la minute, vous recevez un e-mail de bienvenue</b> avec le lien de votre questionnaire de démarrage (Stripe vous envoie aussi votre reçu de paiement). Pensez à regarder dans les courriers indésirables.</li>
  <li><b>Répondez au questionnaire</b> (5 minutes), directement sur notre site : votre métier, votre ville, vos services, votre ton, et si vous le souhaitez votre logo et quelques photos.</li>
  <li><b>Recevez votre premier Pack par e-mail dans les 24 heures</b> qui suivent la réception du questionnaire complet.</li>
 </ol>
@@ -75,8 +77,9 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
  <p><b>Satisfait ou remboursé.</b> Pendant 14 jours, votre premier paiement vous est remboursé sur simple demande à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a>, même après avoir reçu votre premier Pack (<a href="cgv.html#garantie">CGV, article 9</a>).</p>
 </div>
 
+</div>
 <h2>Une question&nbsp;?</h2>
-<p>Pas d'e-mail au bout d'une heure, même dans les indésirables ? Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a> avec l'adresse utilisée pour le paiement : nous vous renvoyons votre lien. Vous pouvez gérer ou résilier votre abonnement à tout moment depuis le lien <a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a>.</p>
+<p>Pas d'e-mail au bout de quelques minutes, même dans les indésirables ? Écrivez-nous à <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a> avec l'adresse utilisée pour le paiement : nous vous renvoyons votre lien. Vous pouvez gérer ou résilier votre abonnement à tout moment depuis le lien <a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a>.</p>
 <p><a class="btn" href="index.html">Retour à l'accueil</a></p>
 </main>
 
@@ -91,6 +94,6 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
  </div>
 </footer>
 <script src="consent.js"></script>
-<script>if(window.bdiaEvenement) bdiaEvenement('abonnement',{value:9,currency:'EUR'});</script>
+<script>var bdiaKit=/[?&]option=kit\b/.test(location.search);if(bdiaKit){document.getElementById('kit').hidden=false;document.getElementById('suite').hidden=true;document.querySelector('h1').textContent='Merci, votre option Kit vitrine est confirmée !';}if(window.bdiaEvenement) bdiaEvenement(bdiaKit?'option_kit':'abonnement',{value:bdiaKit?10:9,currency:'EUR'});</script>
 </body>
 </html>
