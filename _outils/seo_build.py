@@ -170,7 +170,29 @@ urls += [(f'/guides/{p["slug"]}/', '0.7', mod_guide(p['slug'])) for p in pages]
 urls += [(f'/astuces/{a["slug"]}/', '0.6', a['date']) for a in astuces]
 # Pages légales en noindex : hors sitemap (Search Console, 05/11/2026).
 (racine / 'sitemap.xml').write_text('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + ''.join(f'<url><loc>{SITE}{u}</loc><lastmod>{d}</lastmod><priority>{pr}</priority></url>\n' for u, pr, d in urls) + '</urlset>\n', encoding='utf-8')
-(racine / 'robots.txt').write_text(f'User-agent: *\nAllow: /\nDisallow: /merci.html\nDisallow: /guides/_gabarit.html\nDisallow: /astuces/_gabarit.html\n\nSitemap: {SITE}/sitemap.xml\n', encoding='utf-8')
+# robots.txt : tous les robots, dont ceux des moteurs IA (ChatGPT, Claude, Perplexity, Gemini, Copilot), nommés explicitement (05/11/2026).
+INTERDITS = 'Disallow: /merci.html\nDisallow: /guides/_gabarit.html\nDisallow: /astuces/_gabarit.html\n'
+ROBOTS_IA = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot', 'Claude-SearchBot', 'Claude-User', 'PerplexityBot', 'Perplexity-User', 'Google-Extended', 'Applebot-Extended', 'Bingbot', 'MistralAI-User', 'DuckAssistBot']
+(racine / 'robots.txt').write_text('User-agent: *\nAllow: /\n' + INTERDITS + '\n# Moteurs de recherche et assistants IA : bienvenus.\n' + ''.join(f'User-agent: {r}\n' for r in ROBOTS_IA) + 'Allow: /\n' + INTERDITS + f'\nSitemap: {SITE}/sitemap.xml\n', encoding='utf-8')
+# llms.txt : résumé du site pour les assistants IA (format llmstxt.org).
+lg = ''.join(f'- [{p["title"].split(" | ")[0]}]({SITE}/guides/{p["slug"]}/): {p["desc"]}\n' for p in pages)
+la = ''.join(f'- [{a["title"].split(" | ")[0]}]({SITE}/astuces/{a["slug"]}/): {a["desc"]}\n' for a in astuces)
+(racine / 'llms.txt').write_text(f"""# Bras Droit IA
+
+> Bras Droit IA (marque de SCALINEA EURL, France) est le bras droit IA des artisans, commerçants et indépendants : chaque mois, 20 publications Instagram et Facebook dont 6 reels, 8 posts pour la fiche Google et le plan du mois, écrits pour le métier et la ville du client, relus avant envoi. 29 € TTC par mois sans engagement (9 € le premier mois jusqu'au 30/11/2026), réservé aux professionnels. Le client publie lui-même : nous n'avons jamais ses mots de passe.
+
+## Offre
+- [Accueil et offre]({SITE}/): ce que reçoit le client chaque mois, exemples par métier, prix, FAQ.
+- [Plan de publication gratuit]({SITE}/plan/): 8 questions, l'IA prépare un plan sur 4 semaines.
+- [Fiche Google complète]({SITE}/fiche-google/): tous les textes de la fiche Google, prêts à copier, 39 € TTC, paiement unique.
+- [Générateur gratuit de réponses aux avis Google]({SITE}/outils/generateur-reponse-avis-google/)
+- [Conditions générales de vente]({SITE}/cgv.html)
+
+## Guides pratiques
+{lg}
+## Astuces
+{la}""", encoding='utf-8')
+
 print(f'{len(astuces)} astuces')
 
 print(f'{len(pages)} guides, {sum(p["mots"] for p in pages)} mots au total')
