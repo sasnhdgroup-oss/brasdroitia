@@ -14,7 +14,7 @@
       m.textContent = 'Envoi…';
       fetch('/api/inscription', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ email: f.email.value, site: f.site.value, consentement: true, source: bloc.getAttribute('data-lettre') }) })
         .then(function (r) { return r.json(); })
-        .then(function (d) { m.textContent = d.message; if (d.ok) { f.email.value = ''; try { (window.dataLayer = window.dataLayer || []).push({ event: 'bdia_inscription_lettre' }); } catch (x) {} } })
+        .then(function (d) { m.textContent = d.message; if (d.ok) { var em = f.email.value; (window.bdiaIdentifier ? bdiaIdentifier(em) : Promise.resolve()).then(function () { if (window.bdiaEvenement) bdiaEvenement('inscription'); }); f.email.value = ''; try { (window.dataLayer = window.dataLayer || []).push({ event: 'bdia_inscription_lettre' }); } catch (x) {} } })
         .catch(function () { m.textContent = 'L\'inscription n\'a pas pu aboutir. Réessayez.'; });
     });
   });

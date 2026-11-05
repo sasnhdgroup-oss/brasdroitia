@@ -105,6 +105,9 @@ footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
 <script src="consent.js"></script>
 <script>var bdiaKit=/[?&]option=kit\b/.test(location.search),bdiaFiche=/[?&]option=fiche\b/.test(location.search);if(bdiaKit){document.getElementById('kit').hidden=false;document.getElementById('suite').hidden=true;document.querySelector('h1').textContent='Merci, votre option Kit vitrine est confirmée !';}
 if(bdiaFiche){document.getElementById('fiche').hidden=false;document.getElementById('suite').hidden=true;document.getElementById('abo').hidden=true;document.querySelector('h1').textContent='Merci, votre Fiche Google complète est commandée !';document.querySelector('.meta').textContent='Votre paiement a bien été enregistré. Paiement unique, sans abonnement.';document.title='Merci — Fiche Google complète | Bras Droit IA';}
-if(window.bdiaEvenement){if(bdiaFiche)bdiaEvenement('fiche_google',{value:39,currency:'EUR'});else bdiaEvenement(bdiaKit?'option_kit':'abonnement',{value:bdiaKit?10:9,currency:'EUR'});}</script>
+(function(){var a=bdiaFiche?['fiche_google',39,'price_1UYR53IVtjSiNljWfBGMbC9Z']:bdiaKit?['option_kit',10,'price_1UYQWXIVtjSiNljWq2yJNFbC']:['abonnement',(new Date()<new Date('2026-12-01T00:00:00+01:00')?9:29),'price_1UVF2iIVtjSiNljWT461c94b'];
+/* Seulement après un vrai paiement : la page merci n'est atteinte que par le retour Stripe ; un rechargement ne recompte pas (1 fois par jour et par produit). */
+var k='bdia_achat_'+a[0],j=new Date().toISOString().slice(0,10);try{if(localStorage.getItem(k)===j)return;localStorage.setItem(k,j);}catch(e){}
+if(window.bdiaEvenement)bdiaEvenement(a[0],{value:a[1],currency:'EUR',content_id:a[2]});})();</script>
 </body>
 </html>
