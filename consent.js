@@ -126,7 +126,9 @@ var BDIA_TRACEURS = {
       '#bdia-cmp p{margin:0 0 12px}#bdia-cmp a{color:#D4FF3F}' +
       '#bdia-cmp .r{display:flex;gap:10px;flex-wrap:wrap}' +
       '#bdia-cmp button{flex:1 1 140px;font:800 15px Inter,system-ui,sans-serif;border-radius:11px;padding:11px 14px;cursor:pointer;border:2px solid #D4FF3F;background:#D4FF3F;color:#0E1530}' +
-      '#bdia-cmp button.n{background:transparent;color:#F6F5F0;border-color:#F6F5F0}';
+      '#bdia-cmp button.n{background:transparent;color:#F6F5F0;border-color:#F6F5F0}' +
+      // Mobile : bandeau compact, et posé au-dessus du badge Netlify (en bas à droite) pour ne pas cacher « Accepter ».
+      '@media (max-width:640px){#bdia-cmp{left:10px;right:10px;bottom:68px;padding:12px 14px;font-size:13px;line-height:1.4;border-radius:14px}#bdia-cmp p{margin:0 0 9px}#bdia-cmp button{padding:9px 12px;font-size:14px;flex-basis:120px}}';
     document.head.appendChild(css);
     var d = document.createElement('div');
     d.id = 'bdia-cmp';
