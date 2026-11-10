@@ -2,14 +2,15 @@
 // Chaque partie (a, b, c) est renvoyée avec une signature qui permet à /api/plan-envoi de vérifier
 // que le plan envoyé par e-mail a bien été rédigé par ce site.
 // Variables d'environnement Netlify : ANTHROPIC_API_KEY, BREVO_API_KEY (sert de clé de signature),
-// BDIA_MODELE (facultatif), BDIA_PLAFOND_PLANS (facultatif, défaut 40 plans par jour pour tout le site).
+// BDIA_MODELE (facultatif), BDIA_PLAFOND_PLANS (facultatif, 120 plans par jour au minimum pour tout le site).
 import Anthropic from "@anthropic-ai/sdk";
 import { getStore } from "@netlify/blobs";
 import { createHash } from "node:crypto";
 import { signerPlan } from "../lib/signature.mjs";
 
 const MODELE = process.env.BDIA_MODELE || "claude-opus-5-5";
-const PLAFOND_JOUR = Number(process.env.BDIA_PLAFOND_PLANS || 40);
+// 120 plans par jour au moins (décision d'Abdellah du 10/11/2026, pubs en cours) ; BDIA_PLAFOND_PLANS ne peut que le relever.
+const PLAFOND_JOUR = Math.max(120, Number(process.env.BDIA_PLAFOND_PLANS || 0));
 const PLAFOND_VISITEUR = 3; // plans par jour et par visiteur
 let client;
 

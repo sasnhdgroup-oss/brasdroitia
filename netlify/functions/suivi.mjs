@@ -43,7 +43,14 @@ export default async (req, context) => {
       const v = Number((await store.get(key)) || 0);
       ((jours[jour] ??= {})[src] ??= {})[etape] = v;
     }
-    return json({ ok: true, etapes: ETAPES, jours });
+    // Plans lancés par jour selon le compteur du plafond de /api/plan (existe depuis l'ouverture du plan, avant ce suivi).
+    const plafond = getStore("plan-ia"), plansLances = {};
+    for (let k = 0; k < n; k++) {
+      const j = new Date(Date.now() - k * 86400000).toISOString().slice(0, 10);
+      const v = Number((await plafond.get(`total-${j}`)) || 0);
+      if (v) plansLances[j] = v;
+    }
+    return json({ ok: true, etapes: ETAPES, jours, plansLances });
   }
 
   if (req.method !== "POST") return json({ ok: false }, 405);
