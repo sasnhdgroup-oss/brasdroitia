@@ -9,7 +9,7 @@ import { createHash } from "node:crypto";
 import { signerExport, egal, FENETRE_EXPORT } from "../lib/signature.mjs";
 import { json } from "../lib/brevo.mjs";
 
-const ETAPES = ["arrivee", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "attente", "plan", "erreur", "email", "paiement"];
+const ETAPES = ["arrivee", "vu10s", "touche", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "attente", "plan", "erreur", "email", "paiement"];
 const SOURCES = ["meta", "autre"];
 
 // Empreintes de plus de 30 jours supprimées (engagement de la page Confidentialité) ; totaux gardés 25 mois.

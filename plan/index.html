@@ -222,6 +222,11 @@
   if(e.target.id==='payer'){suivi('paiement');if(window.bdiaEvenement)bdiaEvenement('debut_paiement',{value:9,currency:'EUR'});var u=new URL(STRIPE);if(Date.now()>=FIN_OFFRE.getTime())u.searchParams.delete('prefilled_promo_code');u.searchParams.set('client_reference_id','plan');e.target.href=u.toString();}
  });
  afficher();
+ // Diagnostic du 11/11 : visiteur resté 10 s (page visible) et premier toucher dans le questionnaire.
+ var t10=setTimeout(function(){if(!document.hidden)suivi('vu10s');},10000);
+ document.addEventListener('visibilitychange',function(){if(document.hidden)clearTimeout(t10);});
+ z.addEventListener('pointerdown',function(){suivi('touche');},{passive:true});
+ z.addEventListener('touchstart',function(){suivi('touche');},{passive:true});
 })();
 </script>
 </body>
