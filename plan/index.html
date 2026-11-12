@@ -82,6 +82,7 @@
 .offre .btn{font-size:18px;padding:14px 22px}
 .offre .note{font-size:13px;color:#AEB4CC;margin-top:12px}
 .erreur{background:#FDECEA;border-radius:10px;padding:12px 14px}
+.ech{background:#EEF6D0;border:2px solid var(--navy);border-radius:16px;padding:18px 20px;margin:22px 0}.ech h3{margin:0 0 6px}.ech p{margin:0 0 12px}.ech .btn{display:inline-block;font-size:17px;padding:13px 20px}
 .promesse{font-size:17px;margin:4px 0 10px}.exemples{width:100%;height:auto;border-radius:12px;margin:0 0 12px}
 @media (max-width:640px){article>.promesse{order:-2}article>.exemples{order:-2}}
 /* Mobile : le questionnaire tout de suite sous le titre (décision du 10/11/2026 : 0 plan lancé sur 246 visiteurs des pubs). */
@@ -192,6 +193,9 @@
    '<div class="porte"><div class="boite"><h3>Recevez le plan complet par e-mail</h3><p>Les semaines 2 à 4, la 2e publication rédigée et le conseil pour votre fiche Google.</p>'+
    '<form id="env" novalidate><input type="email" name="email" placeholder="Votre adresse e-mail" required aria-label="Votre adresse e-mail"><input class="piege" name="site" tabindex="-1" autocomplete="off" aria-hidden="true"><button type="submit">Recevoir mon plan</button><p class="msg" aria-live="polite"></p></form>'+
    '<small>En demandant votre plan, vous acceptez que Bras Droit IA vous écrive 2 ou 3 fois à ce sujet. Désinscription en un clic dans chaque e-mail. <a href="/confidentialite.html" style="color:#D4FF3F">Confidentialité</a></small></div></div></div>';
+  var MET={'Coiffeur / coiffeuse':'Coiffeur','Barbier':'Barbier','Esthéticienne':'Esthéticienne','Agent ou mandataire immobilier':'Mandataire immobilier','Garage automobile':'Garage','Auto-école':'Auto-école','Artisan du bâtiment':'Artisan du bâtiment','Restaurant':'Restaurant'};
+  var ech='/echantillon/?s=plan&m='+encodeURIComponent(MET[R.metier]||'Autre')+(MET[R.metier]?'':'&ma='+encodeURIComponent(R.metier||''))+'&v='+encodeURIComponent(R.ville||'');
+  h+='<div class="ech"><h3>Voyez le résultat pour votre commerce</h3><p>Nous préparons 3 publications prêtes à poster pour votre commerce ('+esc(R.metier)+', '+esc(R.ville)+'), dans votre ton. Gratuit, sans engagement, sans carte bancaire.</p><a class="btn" id="ech" href="'+esc(ech)+'">Recevoir mes 3 publications offertes</a></div>';
   h+=offre()+'<p class="aide" style="font-size:13px;color:var(--muted)">Plan rédigé par une intelligence artificielle à partir de vos réponses : relisez-le avant de l\'appliquer. Les heures sont des points de départ à ajuster selon vos statistiques.</p></div>';
   z.innerHTML=h;z.scrollIntoView({behavior:'smooth'});
   window.__plan=p;minuteur();
@@ -219,6 +223,7 @@
  z.addEventListener('click',function(e){
   var n=e.target.getAttribute&&e.target.getAttribute('data-p');
   if(n!==null){var t=document.getElementById('post'+n).textContent;(navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){e.target.textContent='Copié ✓';},function(){e.target.textContent='Sélectionnez le texte';});}
+  if(e.target.id==='ech'){suivi('echantillon');}
   if(e.target.id==='payer'){suivi('paiement');if(window.bdiaEvenement)bdiaEvenement('debut_paiement',{value:9,currency:'EUR'});var u=new URL(STRIPE);if(Date.now()>=FIN_OFFRE.getTime())u.searchParams.delete('prefilled_promo_code');u.searchParams.set('client_reference_id','plan');e.target.href=u.toString();}
  });
  afficher();
