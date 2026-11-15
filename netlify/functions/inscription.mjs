@@ -5,6 +5,11 @@ import { getStore } from "@netlify/blobs";
 import { createHash } from "node:crypto";
 
 const LISTE = Number(process.env.BREVO_LISTE || 3);
+// Guide « 5 modèles de messages » pour artisans (15/11/2026) : liste Brevo 7, modèle de confirmation 12.
+const PARCOURS = {
+  lettre: { liste: LISTE, modele: () => Number(process.env.BREVO_MODELE_CONFIRMATION), retour: "https://brasdroitia.com/astuces/?inscription=ok", refus: "Cochez la case pour accepter de recevoir l'astuce du mardi." },
+  artisans: { liste: 7, modele: () => 12, retour: "https://brasdroitia.com/guide-devis/modeles/?inscription=ok", refus: "Cochez la case pour recevoir le guide et nos astuces par e-mail." },
+};
 const json = (obj, status = 200) =>
   new Response(JSON.stringify(obj), { status, headers: { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" } });
 
@@ -15,7 +20,8 @@ export default async (req, context) => {
   if (e.site) return json({ ok: true, message: "Merci !" }); // champ piège pour les robots
   const email = String(e.email || "").trim().toLowerCase();
   if (!/^[^\s@]{1,64}@[^\s@]{1,190}\.[a-z]{2,}$/.test(email)) return json({ ok: false, message: "Adresse e-mail invalide." }, 400);
-  if (e.consentement !== true) return json({ ok: false, message: "Cochez la case pour accepter de recevoir l'astuce du mardi." }, 400);
+  const p = PARCOURS[e.liste === "artisans" ? "artisans" : "lettre"];
+  if (e.consentement !== true) return json({ ok: false, message: p.refus }, 400);
   if (!process.env.BREVO_API_KEY || !process.env.BREVO_MODELE_CONFIRMATION) {
     return json({ ok: false, message: "Les inscriptions ouvrent très bientôt." }, 503);
   }
@@ -34,9 +40,9 @@ export default async (req, context) => {
     headers: { "api-key": process.env.BREVO_API_KEY, "content-type": "application/json", accept: "application/json" },
     body: JSON.stringify({
       email,
-      includeListIds: [LISTE],
-      templateId: Number(process.env.BREVO_MODELE_CONFIRMATION),
-      redirectionUrl: "https://brasdroitia.com/astuces/?inscription=ok",
+      includeListIds: [p.liste],
+      templateId: p.modele(),
+      redirectionUrl: p.retour,
       attributes: { SOURCE: source, DATE_INSCRIPTION: jour, ETAPE_BIENVENUE: 0 },
     }),
   });
