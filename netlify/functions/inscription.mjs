@@ -43,7 +43,8 @@ export default async (req, context) => {
       includeListIds: [p.liste],
       templateId: p.modele(),
       redirectionUrl: p.retour,
-      attributes: { SOURCE: source, DATE_INSCRIPTION: jour, ETAPE_BIENVENUE: 0 },
+      attributes: Object.assign({ SOURCE: source, DATE_INSCRIPTION: jour, ETAPE_BIENVENUE: 0 },
+        p === PARCOURS.artisans ? { METIER: String(e.metier || "").replace(/[^\p{L} '-]/gu, "").slice(0, 40), SALARIES: String(e.salaries || "").replace(/[^0-9a-z+ -]/gi, "").slice(0, 12) } : {}),
     }),
   });
   if (r.ok || r.status === 204) return json({ ok: true, message: "C'est presque fini : ouvrez l'e-mail que nous venons d'envoyer et cliquez sur le lien de confirmation." });

@@ -59,6 +59,14 @@
 </ol>
 <p>Plus les 3 erreurs qui font perdre un chantier, et un calendrier de relance simple.</p>
 <form id="f" novalidate>
+<label for="metier" style="display:block;font-weight:800;color:var(--navy);margin:0 0 6px">Votre métier</label>
+<select id="metier" name="metier" required style="width:100%;font:inherit;padding:14px;border:1px solid #CFCDC4;border-radius:10px;background:#FBFAF6;color:var(--ink);margin:0 0 12px">
+<option value="">Choisissez</option><option>Plombier</option><option>Chauffagiste</option><option>Électricien</option><option>Menuisier</option><option>Peintre</option><option>Carreleur</option><option>Maçon</option><option>Couvreur</option><option>Serrurier</option><option>Paysagiste</option><option>Autre artisan du bâtiment</option><option>Commerçant</option><option>Autre</option>
+</select>
+<label for="salaries" style="display:block;font-weight:800;color:var(--navy);margin:0 0 6px">Combien êtes-vous dans l'entreprise ?</label>
+<select id="salaries" name="salaries" required style="width:100%;font:inherit;padding:14px;border:1px solid #CFCDC4;border-radius:10px;background:#FBFAF6;color:var(--ink);margin:0 0 12px">
+<option value="">Choisissez</option><option value="1">Je suis seul</option><option value="2-3">2 à 3 personnes</option><option value="4-10">4 à 10 personnes</option><option value="11-20">11 à 20 personnes</option><option value="20+">Plus de 20</option>
+</select>
 <label for="email" style="display:block;font-weight:800;color:var(--navy);margin:0 0 6px">Votre adresse e-mail</label>
 <input type="email" id="email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
 <input class="piege" id="site" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -81,10 +89,12 @@
  f.addEventListener('submit',function(e){
   e.preventDefault();
   if(!/^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i.test(f.email.value.trim())){m.textContent='Adresse e-mail invalide.';return;}
+  if(!f.metier.value){m.textContent='Choisissez votre métier.';return;}
+  if(!f.salaries.value){m.textContent='Indiquez combien vous êtes dans l\'entreprise.';return;}
   if(!f.ok.checked){m.textContent='Cochez la case pour recevoir le guide.';return;}
   b.disabled=true;b.textContent='Envoi…';m.textContent='';
   var src=/utm_source=([a-z]+)/i.exec(location.search);
-  fetch('/api/inscription',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,consentement:true,liste:'artisans',source:'guide-devis'+(src?'-'+src[1]:'')})})
+  fetch('/api/inscription',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,consentement:true,liste:'artisans',metier:f.metier.value,salaries:f.salaries.value,source:'guide-devis'+(src?'-'+src[1]:'')})})
   .then(function(r){return r.json().catch(function(){return {ok:false};});})
   .then(function(d){
    if(!d.ok){b.disabled=false;b.textContent='Recevoir le guide gratuit';m.textContent=d.message||'L\'envoi n\'a pas pu aboutir. Réessayez dans une minute.';return;}
