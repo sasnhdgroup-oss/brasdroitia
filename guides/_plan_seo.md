@@ -148,5 +148,6 @@
 | S | 138 | programmer-publication-facebook | programmer publication facebook | Réseaux | 21 |
 | S | 139 | epingler-commentaire-instagram | instagram épingler commentaire | Réseaux | 21 |
 | S | 140 | qr-code-menu-restaurant | qr code menu restaurant | Méthode | 41 |
+| T | 141 | relancer-un-devis | relancer un devis, relance devis artisan (16/11/2026, cible artisans) | Prospection | 36 |
 
 **Suivi à prévoir** : dans Google Search Console, les impressions et la position par page à 4 et à 8 semaines ; on réécrit en priorité les pages à plus de 100 impressions et à moins de 1 % de clics (titre et description), puis on supprime ou fusionne les pages sans impression après 3 mois.
