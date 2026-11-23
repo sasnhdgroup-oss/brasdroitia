@@ -82,6 +82,7 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 <article>
 <h1>Guides pratiques pour les pros : avis, posts et fiche Google</h1>
 <p class="chapo">Des modèles prêts à copier et des méthodes simples pour les artisans, commerçants et indépendants qui veulent être visibles sans y passer leurs soirées.</p>
+<p class="encart-devis"><b>Artisans :</b> recevez gratuitement nos <a href="/guide-devis/?utm_source=seo&amp;utm_medium=hub&amp;utm_campaign=guides">5 modèles pour répondre à une demande et relancer un devis</a>.</p>
 {chr(10).join(blocs)}
 </article>
 </main>
@@ -143,6 +144,7 @@ hub_a = tete_a + f'''<link rel="alternate" type="application/rss+xml" title="Ast
 <article>
 <h1>Astuces pour les pros : visibles en 5 minutes</h1>
 <p class="chapo">Une astuce concrète, chaque mardi et chaque jeudi : photos à publier, fiche Google, avis, réseaux sociaux. À appliquer tout de suite, sans agence.</p>
+<p class="encart-devis"><b>Artisans :</b> recevez gratuitement nos <a href="/guide-devis/?utm_source=seo&amp;utm_medium=hub&amp;utm_campaign=astuces">5 modèles pour répondre à une demande et relancer un devis</a>.</p>
 <ul class="blog">
 {cartes}
 </ul>
