@@ -34,6 +34,15 @@ export default async (req, context) => {
   if (n >= 3) return json({ ok: false, message: "Trop de tentatives aujourd'hui. Réessayez demain." }, 429);
   await store.set(cle, String(n + 1));
 
+  // Mobile facultatif (23/11/2026) : conservé seulement avec l'accord SMS coché, format international.
+  let mobile = "";
+  if (p === PARCOURS.artisans && e.sms === true) {
+    const m = String(e.mobile || "").replace(/[\s.()-]/g, "");
+    if (/^0[67]\d{8}$/.test(m)) mobile = "+33" + m.slice(1);
+    else if (/^0033[67]\d{8}$/.test(m)) mobile = "+" + m.slice(2);
+    else if (/^\+\d{10,14}$/.test(m)) mobile = m;
+    else return json({ ok: false, message: "Numéro de mobile invalide (ex. 06 12 34 56 78)." }, 400);
+  }
   const source = String(e.source || "site").replace(/[^a-z0-9/_-]/gi, "").slice(0, 60);
   const r = await fetch("https://api.brevo.com/v3/contacts/doubleOptinConfirmation", {
     method: "POST",
@@ -44,7 +53,7 @@ export default async (req, context) => {
       templateId: p.modele(),
       redirectionUrl: p.retour,
       attributes: Object.assign({ SOURCE: source, DATE_INSCRIPTION: jour, ETAPE_BIENVENUE: 0 },
-        p === PARCOURS.artisans ? { METIER: String(e.metier || "").replace(/[^\p{L} '-]/gu, "").slice(0, 40), SALARIES: String(e.salaries || "").replace(/[^0-9a-z+ -]/gi, "").slice(0, 12) } : {}),
+        p === PARCOURS.artisans ? { METIER: String(e.metier || "").replace(/[^\p{L} '-]/gu, "").slice(0, 40), SALARIES: String(e.salaries || "").replace(/[^0-9a-z+ -]/gi, "").slice(0, 12), ...(mobile ? { MOBILE: mobile, CONSENTEMENT_SMS: jour } : {}) } : {}),
     }),
   });
   if (r.ok || r.status === 204) return json({ ok: true, message: "C'est presque fini : ouvrez l'e-mail que nous venons d'envoyer et cliquez sur le lien de confirmation." });

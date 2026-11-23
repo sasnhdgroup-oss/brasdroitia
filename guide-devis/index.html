@@ -71,6 +71,9 @@
 <input type="email" id="email" name="email" autocomplete="email" placeholder="vous@exemple.fr" required>
 <input class="piege" id="site" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
 <label class="accord"><input type="checkbox" id="ok" name="ok"><span>J'accepte de recevoir le guide puis les astuces de Bras Droit IA par e-mail. Désinscription en un clic. <a href="/confidentialite.html" target="_blank" rel="noopener">Confidentialité</a></span></label>
+<label for="mobile" style="display:block;font-weight:800;color:var(--navy);margin:4px 0 6px">Votre mobile <span style="font-weight:400">(facultatif)</span></label>
+<input type="tel" id="mobile" name="mobile" autocomplete="tel" inputmode="tel" placeholder="06 12 34 56 78" style="width:100%;font:inherit;padding:14px;border:1px solid #CFCDC4;border-radius:10px;background:#FBFAF6;color:var(--ink);margin:0 0 12px">
+<label class="accord"><input type="checkbox" id="oksms" name="oksms"><span>J'accepte de recevoir aussi des conseils de Bras Droit IA par SMS ou WhatsApp, au plus 2 par mois. Arrêt à tout moment en répondant STOP.</span></label>
 <button class="envoyer" type="submit">Recevoir le guide gratuit</button>
 <p class="msg" id="msg" aria-live="polite"></p>
 </form>
@@ -92,9 +95,11 @@
   if(!f.metier.value){m.textContent='Choisissez votre métier.';return;}
   if(!f.salaries.value){m.textContent='Indiquez combien vous êtes dans l\'entreprise.';return;}
   if(!f.ok.checked){m.textContent='Cochez la case pour recevoir le guide.';return;}
+  var mob=f.mobile.value.replace(/[\s.()-]/g,'');
+  if(f.oksms.checked&&!/^(\+33|0033|0)[67]\d{8}$|^\+\d{10,14}$/.test(mob)){m.textContent='Numéro de mobile invalide (ex. 06 12 34 56 78).';return;}
   b.disabled=true;b.textContent='Envoi…';m.textContent='';
   var src=/utm_source=([a-z]+)/i.exec(location.search);
-  fetch('/api/inscription',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,consentement:true,liste:'artisans',metier:f.metier.value,salaries:f.salaries.value,source:'guide-devis'+(src?'-'+src[1]:'')})})
+  fetch('/api/inscription',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:f.email.value,site:f.site.value,consentement:true,liste:'artisans',metier:f.metier.value,salaries:f.salaries.value,mobile:(f.oksms.checked?mob:''),sms:f.oksms.checked,source:'guide-devis'+(src?'-'+src[1]:'')})})
   .then(function(r){return r.json().catch(function(){return {ok:false};});})
   .then(function(d){
    if(!d.ok){b.disabled=false;b.textContent='Recevoir le guide gratuit';m.textContent=d.message||'L\'envoi n\'a pas pu aboutir. Réessayez dans une minute.';return;}
