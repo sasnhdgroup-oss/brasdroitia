@@ -22,6 +22,55 @@
   status = 301
   force = true
 
+# Fin de « Contenus du mois » et de la Fiche Google à 39 € (décision d'Abdellah du 25/11/2026) : un seul produit, le service artisans.
+[[redirects]]
+  from = "/plan/*"
+  to = "/relance-devis/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/plan"
+  to = "/relance-devis/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/echantillon/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/echantillon"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/demarrage/*"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/demarrage"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fiche-google/*"
+  to = "/guides/fiche-google-business-profile/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fiche-google"
+  to = "/guides/fiche-google-business-profile/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]

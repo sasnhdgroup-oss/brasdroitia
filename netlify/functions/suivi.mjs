@@ -1,4 +1,4 @@
-// Compteur anonyme du parcours du plan gratuit (brasdroitia.com/plan/), décidé par Abdellah le 10/11/2026.
+// Compteur anonyme des parcours du site (plan gratuit à partir du 10/11/2026, service artisans à partir du 25/11/2026).
 // Aucune donnée personnelle : ni cookie, ni e-mail, ni adresse IP conservée. Une empreinte du jour (IP hachée avec la date)
 // sert seulement à compter une fois chaque visiteur par étape et par jour ; elle change chaque jour.
 //   POST /api/suivi {etape, src}   compte une étape (src : « meta » pour les visiteurs venus des pubs, sinon « autre »)
@@ -9,7 +9,10 @@ import { createHash } from "node:crypto";
 import { signerExport, egal, FENETRE_EXPORT } from "../lib/signature.mjs";
 import { json } from "../lib/brevo.mjs";
 
-const ETAPES = ["arrivee", "vu10s", "touche", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "attente", "plan", "erreur", "email", "echantillon", "paiement"];
+const ETAPES = ["arrivee", "vu10s", "touche", "q2", "q3", "q4", "q5", "q6", "q7", "q8", "attente", "plan", "erreur", "email", "echantillon", "paiement",
+  // Service artisans (25/11/2026) : accueil, page Pilote, générateur de relance de devis.
+  "accueil", "accueil_vu10s", "accueil_cta", "pilote_vue", "pilote_debut", "pilote_envoi", "pilote_erreur",
+  "generateur_arrivee", "generateur_choix", "generateur_copie", "generateur_envoi", "generateur_guide", "generateur_pilote"];
 const SOURCES = ["meta", "autre"];
 
 // Empreintes de plus de 30 jours supprimées (engagement de la page Confidentialité) ; totaux gardés 25 mois.

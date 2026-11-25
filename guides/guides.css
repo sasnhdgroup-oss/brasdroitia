@@ -60,3 +60,5 @@ header .wrap{gap:16px}
 .blog .t{padding:14px 16px}
 .blog .t b{display:block;font-size:18px;line-height:1.3;color:var(--navy)}
 .blog .t span{display:block;color:var(--muted);font-size:14px;margin-top:6px}
+
+@media (max-width:560px){.cta .btn{display:block;text-align:center;margin:10px 0 0!important;white-space:normal}}

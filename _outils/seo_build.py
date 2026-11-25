@@ -167,7 +167,7 @@ def mod_guide(slug):
     m = re.search(r'"dateModified":"(\d{4}-\d{2}-\d{2})"', s3)
     return m.group(1) if m else '2026-10-27'
 derniere = max([a['date'] for a in astuces] + ['2026-10-27'])
-urls = [('/', '1.0', derniere), ('/plan/', '0.9', '2026-10-29'), ('/outils/generateur-reponse-avis-google/', '0.9', '2026-10-28'), ('/fiche-google/', '0.9', '2026-11-05'), ('/guide-devis/', '0.9', '2026-11-15'), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
+urls = [('/', '1.0', derniere), ('/pilote/', '0.9', '2026-11-25'), ('/relance-devis/', '0.9', '2026-11-25'), ('/outils/generateur-reponse-avis-google/', '0.9', '2026-10-28'), ('/guide-devis/', '0.9', '2026-11-15'), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
 urls += [(f'/guides/{p["slug"]}/', '0.7', mod_guide(p['slug'])) for p in pages]
 urls += [(f'/astuces/{a["slug"]}/', '0.6', a['date']) for a in astuces]
 # Pages légales en noindex : hors sitemap (Search Console, 05/11/2026).
@@ -181,12 +181,13 @@ lg = ''.join(f'- [{p["title"].split(" | ")[0]}]({SITE}/guides/{p["slug"]}/): {p[
 la = ''.join(f'- [{a["title"].split(" | ")[0]}]({SITE}/astuces/{a["slug"]}/): {a["desc"]}\n' for a in astuces)
 (racine / 'llms.txt').write_text(f"""# Bras Droit IA
 
-> Bras Droit IA (marque de SCALINEA EURL, France) est le bras droit IA des artisans, commerçants et indépendants : chaque mois, 20 publications Instagram et Facebook dont 6 reels, 8 posts pour la fiche Google et le plan du mois, écrits pour le métier et la ville du client, relus avant envoi. 29 € TTC par mois sans engagement (9 € le premier mois jusqu'au 30/11/2026), réservé aux professionnels. Le client publie lui-même : nous n'avons jamais ses mots de passe.
+> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : après un appel manqué, le client reçoit un SMS au nom de l'artisan avec un lien pour décrire son besoin, et l'artisan confirme le créneau d'un clic ; les devis mis en copie sont relancés automatiquement à 3 jours puis à 7 jours ; l'artisan suit ses résultats dans une appli. Pilote : 30 jours offerts, puis 99 € HT par mois, sans engagement, mise en place offerte. Réservé aux professionnels.
 
 ## Offre
-- [Accueil et offre]({SITE}/): ce que reçoit le client chaque mois, exemples par métier, prix, FAQ.
-- [Plan de publication gratuit]({SITE}/plan/): 8 questions, l'IA prépare un plan sur 4 semaines.
-- [Fiche Google complète]({SITE}/fiche-google/): tous les textes de la fiche Google, prêts à copier, 39 € TTC, paiement unique.
+- [Accueil et démonstration]({SITE}/): le service, la démonstration pas à pas, le prix du pilote, FAQ.
+- [Devenir entreprise pilote]({SITE}/pilote/): réserver l'installation (30 minutes, à distance).
+- [Générateur gratuit de relance de devis]({SITE}/relance-devis/): message de relance prêt en 30 secondes, sans inscription.
+- [5 modèles gratuits pour les devis]({SITE}/guide-devis/): répondre à une demande, envoyer et relancer un devis.
 - [Générateur gratuit de réponses aux avis Google]({SITE}/outils/generateur-reponse-avis-google/)
 - [Conditions générales de vente]({SITE}/cgv.html)
 

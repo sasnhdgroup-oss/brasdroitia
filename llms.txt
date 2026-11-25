@@ -1,11 +1,12 @@
 # Bras Droit IA
 
-> Bras Droit IA (marque de SCALINEA EURL, France) est le bras droit IA des artisans, commerçants et indépendants : chaque mois, 20 publications Instagram et Facebook dont 6 reels, 8 posts pour la fiche Google et le plan du mois, écrits pour le métier et la ville du client, relus avant envoi. 29 € TTC par mois sans engagement (9 € le premier mois jusqu'au 30/11/2026), réservé aux professionnels. Le client publie lui-même : nous n'avons jamais ses mots de passe.
+> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : après un appel manqué, le client reçoit un SMS au nom de l'artisan avec un lien pour décrire son besoin, et l'artisan confirme le créneau d'un clic ; les devis mis en copie sont relancés automatiquement à 3 jours puis à 7 jours ; l'artisan suit ses résultats dans une appli. Pilote : 30 jours offerts, puis 99 € HT par mois, sans engagement, mise en place offerte. Réservé aux professionnels.
 
 ## Offre
-- [Accueil et offre](https://brasdroitia.com/): ce que reçoit le client chaque mois, exemples par métier, prix, FAQ.
-- [Plan de publication gratuit](https://brasdroitia.com/plan/): 8 questions, l'IA prépare un plan sur 4 semaines.
-- [Fiche Google complète](https://brasdroitia.com/fiche-google/): tous les textes de la fiche Google, prêts à copier, 39 € TTC, paiement unique.
+- [Accueil et démonstration](https://brasdroitia.com/): le service, la démonstration pas à pas, le prix du pilote, FAQ.
+- [Devenir entreprise pilote](https://brasdroitia.com/pilote/): réserver l'installation (30 minutes, à distance).
+- [Générateur gratuit de relance de devis](https://brasdroitia.com/relance-devis/): message de relance prêt en 30 secondes, sans inscription.
+- [5 modèles gratuits pour les devis](https://brasdroitia.com/guide-devis/): répondre à une demande, envoyer et relancer un devis.
 - [Générateur gratuit de réponses aux avis Google](https://brasdroitia.com/outils/generateur-reponse-avis-google/)
 - [Conditions générales de vente](https://brasdroitia.com/cgv.html)
 

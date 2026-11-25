@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<!-- Consentement par défaut refusé (mode Consentement de Google), puis Google Tag Manager -->
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});try{var bdiaC=JSON.parse(localStorage.getItem('bdia_consentement')||'null');if(bdiaC&&bdiaC.pub&&Date.now()-bdiaC.date<15724800000)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}catch(e){}</script>
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MDXSWKZP');</script>
+<title>Relancer un devis sans réponse : votre message prêt en 30 secondes | Bras Droit IA</title>
+<link rel="canonical" href="https://brasdroitia.com/relance-devis/">
+<link rel="icon" href="/favicon.png">
+<meta property="og:image" content="https://brasdroitia.com/og.jpg">
+<meta name="description" content="Outil gratuit pour artisans : choisissez le délai et le ton, obtenez un message de relance de devis prêt à envoyer par SMS, WhatsApp ou e-mail. Sans inscription.">
+<style>
+/* Générateur de message de relance de devis. Rien n'est envoyé ni enregistré : tout se passe dans le navigateur. */
+:root{
+  --bg:#F4F6F8; --carte:#FFFFFF; --texte:#17212B; --doux:#44505C; --ligne:#B4BEC8; --champ:#7D8B99; --ligne-douce:#DCE2E8;
+  --accent:#1D5A96; --accent-texte:#FFFFFF; --accent-pale:#E4EEF8; --ok:#1E7A4E; --ok-pale:#E6F4EC; --alerte:#B42318;
+  --police:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#0F161D; --carte:#17212B; --texte:#E8EEF3; --doux:#BCC8D3; --ligne:#3C4B5A; --champ:#8A9CAF; --ligne-douce:#2B3947;
+    --accent:#7FB3EA; --accent-texte:#0B1722; --accent-pale:#1D3046; --ok:#5FD39A; --ok-pale:#173226; --alerte:#FF8A80; color-scheme:dark; }
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg); color:var(--texte); font-family:var(--police); font-size:17px; line-height:1.5;
+  padding:20px max(16px, env(safe-area-inset-right, 0px)) calc(40px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
+main{max-width:1040px; margin:0 auto; display:grid; gap:18px}
+header{display:grid; gap:8px; max-width:720px}
+.marque{margin:0; font-size:.85rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--doux)}
+h1{margin:0; font-size:clamp(1.55rem, 5vw, 2.2rem); line-height:1.15; text-wrap:balance}
+h2{margin:0; font-size:1.2rem}
+.chapo{margin:0; color:var(--doux); font-size:1.05rem}
+.grille{display:grid; gap:18px; align-items:start}
+.col{display:contents}
+.o1{order:1} .o2{order:2} .o3{order:3} .o4{order:4} .o5{order:5}
+@media (min-width:860px){ .grille{grid-template-columns:minmax(0,1fr) minmax(0,1fr)} .col{display:grid; gap:18px; align-content:start} }
+.carte{background:var(--carte); border:1px solid var(--ligne); border-radius:14px; padding:18px; display:grid; gap:14px; min-width:0}
+fieldset{border:0; margin:0; padding:0; min-width:0; display:grid; gap:8px}
+legend, label.champ{font-weight:600; padding:0; margin-bottom:2px; display:block}
+.aide{color:var(--doux); font-size:.93rem; margin:0; font-weight:400}
+input[type=text], textarea{width:100%; font:inherit; color:var(--texte); background:var(--carte); border:1.5px solid var(--champ); border-radius:10px; padding:11px 12px; min-height:48px}
+textarea{min-height:190px; resize:vertical; line-height:1.5}
+input:focus, textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
+.choix{display:flex; flex-wrap:wrap; gap:8px}
+.choix input{position:absolute; opacity:0; pointer-events:none}
+.choix label{min-height:46px; padding:8px 14px; border-radius:999px; border:1.5px solid var(--champ); background:var(--carte); font-weight:600; cursor:pointer; display:inline-flex; align-items:center}
+.choix input:checked + label{background:var(--accent); color:var(--accent-texte); border-color:var(--accent)}
+.choix input:focus-visible + label{outline:3px solid var(--accent); outline-offset:2px}
+.deux{display:grid; gap:12px}
+@media (min-width:480px){ .deux{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.bouton{font:inherit; font-weight:700; min-height:50px; padding:10px 16px; border-radius:12px; border:1.5px solid var(--champ); background:var(--carte); color:var(--texte); cursor:pointer; display:inline-flex; align-items:center; justify-content:center; text-align:center; text-decoration:none}
+.bouton.principal{background:var(--accent); color:var(--accent-texte); border-color:var(--accent)}
+.bouton:focus-visible{outline:3px solid var(--accent); outline-offset:2px}
+.actions{display:grid; gap:8px}
+@media (min-width:480px){ .actions{grid-template-columns:repeat(2,minmax(0,1fr))} }
+.actions > :only-child, .actions > [hidden] + *{grid-column:1 / -1}
+.conseil{border:1.5px solid var(--ok); background:var(--ok-pale); border-radius:12px; padding:12px 14px; margin:0}
+.etat{margin:0; font-weight:600; color:var(--ok)}
+a{color:var(--accent)}
+.suite{border-color:var(--accent); background:var(--accent-pale)}
+.suite ul, .regles{margin:0; padding-left:1.2rem; display:grid; gap:6px}
+.erreur{margin:0; color:var(--alerte); font-size:.95rem}
+.case{display:flex; gap:12px; align-items:flex-start; cursor:pointer}
+.case input{width:26px; height:26px; flex:0 0 auto; margin:2px 0 0; accent-color:var(--accent)}
+.piege{position:absolute; left:-9999px}
+footer{color:var(--doux); font-size:.9rem; max-width:720px}
+footer p{margin:0 0 6px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="marque"><a href="/" style="color:inherit;text-decoration:none">Bras Droit IA</a> · outil gratuit pour artisans</p>
+    <h1>Votre devis est resté sans réponse ? Votre relance est prête en 30 secondes.</h1>
+    <p class="chapo">Choisissez le délai et le ton : le message s'écrit tout seul. Ce générateur fonctionne sans inscription.</p>
+  </header>
+
+  <div class="grille">
+    <div class="col">
+      <form class="carte o1" id="form" novalidate>
+        <h2>1. Votre devis</h2>
+        <fieldset><legend>Envoyé il y a…</legend><div class="choix" id="delais"></div></fieldset>
+        <fieldset><legend>Le ton</legend><div class="choix" id="tons"></div></fieldset>
+        <fieldset><legend>Vous l'envoyez par…</legend><div class="choix" id="canaux"></div></fieldset>
+      </form>
+
+      <section class="carte o3" aria-labelledby="t-perso">
+        <h2 id="t-perso">3. Personnaliser <span class="aide">(facultatif)</span></h2>
+        <div class="deux">
+          <div><label class="champ" for="client">Nom du client</label><input type="text" id="client" maxlength="40" autocomplete="off" placeholder="ex. Mme Lefèvre"></div>
+          <div><label class="champ" for="objet">Travaux</label><input type="text" id="objet" maxlength="60" autocomplete="off" placeholder="ex. la salle de bains"></div>
+        </div>
+        <div class="deux">
+          <div><label class="champ" for="prenom">Votre prénom et nom</label><input type="text" id="prenom" maxlength="40" autocomplete="name" placeholder="ex. Paul Durand"></div>
+          <div><label class="champ" for="entreprise">Votre entreprise</label><input type="text" id="entreprise" maxlength="50" autocomplete="organization" placeholder="ex. Plomberie Durand"></div>
+        </div>
+      </section>
+
+      <section class="carte o5">
+        <h2>Les 4 règles d'une relance qui marche</h2>
+        <ol class="regles">
+          <li><strong>Relancez tôt.</strong> Trois jours après l'envoi, le client a encore votre devis en tête.</li>
+          <li><strong>Une question simple.</strong> « Avez-vous pu le regarder ? » appelle une réponse ; « je me permets de… » n'en appelle aucune.</li>
+          <li><strong>Jamais de reproche, jamais de remise.</strong> Proposez de répondre aux questions, pas de baisser le prix.</li>
+          <li><strong>Sachez vous arrêter.</strong> Deux relances, puis un dernier message qui laisse la porte ouverte.</li>
+        </ol>
+      </section>
+    </div>
+
+    <div class="col resultat">
+      <section class="carte o2" aria-labelledby="t-msg">
+        <h2 id="t-msg">2. Votre message</h2>
+        <p class="conseil" id="conseil"></p>
+        <label class="champ" for="message" style="position:absolute; left:-9999px">Message de relance (modifiable)</label>
+        <textarea id="message" spellcheck="true"></textarea>
+        <p class="aide" id="compte"></p>
+        <div class="actions">
+          <a class="bouton principal" id="envoyer" href="#" rel="noopener">Envoyer par SMS</a>
+          <button type="button" class="bouton" id="copier">Copier le message</button>
+        </div>
+        <p class="etat" id="etat" role="status" aria-live="polite" hidden></p>
+      </section>
+
+      <section class="carte suite o4" id="suite-statique">
+        <h2>Les 5 modèles complets, gratuits</h2>
+        <p style="margin:0">Réponse à une demande de devis, envoi du devis, relance à 3 jours, relance à 7 jours, dernier message : prêts à copier.</p>
+        <a class="bouton principal" href="/guide-devis/?utm_source=site&amp;utm_medium=generateur">Recevoir les 5 modèles par e‑mail</a>
+        <p class="aide">Sur la page suivante, vous indiquez seulement votre e‑mail.</p>
+      </section>
+
+      <section class="carte suite o4" id="suite-pilote">
+        <h2>Et si vos devis se relançaient tout seuls ?</h2>
+        <p style="margin:0">Avec Bras Droit IA, vous mettez notre adresse en copie de vos devis : vos clients sont relancés à 3 jours puis à 7 jours, en votre nom. Et chaque client que vous ne pouvez pas prendre au téléphone reçoit un SMS à votre nom pour décrire son besoin.</p>
+        <a class="bouton principal" id="vers-pilote" href="/pilote/?utm_source=site&amp;utm_medium=generateur">Essayer 30 jours gratuitement</a>
+        <p class="aide">Puis 99 € HT par mois, sans engagement. Réservé aux professionnels.</p>
+      </section>
+    </div>
+  </div>
+
+  <footer>
+    <p>Bras Droit IA est un service de SCALINEA. Le générateur n'envoie rien lui-même et n'enregistre pas votre message : il reste sur votre appareil.</p>
+    <p>Il sert à relancer des devis, pas à réclamer des factures impayées.</p>
+    <p><a href="/mentions-legales.html">Mentions légales</a> · <a href="/confidentialite.html">Confidentialité</a> · <a href="/guides/">Guides</a></p>
+  </footer>
+</main>
+
+<script src="/suivi.js"></script>
+<script>
+(function(){
+  'use strict';
+  function $(id){ return document.getElementById(id); }
+  function suivre(etape){ try { if (typeof window.bdiaSuivi === 'function') window.bdiaSuivi(etape); } catch (e) {} }
+
+  var DELAIS = [['j3','3 jours'],['j7','1 semaine'],['j14','2 semaines'],['j30','1 mois ou plus']];
+  var TONS = [['cordial','Cordial'],['direct','Direct']];
+  var CANAUX = [['sms','SMS'],['whatsapp','WhatsApp'],['email','E-mail']];
+  var METIERS = ['Plombier','Chauffagiste','Électricien','Couvreur','Menuisier','Peintre','Maçon','Carreleur','Paysagiste','Autre'];
+  var etat = { delai:'j3', ton:'cordial', canal:'sms' };
+  var modifieALaMain = false;
+
+  function puces(zone, nom, liste, cle){
+    liste.forEach(function(o, i){
+      var v = Array.isArray(o) ? o[0] : o, l = Array.isArray(o) ? o[1] : o, id = nom + '-' + i;
+      var input = document.createElement('input'); input.type = 'radio'; input.name = nom; input.id = id; input.value = v;
+      if (cle && etat[cle] === v) input.checked = true;
+      input.addEventListener('change', function(){ if (cle) { etat[cle] = v; modifieALaMain = false; rendre(); suivre('generateur_choix'); } });
+      var label = document.createElement('label'); label.setAttribute('for', id); label.textContent = l;
+      $(zone).appendChild(input); $(zone).appendChild(label);
+    });
+  }
+  puces('delais', 'delai', DELAIS, 'delai'); puces('tons', 'ton', TONS, 'ton'); puces('canaux', 'canal', CANAUX, 'canal'); 
+
+  function propre(v, max){ return String(v || '').replace(/\s+/g, ' ').trim().slice(0, max); }
+  function composer(){
+    var client = propre($('client').value, 40), objet = propre($('objet').value, 60);
+    var prenom = propre($('prenom').value, 40), entreprise = propre($('entreprise').value, 50);
+    var bonjour = client ? 'Bonjour ' + client + ',' : 'Bonjour,';
+    var pour = objet ? ' pour ' + objet : '';
+    var signature = [prenom, entreprise].filter(Boolean).join(', ') || '[Votre nom, votre entreprise]';
+    var court = etat.canal !== 'email';
+    var corps = {
+      j3: { cordial: 'Avez-vous pu regarder mon devis' + pour + ' ? Je reste disponible si vous avez des questions.',
+            direct:  'Avez-vous pu regarder mon devis' + pour + ' ? Si quelque chose vous fait hésiter, dites-le-moi : je vous réponds dans la journée.' },
+      j7: { cordial: 'Je reviens vers vous au sujet de mon devis' + pour + '. Souhaitez-vous que je précise un point ?',
+            direct:  'Je reviens vers vous au sujet de mon devis' + pour + '. Si cela vous convient, je vous propose une date de début.' },
+      j14:{ cordial: 'Un dernier message au sujet de mon devis' + pour + " : votre projet est-il toujours d'actualité ? Un simple oui ou non me suffit pour m'organiser.",
+            direct:  'Votre projet' + (objet ? ' (' + objet + ')' : '') + " est-il toujours d'actualité ? Un oui ou un non me suffit pour organiser mon planning." },
+      j30:{ cordial: 'Je vous avais envoyé un devis' + pour + ' il y a quelques semaines. Si votre projet attend encore, je peux le mettre à jour quand vous voulez.',
+            direct:  'Mon devis' + pour + " date de plusieurs semaines : certains prix ont pu changer. Si le projet tient toujours, je l'actualise sur simple réponse." }
+    }[etat.delai][etat.ton];
+    return court ? bonjour + '\n' + corps + '\n' + signature : bonjour + '\n\n' + corps + '\n\nBien cordialement,\n' + signature;
+  }
+  var CONSEILS = {
+    j3: "Conseil : à trois jours, une relance courte obtient le plus de réponses. Envoyez-la en fin de matinée ou vers 18 h.",
+    j7: "Conseil : à une semaine, c'est en général votre 2e relance. Proposez une date de début ou une précision. Ensuite, un seul dernier message.",
+    j14: "Conseil : c'est le dernier message. Demandez un oui ou un non, puis arrêtez : insister davantage abîme votre image.",
+    j30: "Conseil : après un mois, on ne relance plus, on propose d'actualiser le devis. C'est une nouvelle raison d'échanger."
+  };
+  function segments(t){ var n = t.length; return n <= 160 ? 1 : Math.ceil(n / 153); }
+  var TACTILE = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
+  function liens(){
+    var t = $('message').value, e = encodeURIComponent, b = $('envoyer'), c = $('copier');
+    var objet = propre($('entreprise').value, 50);
+    var smsImpossible = etat.canal === 'sms' && !TACTILE;
+    b.hidden = smsImpossible;
+    c.className = 'bouton' + (smsImpossible ? ' principal' : '');
+    if (etat.canal === 'sms') { b.href = 'sms:?&body=' + e(t); b.textContent = 'Envoyer par SMS'; b.removeAttribute('target'); }
+    else if (etat.canal === 'whatsapp') { b.href = 'https://wa.me/?text=' + e(t); b.textContent = 'Envoyer par WhatsApp'; b.target = '_blank'; }
+    else { b.href = 'mailto:?subject=' + e('Votre devis' + (objet ? ' ' + objet : '')) + '&body=' + e(t); b.textContent = 'Envoyer par e-mail'; b.removeAttribute('target'); }
+    var n = segments(t);
+    $('compte').textContent = smsImpossible ? 'Sur ordinateur : copiez le message, puis collez-le dans votre téléphone.' :
+      (etat.canal === 'sms' && n > 1 ? 'Message un peu long : il comptera pour ' + n + ' SMS.' : 'Vous pouvez modifier le texte avant de l\u2019envoyer.');
+    $('etat').hidden = true;
+  }
+  function rendre(){
+    if (!modifieALaMain) $('message').value = composer();
+    $('conseil').textContent = CONSEILS[etat.delai];
+    liens();
+  }
+  ['client','objet','prenom','entreprise'].forEach(function(id){ $(id).addEventListener('input', function(){ if (!modifieALaMain) rendre(); }); });
+  $('message').addEventListener('input', function(){ modifieALaMain = true; liens(); });
+  $('form').addEventListener('submit', function(e){ e.preventDefault(); });
+
+  $('copier').addEventListener('click', function(){
+    var t = $('message').value;
+    function ok(){ $('etat').textContent = 'Message copié : collez-le dans votre SMS ou votre e-mail.'; $('etat').hidden = false; suivre('generateur_copie'); }
+    function repli(){ $('message').focus(); $('message').select(); try { document.execCommand('copy'); ok(); } catch (e) { $('etat').textContent = 'Sélectionnez le texte et copiez-le.'; $('etat').hidden = false; } }
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(ok, repli); else repli();
+  });
+  $('envoyer').addEventListener('click', function(){ suivre('generateur_envoi'); });
+
+  var g = document.querySelector('#suite-statique a'); if (g) g.addEventListener('click', function(){ suivre('generateur_guide'); });
+  $('vers-pilote').addEventListener('click', function(){ suivre('generateur_pilote'); });
+  rendre(); suivre('generateur_arrivee');
+})();
+</script>
+<script src="/consent.js"></script>
+</body>
+</html>
