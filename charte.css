@@ -1,0 +1,102 @@
+/* Charte Bras Droit IA « Pro de chantier » (piste D, retenue le 26/11/2026) pour le site brasdroitia.com.
+   Mêmes valeurs que l'appli (src/charte.js) : une seule couleur signal, le jaune chantier, réservée au bouton principal
+   (et à un mot surligné). Texte toujours anthracite sur le jaune, jamais blanc. Mode clair seulement. */
+@font-face{font-family:Figtree;font-style:normal;font-weight:300 900;font-display:swap;src:url(/fonts/Figtree-Variable-latin.woff2) format('woff2')}
+@font-face{font-family:Archivo;font-style:normal;font-weight:600 900;font-stretch:62% 100%;font-display:swap;src:url(/fonts/Archivo-Variable-latin.woff2) format('woff2')}
+:root{
+  --c-fond:#F5F6F6; --c-fond-2:#ECEEEF; --c-surface:#FFFFFF;
+  --c-encre:#1C1E21; --c-encre-2:#454A50; --c-encre-3:#5C6269; --c-exemple-champ:#71777E;
+  --c-ligne:#E3E5E7; --c-ligne-2:#CDD1D5;
+  --c-signal:#FFC400; --c-signal-appui:#F2B900; --c-signal-bord:#DDA900; --c-signal-pale:#FFF3C4;
+  --c-exemple-fond:#FFF8DC; --c-exemple-bord:#EBD27A;
+  --c-erreur:#B42318; --c-erreur-pale:#FDECEA;
+  --f-titre:"Archivo","Figtree",system-ui,sans-serif;
+  --f-texte:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  --r:16px; --r-bouton:14px; --r-plaque:7px;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{margin:0;background:var(--c-fond);color:var(--c-encre);font:400 17px/1.5 var(--f-texte);-webkit-font-smoothing:antialiased;overflow-wrap:break-word}
+[hidden]{display:none!important}
+img{max-width:100%;height:auto}
+a{color:var(--c-encre);text-underline-offset:3px;text-decoration-thickness:1px}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--c-encre);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+@media (min-width:700px){.wrap{padding:0 24px}}
+
+/* ---------- En-tête : « Bras Droit IA » en texte simple ---------- */
+.site-h{position:sticky;top:0;z-index:20;background:var(--c-surface);border-bottom:1px solid var(--c-ligne-2)}
+.site-h .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
+.logo{font:800 21px/1 var(--f-titre);font-stretch:96%;letter-spacing:-.015em;color:var(--c-encre);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:48px}
+.site-h nav{display:flex;align-items:center;gap:4px}
+.site-h nav a{display:inline-flex;align-items:center;min-height:48px;padding:0 10px;font-weight:600;font-size:16px;color:var(--c-encre-2);text-decoration:none;border-radius:10px;white-space:nowrap}
+.site-h nav a:hover{color:var(--c-encre);background:var(--c-fond)}
+.site-h nav .large{display:none}
+@media (min-width:860px){.site-h nav .large{display:inline-flex}}
+@media (max-width:380px){.site-h nav a{padding:0 7px}.logo{font-size:19px}}
+
+/* ---------- Titres ---------- */
+h1,h2,h3{font-family:var(--f-titre);font-weight:800;font-stretch:88%;letter-spacing:-.022em;color:var(--c-encre);text-wrap:balance}
+h1{font-size:clamp(38px,10.5vw,64px);line-height:1;margin:0 0 14px}
+h2{font-size:clamp(30px,7.4vw,44px);line-height:1.04;margin:0 0 12px}
+h3{font-size:22px;line-height:1.15;margin:0 0 6px;font-stretch:92%;letter-spacing:-.012em}
+.hl{background:linear-gradient(var(--c-signal),var(--c-signal)) no-repeat 0 60%/100% 84%;border-radius:.12em;padding:0 .1em;margin:0 -.04em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.eyebrow{display:flex;align-items:center;gap:9px;font-size:16px;font-weight:650;color:var(--c-encre-2);margin:0 0 10px;line-height:1.3}
+.eyebrow::before{content:"";width:18px;height:3px;border-radius:2px;background:var(--c-signal);box-shadow:0 0 0 1px var(--c-signal-bord);flex:none}
+.sub{font-size:18px;line-height:1.45;color:var(--c-encre-2);margin:0 0 18px;max-width:34em}
+.petit{font-size:16px;color:var(--c-encre-3)}
+
+/* ---------- Boutons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:8px 20px;border-radius:var(--r-bouton);font:700 18px/1.15 var(--f-texte);text-decoration:none;cursor:pointer;border:0;text-align:center;text-wrap:balance;background:var(--c-encre);color:#fff;transition:transform .12s}
+.btn:hover{text-decoration:none;transform:translateY(-1px)}
+.btn:active{transform:none}
+/* Le bouton principal : le seul bloc jaune plein de l'écran */
+.btn-y{background:var(--c-signal);color:var(--c-encre);box-shadow:inset 0 0 0 1px var(--c-signal-bord),0 8px 18px -10px rgba(0,0,0,.45);padding-inline:20px 12px}
+.btn-y:active{background:var(--c-signal-appui)}
+.btn-y .lbl{flex:1}
+.btn-y .go{width:36px;height:36px;border-radius:50%;background:var(--c-encre);color:var(--c-signal);display:grid;place-items:center;flex:none}
+.btn-y .go svg{width:20px;height:20px}
+.btn-2{background:var(--c-surface);color:var(--c-encre);box-shadow:inset 0 0 0 1.5px var(--c-ligne-2)}
+.btn-2:hover{box-shadow:inset 0 0 0 1.5px var(--c-encre)}
+.btn-bloc{display:flex;width:100%}
+@media (min-width:700px){.btn-bloc{display:inline-flex;width:auto;min-width:360px}}
+.ic{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Garanties ---------- */
+.guar{display:flex;flex-wrap:wrap;gap:6px 18px;margin:14px 0 0;padding:0;list-style:none}
+.guar li{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:600;color:var(--c-encre-2)}
+.guar .ck{width:20px;height:20px;border-radius:50%;background:var(--c-encre);color:#fff;display:grid;place-items:center;flex:none}
+.guar .ck svg{width:12px;height:12px;fill:none;stroke:#fff;stroke-width:2.8;stroke-linecap:round;stroke-linejoin:round}
+
+/* ---------- Blocs ---------- */
+.carte{background:var(--c-surface);border-radius:var(--r);box-shadow:0 0 0 1px var(--c-ligne-2);padding:20px}
+.tuile{display:flex;align-items:center;gap:14px;background:var(--c-surface);border-radius:var(--r);box-shadow:0 0 0 1px var(--c-ligne-2);padding:16px 18px;min-height:72px;text-decoration:none;color:var(--c-encre)}
+.tuile:hover{box-shadow:0 0 0 2px var(--c-encre);text-decoration:none}
+.tuile b{display:block;font-size:18px;line-height:1.25}
+.tuile span{display:block;font-size:16px;color:var(--c-encre-2);line-height:1.35;margin-top:2px}
+.tuile .fl{margin-left:auto;width:40px;height:40px;border-radius:50%;background:var(--c-fond-2);display:grid;place-items:center;flex:none}
+.tuile > div{min-width:0}
+details.q{background:var(--c-surface);border-radius:var(--r);box-shadow:0 0 0 1px var(--c-ligne-2);margin:0 0 10px}
+details.q summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:12px 18px;font-weight:700;font-size:18px;line-height:1.3}
+details.q summary::-webkit-details-marker{display:none}
+details.q summary::after{content:"";width:12px;height:12px;border-right:2.5px solid var(--c-encre);border-bottom:2.5px solid var(--c-encre);transform:rotate(45deg) translate(-3px,-3px);flex:none;transition:transform .2s}
+details.q[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+details.q p{margin:0;padding:0 18px 16px;color:var(--c-encre-2)}
+
+/* ---------- Pied de page ---------- */
+.site-f{background:var(--c-fond-2);color:var(--c-encre-2);font-size:16px;padding:28px 0 32px;margin-top:0;border-top:1px solid var(--c-ligne-2)}
+.site-f .logo{font-size:19px}
+.site-f p{margin:6px 0 12px;max-width:46em}
+.site-f .liens{display:flex;flex-wrap:wrap;gap:0 4px;margin:0 -10px}
+.site-f .liens a{display:inline-flex;align-items:center;min-height:48px;padding:0 10px;color:var(--c-encre-2)}
+
+/* ---------- Bandeau cookies (consent.js, laissé intact : seules ses couleurs sont reprises ici) ---------- */
+html body #bdia-cmp{background:var(--c-encre);color:#fff;border:0;font:16px/1.45 var(--f-texte);box-shadow:0 12px 40px rgba(0,0,0,.35)}
+html body #bdia-cmp a{color:#fff;text-decoration:underline}
+html body #bdia-cmp button{font:700 16px var(--f-texte);min-height:48px;border-radius:12px;border:2px solid #fff;background:#fff;color:var(--c-encre)}
+html body #bdia-cmp button.n{background:transparent;color:#fff;border-color:#fff}
+@media (max-width:640px){html body #bdia-cmp{font-size:16px;line-height:1.4}html body #bdia-cmp button{font-size:16px}}
+
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}html{scroll-behavior:auto!important}}

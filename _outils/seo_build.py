@@ -68,14 +68,12 @@ tete = (tete.replace('{{TITLE}}', 'Guides pour les pros : avis Google, posts, fi
             .replace('{{DESCRIPTION}}', 'Guides gratuits pour artisans, commerçants et indépendants : répondre aux avis Google, idées de posts par métier, fiche Google, calendrier éditorial.')
             .replace('https://brasdroitia.com/guides/{{SLUG}}/', 'https://brasdroitia.com/guides/')
             .replace('content="article"', 'content="website"'))
-hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0;border-bottom:1px solid var(--line)}}.hub span{{color:var(--muted);font-size:15px}}</style>
-</head>
+hub = tete + f'''</head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDXSWKZP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-<header><div class="wrap">
- <a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34">Bras Droit <span class="tag">IA</span></a>
- <nav class="menu" aria-label="Menu principal"><a href="/#offre">L\'offre</a><a href="/#metier">Exemples</a><a href="/#prix">Prix</a><a href="/guides/" class="g">Guides</a><a href="/astuces/" class="g">Astuces</a><a href="/#faq">FAQ</a></nav>
- <a class="btn" href="/#metier">Voir un exemple</a>
+<header class="site-h"><div class="wrap">
+ <a class="logo" href="/">Bras Droit IA</a>
+ <nav aria-label="Menu principal"><a class="large" href="/#comment">Comment ça marche</a><a href="/#prix">Prix</a><a href="/guides/">Guides</a><a href="/astuces/">Astuces</a></nav>
 </div></header>
 <main class="wrap">
 <nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › Guides</nav>
@@ -86,9 +84,10 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 {chr(10).join(blocs)}
 </article>
 </main>
-<footer><div class="wrap">
- <div><b>Bras Droit IA</b> est une marque de SCALINEA EURL.</div>
- <div class="links"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a></div>
+<footer class="site-f"><div class="wrap">
+ <a class="logo" href="/">Bras Droit IA</a>
+ <p>Un service de SCALINEA EURL. Non affilié à Anthropic, OpenAI, Meta ni Google.</p>
+ <div class="liens"><a href="/">Accueil</a><a href="/guides/">Guides</a><a href="/astuces/">Astuces</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Gérer mon abonnement</a></div>
 </div></footer>
 <script src="/consent.js"></script>
 </body>
@@ -152,7 +151,7 @@ hub_a = tete_a + f'''<link rel="alternate" type="application/rss+xml" title="Ast
 <p>Pour aller plus loin, consultez nos <a href="/guides/">guides complets</a>.</p>
 </article>
 </main>
-''' + '<footer>' + hub.split('<footer>',1)[1]
+''' + '<footer class="site-f">' + hub.split('<footer class="site-f">',1)[1]
 hub_a = hub_a.replace('<script src="/consent.js"></script>', '<script src="/consent.js"></script>\n<script src="/lettre.js" defer></script>', 1)
 (astuces_dir / 'index.html').write_text(hub_a, encoding='utf-8')
 def rfc822(d):
@@ -167,7 +166,7 @@ def mod_guide(slug):
     m = re.search(r'"dateModified":"(\d{4}-\d{2}-\d{2})"', s3)
     return m.group(1) if m else '2026-10-27'
 derniere = max([a['date'] for a in astuces] + ['2026-10-27'])
-urls = [('/', '1.0', derniere), ('/pilote/', '0.9', '2026-11-25'), ('/relance-devis/', '0.9', '2026-11-25'), ('/outils/generateur-reponse-avis-google/', '0.9', '2026-10-28'), ('/guide-devis/', '0.9', '2026-11-15'), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
+urls = [('/', '1.0', derniere), ('/pilote/', '0.9', '2026-11-26'), ('/relance-devis/', '0.9', '2026-11-25'), ('/outils/generateur-reponse-avis-google/', '0.9', '2026-10-28'), ('/guide-devis/', '0.9', '2026-11-15'), ('/guides/', '0.8', max(mod_guide(p['slug']) for p in pages)), ('/astuces/', '0.8', derniere)]
 urls += [(f'/guides/{p["slug"]}/', '0.7', mod_guide(p['slug'])) for p in pages]
 urls += [(f'/astuces/{a["slug"]}/', '0.6', a['date']) for a in astuces]
 # Pages légales en noindex : hors sitemap (Search Console, 05/11/2026).
@@ -181,11 +180,11 @@ lg = ''.join(f'- [{p["title"].split(" | ")[0]}]({SITE}/guides/{p["slug"]}/): {p[
 la = ''.join(f'- [{a["title"].split(" | ")[0]}]({SITE}/astuces/{a["slug"]}/): {a["desc"]}\n' for a in astuces)
 (racine / 'llms.txt').write_text(f"""# Bras Droit IA
 
-> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : après un appel manqué, le client reçoit un SMS au nom de l'artisan avec un lien pour décrire son besoin, et l'artisan confirme le créneau d'un clic ; les devis mis en copie sont relancés automatiquement à 3 jours puis à 7 jours ; l'artisan suit ses résultats dans une appli. Pilote : 30 jours offerts, puis 99 € HT par mois, sans engagement, mise en place offerte. Réservé aux professionnels.
+> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : une page de devis au nom de l'artisan, avec un assistant IA qui répond à ses clients pendant ses chantiers, pose les bonnes questions, lit les photos et lui envoie une fiche chantier claire. L'artisan voit et essaie sa page gratuitement, sans carte bancaire ; essai de 14 jours gratuits (carte demandée à l'activation, rien n'est prélevé avant la fin de l'essai), puis 49 € HT par mois, sans engagement. Réservé aux professionnels.
 
 ## Offre
-- [Accueil et démonstration]({SITE}/): le service, la démonstration pas à pas, le prix du pilote, FAQ.
-- [Devenir entreprise pilote]({SITE}/pilote/): réserver l'installation (30 minutes, à distance).
+- [Accueil]({SITE}/): le service, un exemple de fiche chantier, le prix (49 € HT par mois après 14 jours gratuits), FAQ.
+- [Voir sa page gratuitement](https://app.brasdroitia.com/essai): créer et essayer sa page de devis, sans carte bancaire.
 - [Générateur gratuit de relance de devis]({SITE}/relance-devis/): message de relance prêt en 30 secondes, sans inscription.
 - [5 modèles gratuits pour les devis]({SITE}/guide-devis/): répondre à une demande, envoyer et relancer un devis.
 - [Générateur gratuit de réponses aux avis Google]({SITE}/outils/generateur-reponse-avis-google/)

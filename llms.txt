@@ -1,10 +1,10 @@
 # Bras Droit IA
 
-> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : après un appel manqué, le client reçoit un SMS au nom de l'artisan avec un lien pour décrire son besoin, et l'artisan confirme le créneau d'un clic ; les devis mis en copie sont relancés automatiquement à 3 jours puis à 7 jours ; l'artisan suit ses résultats dans une appli. Pilote : 30 jours offerts, puis 99 € HT par mois, sans engagement, mise en place offerte. Réservé aux professionnels.
+> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : une page de devis au nom de l'artisan, avec un assistant IA qui répond à ses clients pendant ses chantiers, pose les bonnes questions, lit les photos et lui envoie une fiche chantier claire. L'artisan voit et essaie sa page gratuitement, sans carte bancaire ; essai de 14 jours gratuits (carte demandée à l'activation, rien n'est prélevé avant la fin de l'essai), puis 49 € HT par mois, sans engagement. Réservé aux professionnels.
 
 ## Offre
-- [Accueil et démonstration](https://brasdroitia.com/): le service, la démonstration pas à pas, le prix du pilote, FAQ.
-- [Devenir entreprise pilote](https://brasdroitia.com/pilote/): réserver l'installation (30 minutes, à distance).
+- [Accueil](https://brasdroitia.com/): le service, un exemple de fiche chantier, le prix (49 € HT par mois après 14 jours gratuits), FAQ.
+- [Voir sa page gratuitement](https://app.brasdroitia.com/essai): créer et essayer sa page de devis, sans carte bancaire.
 - [Générateur gratuit de relance de devis](https://brasdroitia.com/relance-devis/): message de relance prêt en 30 secondes, sans inscription.
 - [5 modèles gratuits pour les devis](https://brasdroitia.com/guide-devis/): répondre à une demande, envoyer et relancer un devis.
 - [Générateur gratuit de réponses aux avis Google](https://brasdroitia.com/outils/generateur-reponse-avis-google/)

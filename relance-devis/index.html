@@ -9,19 +9,19 @@
 <title>Relancer un devis sans réponse : votre message prêt en 30 secondes | Bras Droit IA</title>
 <link rel="canonical" href="https://brasdroitia.com/relance-devis/">
 <link rel="icon" href="/favicon.png">
+<link rel="preload" href="/fonts/Archivo-Variable-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/charte.css">
 <meta property="og:image" content="https://brasdroitia.com/og.jpg">
 <meta name="description" content="Outil gratuit pour artisans : choisissez le délai et le ton, obtenez un message de relance de devis prêt à envoyer par SMS, WhatsApp ou e-mail. Sans inscription.">
 <style>
 /* Générateur de message de relance de devis. Rien n'est envoyé ni enregistré : tout se passe dans le navigateur. */
 :root{
-  --bg:#F4F6F8; --carte:#FFFFFF; --texte:#17212B; --doux:#44505C; --ligne:#B4BEC8; --champ:#7D8B99; --ligne-douce:#DCE2E8;
-  --accent:#1D5A96; --accent-texte:#FFFFFF; --accent-pale:#E4EEF8; --ok:#1E7A4E; --ok-pale:#E6F4EC; --alerte:#B42318;
-  --police:system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --bg:#F5F6F6; --carte:#FFFFFF; --texte:#1C1E21; --doux:#454A50; --ligne:#CDD1D5; --champ:#71777E; --ligne-douce:#E3E5E7;
+  --accent:#1C1E21; --accent-texte:#FFFFFF; --accent-pale:#FFFFFF; --ok:#1C1E21; --ok-pale:#FFF8DC; --alerte:#B42318;
+  --police:"Figtree",system-ui,-apple-system,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){
-  :root{ --bg:#0F161D; --carte:#17212B; --texte:#E8EEF3; --doux:#BCC8D3; --ligne:#3C4B5A; --champ:#8A9CAF; --ligne-douce:#2B3947;
-    --accent:#7FB3EA; --accent-texte:#0B1722; --accent-pale:#1D3046; --ok:#5FD39A; --ok-pale:#173226; --alerte:#FF8A80; color-scheme:dark; }
-}
+/* Charte « Pro de chantier » : mode clair seulement (plus de variante sombre). */
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0}
@@ -29,7 +29,11 @@ body{background:var(--bg); color:var(--texte); font-family:var(--police); font-s
   padding:20px max(16px, env(safe-area-inset-right, 0px)) calc(40px + env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px))}
 main{max-width:1040px; margin:0 auto; display:grid; gap:18px}
 header{display:grid; gap:8px; max-width:720px}
-.marque{margin:0; font-size:.85rem; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--doux)}
+.marque{margin:0 0 4px; font-size:1rem; font-weight:600; color:var(--doux); display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px}
+.marque a{font:800 21px/1 var(--f-titre); font-stretch:96%; letter-spacing:-.015em; color:var(--texte)!important; min-height:48px; display:inline-flex; align-items:center}
+h1,h2{font-family:var(--f-titre); font-weight:800; font-stretch:88%; letter-spacing:-.02em}
+h1{font-size:clamp(2rem,8vw,2.9rem); line-height:1.02}
+h2{font-size:1.45rem}
 h1{margin:0; font-size:clamp(1.55rem, 5vw, 2.2rem); line-height:1.15; text-wrap:balance}
 h2{margin:0; font-size:1.2rem}
 .chapo{margin:0; color:var(--doux); font-size:1.05rem}
@@ -40,13 +44,13 @@ h2{margin:0; font-size:1.2rem}
 .carte{background:var(--carte); border:1px solid var(--ligne); border-radius:14px; padding:18px; display:grid; gap:14px; min-width:0}
 fieldset{border:0; margin:0; padding:0; min-width:0; display:grid; gap:8px}
 legend, label.champ{font-weight:600; padding:0; margin-bottom:2px; display:block}
-.aide{color:var(--doux); font-size:.93rem; margin:0; font-weight:400}
+.aide{color:var(--doux); font-size:1rem; margin:0; font-weight:400}
 input[type=text], textarea{width:100%; font:inherit; color:var(--texte); background:var(--carte); border:1.5px solid var(--champ); border-radius:10px; padding:11px 12px; min-height:48px}
 textarea{min-height:190px; resize:vertical; line-height:1.5}
 input:focus, textarea:focus{outline:3px solid var(--accent); outline-offset:1px; border-color:var(--accent)}
 .choix{display:flex; flex-wrap:wrap; gap:8px}
 .choix input{position:absolute; opacity:0; pointer-events:none}
-.choix label{min-height:46px; padding:8px 14px; border-radius:999px; border:1.5px solid var(--champ); background:var(--carte); font-weight:600; cursor:pointer; display:inline-flex; align-items:center}
+.choix label{min-height:48px; padding:8px 14px; border-radius:999px; border:1.5px solid var(--champ); background:var(--carte); font-weight:600; cursor:pointer; display:inline-flex; align-items:center}
 .choix input:checked + label{background:var(--accent); color:var(--accent-texte); border-color:var(--accent)}
 .choix input:focus-visible + label{outline:3px solid var(--accent); outline-offset:2px}
 .deux{display:grid; gap:12px}
@@ -60,13 +64,18 @@ input:focus, textarea:focus{outline:3px solid var(--accent); outline-offset:1px;
 .conseil{border:1.5px solid var(--ok); background:var(--ok-pale); border-radius:12px; padding:12px 14px; margin:0}
 .etat{margin:0; font-weight:600; color:var(--ok)}
 a{color:var(--accent)}
-.suite{border-color:var(--accent); background:var(--accent-pale)}
+.suite{border-color:var(--ligne); background:var(--carte)}
+.carte{border-radius:16px; border-color:var(--ligne)}
+.bouton{min-height:52px; border-radius:14px}
+#vers-pilote{background:#FFC400; color:#1C1E21; border-color:#DDA900}
+#vers-pilote:active{background:#F2B900}
+footer a{color:var(--texte); display:inline-block; padding:12px 0}
 .suite ul, .regles{margin:0; padding-left:1.2rem; display:grid; gap:6px}
-.erreur{margin:0; color:var(--alerte); font-size:.95rem}
+.erreur{margin:0; color:var(--alerte); font-size:1rem}
 .case{display:flex; gap:12px; align-items:flex-start; cursor:pointer}
 .case input{width:26px; height:26px; flex:0 0 auto; margin:2px 0 0; accent-color:var(--accent)}
 .piege{position:absolute; left:-9999px}
-footer{color:var(--doux); font-size:.9rem; max-width:720px}
+footer{color:var(--doux); font-size:1rem; max-width:720px}
 footer p{margin:0 0 6px}
 </style>
 </head>
@@ -132,10 +141,10 @@ footer p{margin:0 0 6px}
       </section>
 
       <section class="carte suite o4" id="suite-pilote">
-        <h2>Et si vos devis se relançaient tout seuls ?</h2>
-        <p style="margin:0">Avec Bras Droit IA, vous mettez notre adresse en copie de vos devis : vos clients sont relancés à 3 jours puis à 7 jours, en votre nom. Et chaque client que vous ne pouvez pas prendre au téléphone reçoit un SMS à votre nom pour décrire son besoin.</p>
-        <a class="bouton principal" id="vers-pilote" href="/pilote/?utm_source=site&amp;utm_medium=generateur">Essayer 30 jours gratuitement</a>
-        <p class="aide">Puis 99 € HT par mois, sans engagement. Réservé aux professionnels.</p>
+        <h2>Et si vos clients avaient leur réponse pendant vos chantiers ?</h2>
+        <p style="margin:0">Une page de devis à votre nom : son assistant IA répond à vos clients et vous envoie une fiche chantier claire.</p>
+        <a class="bouton principal" id="vers-pilote" target="_self" href="https://app.brasdroitia.com/essai?utm_source=site&amp;utm_medium=generateur">Voir ma page gratuitement</a>
+        <p class="aide">Sans carte pour voir votre page. 14 jours gratuits, puis 49 € HT par mois, sans engagement. Réservé aux professionnels.</p>
       </section>
     </div>
   </div>
