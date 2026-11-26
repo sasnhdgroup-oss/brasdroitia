@@ -5,6 +5,7 @@ Site de Bras Droit IA, une marque de SCALINEA : page de vente, guides pratiques 
 - Mise en ligne automatique par Netlify à chaque modification de la branche `main` (réglages dans `netlify.toml`).
 - Contrôle SEO des guides, page `/guides/` et `sitemap.xml` : `python3 _outils/seo_build.py .`
 - Les fichiers `*.md`, `guides/_*` et `_outils/` ne sont pas publiés sur le site.
+- **Obligatoire, ne jamais retirer** : la balise `<meta name="facebook-domain-verification" content="a2xrmqg2uzoctcpq6t8nq3h8papyt2" />` dans le `<head>` de `index.html` (vérification du domaine chez Meta, validée le 26/11/2026). La garder lors de toute refonte, migration ou changement de gabarit, sinon Meta annule la vérification. Contrôle : `curl -s https://brasdroitia.com/ | grep facebook-domain-verification`.
 
 ## Fonctions et variables d'environnement (Netlify)
 - `/api/reponse-avis` : générateur de réponses aux avis Google (IA fournie par Netlify ; `BDIA_MODELE`, `BDIA_PLAFOND_JOUR` facultatifs).
