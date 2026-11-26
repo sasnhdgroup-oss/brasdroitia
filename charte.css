@@ -31,11 +31,13 @@ a:hover{text-decoration-thickness:2px}
 .site-h .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px}
 .logo{font:800 21px/1 var(--f-titre);font-stretch:96%;letter-spacing:-.015em;color:var(--c-encre);text-decoration:none;white-space:nowrap;display:inline-flex;align-items:center;min-height:48px}
 .site-h nav{display:flex;align-items:center;gap:4px}
-.site-h nav a{display:inline-flex;align-items:center;min-height:48px;padding:0 10px;font-weight:600;font-size:16px;color:var(--c-encre-2);text-decoration:none;border-radius:10px;white-space:nowrap}
-.site-h nav a:hover{color:var(--c-encre);background:var(--c-fond)}
+/* Liens du menu : de vrais boutons pleins (gris clair, 48 px), jamais en jaune */
+.site-h nav{gap:6px}
+.site-h nav a{display:inline-flex;align-items:center;min-height:48px;padding:0 14px;font-weight:650;font-size:16px;color:var(--c-encre);text-decoration:none;border-radius:12px;white-space:nowrap;background:var(--c-fond-2);box-shadow:inset 0 0 0 1px var(--c-ligne-2)}
+.site-h nav a:hover{background:var(--c-ligne)}
 .site-h nav .large{display:none}
 @media (min-width:860px){.site-h nav .large{display:inline-flex}}
-@media (max-width:380px){.site-h nav a{padding:0 7px}.logo{font-size:19px}}
+@media (max-width:380px){.site-h nav a{padding:0 11px}.site-h nav{gap:5px}.logo{font-size:18px}}
 
 /* ---------- Titres ---------- */
 h1,h2,h3{font-family:var(--f-titre);font-weight:800;font-stretch:88%;letter-spacing:-.022em;color:var(--c-encre);text-wrap:balance}
@@ -58,8 +60,9 @@ h3{font-size:22px;line-height:1.15;margin:0 0 6px;font-stretch:92%;letter-spacin
 .btn-y .lbl{flex:1}
 .btn-y .go{width:36px;height:36px;border-radius:50%;background:var(--c-encre);color:var(--c-signal);display:grid;place-items:center;flex:none}
 .btn-y .go svg{width:20px;height:20px}
-.btn-2{background:var(--c-surface);color:var(--c-encre);box-shadow:inset 0 0 0 1.5px var(--c-ligne-2)}
-.btn-2:hover{box-shadow:inset 0 0 0 1.5px var(--c-encre)}
+/* Bouton secondaire : plein gris clair avec un filet, pour qu'il se lise comme un bouton sur fond clair comme sur fond blanc */
+.btn-2{background:var(--c-fond-2);color:var(--c-encre);box-shadow:inset 0 0 0 1.5px var(--c-ligne-2)}
+.btn-2:hover{background:var(--c-ligne);box-shadow:inset 0 0 0 1.5px var(--c-encre)}
 .btn-bloc{display:flex;width:100%}
 @media (min-width:700px){.btn-bloc{display:inline-flex;width:auto;min-width:360px}}
 .ic{width:22px;height:22px;flex:none;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
@@ -76,13 +79,14 @@ h3{font-size:22px;line-height:1.15;margin:0 0 6px;font-stretch:92%;letter-spacin
 .tuile:hover{box-shadow:0 0 0 2px var(--c-encre);text-decoration:none}
 .tuile b{display:block;font-size:18px;line-height:1.25}
 .tuile span{display:block;font-size:16px;color:var(--c-encre-2);line-height:1.35;margin-top:2px}
-.tuile .fl{margin-left:auto;width:40px;height:40px;border-radius:50%;background:var(--c-fond-2);display:grid;place-items:center;flex:none}
+.tuile .fl{margin-left:auto;width:40px;height:40px;border-radius:50%;background:var(--c-encre);color:#fff;display:grid;place-items:center;flex:none}
 .tuile > div{min-width:0}
 details.q{background:var(--c-surface);border-radius:var(--r);box-shadow:0 0 0 1px var(--c-ligne-2);margin:0 0 10px}
 details.q summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:60px;padding:12px 18px;font-weight:700;font-size:18px;line-height:1.3}
 details.q summary::-webkit-details-marker{display:none}
-details.q summary::after{content:"";width:12px;height:12px;border-right:2.5px solid var(--c-encre);border-bottom:2.5px solid var(--c-encre);transform:rotate(45deg) translate(-3px,-3px);flex:none;transition:transform .2s}
-details.q[open] summary::after{transform:rotate(-135deg) translate(-3px,-3px)}
+/* Chevron dans une pastille pleine : une icône SVG qui pivote d'un demi-tour, sans déformation */
+details.q summary::after{content:"";width:36px;height:36px;flex:none;border-radius:50%;background:var(--c-fond-2) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231C1E21' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9.5l6 6 6-6'/%3E%3C/svg%3E") center/20px no-repeat;transition:transform .2s}
+details.q[open] summary::after{transform:rotate(180deg)}
 details.q p{margin:0;padding:0 18px 16px;color:var(--c-encre-2)}
 
 /* ---------- Pied de page ---------- */
