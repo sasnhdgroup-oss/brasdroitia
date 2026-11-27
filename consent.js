@@ -79,7 +79,9 @@ var BDIA_TRACEURS = {
     // Plan gratuit reçu par e-mail (équivalent d'une demande de démo) : Contact chez TikTok (05/11/2026).
     prospect: { meta: 'Lead', tiktok: 'Contact', google: 'generate_lead' },
     vue_offre: { meta: 'ViewContent', tiktok: 'ViewContent', google: 'view_item' },
-    inscription: { meta: 'CompleteRegistration', tiktok: 'CompleteRegistration', google: 'sign_up' }
+    inscription: { meta: 'CompleteRegistration', tiktok: 'CompleteRegistration', google: 'sign_up' },
+    // Clic sur « Essayer 14 jours, sans carte » (accueil v4) : un prospect, pas un début de paiement.
+    clic_essai: { meta: 'Lead', tiktok: 'Contact', google: 'generate_lead' }
   };
   // Correspondance avancée : e-mail haché (SHA-256, minuscules, sans espaces) côté navigateur, jamais en clair.
   var identite = null;
@@ -122,20 +124,22 @@ var BDIA_TRACEURS = {
     if (document.getElementById('bdia-cmp')) return;
     var css = document.createElement('style');
     css.textContent =
-      '#bdia-cmp{position:fixed;left:16px;right:16px;bottom:16px;z-index:1000;max-width:560px;margin:0 auto;background:#0E1530;color:#F6F5F0;border:1px solid rgba(246,245,240,.18);border-radius:16px;padding:18px 18px 16px;font:15px/1.5 Inter,system-ui,sans-serif;box-shadow:0 12px 40px rgba(0,0,0,.45)}' +
-      '#bdia-cmp p{margin:0 0 12px}#bdia-cmp a{color:#D4FF3F}' +
+      // Charte v4 (27/11/2026) : nuit, outremer, ciel ; aucun texte sous 14 px, boutons de 48 px au moins.
+      '#bdia-cmp{position:fixed;left:16px;right:16px;bottom:16px;z-index:1000;max-width:560px;margin:0 auto;background:#14204A;color:#fff;border:1px solid rgba(230,236,255,.22);border-radius:18px;padding:18px 18px 16px;font:16px/1.5 "Atkinson Hyperlegible Next",system-ui,sans-serif;box-shadow:0 12px 40px rgba(8,12,40,.45)}' +
+      '#bdia-cmp p{margin:0 0 12px}#bdia-cmp a{color:#E6ECFF;text-decoration:underline}' +
       '#bdia-cmp .r{display:flex;gap:10px;flex-wrap:wrap}' +
-      '#bdia-cmp button{flex:1 1 140px;font:800 15px Inter,system-ui,sans-serif;border-radius:11px;padding:11px 14px;cursor:pointer;border:2px solid #D4FF3F;background:#D4FF3F;color:#0E1530}' +
-      '#bdia-cmp button.n{background:transparent;color:#F6F5F0;border-color:#F6F5F0}' +
-      // Mobile : bandeau compact, et posé au-dessus du badge Netlify (en bas à droite) pour ne pas cacher « Accepter ».
-      '@media (max-width:640px){#bdia-cmp{left:10px;right:10px;bottom:68px;padding:12px 14px;font-size:13px;line-height:1.4;border-radius:14px}#bdia-cmp p{margin:0 0 9px}#bdia-cmp button{padding:9px 12px;font-size:14px;flex-basis:120px}}';
+      '#bdia-cmp button{flex:1 1 140px;min-height:48px;font:800 16px "Plus Jakarta Sans",system-ui,sans-serif;border-radius:12px;padding:10px 14px;cursor:pointer;border:2px solid #2445D6;background:#2445D6;color:#fff}' +
+      '#bdia-cmp button.n{background:transparent;color:#fff;border-color:#E6ECFF}' +
+      '#bdia-cmp button:focus-visible{outline:3px solid #AFC0FF;outline-offset:2px}' +
+      // Mobile : bandeau compact, posé au-dessus du badge Netlify (en bas à droite) pour ne pas cacher « Accepter ».
+      '@media (max-width:640px){#bdia-cmp{left:10px;right:10px;bottom:68px;padding:12px 14px;font-size:14px;line-height:1.4;border-radius:14px}#bdia-cmp p{margin:0 0 10px}#bdia-cmp button{font-size:15px;flex-basis:120px}}';
     document.head.appendChild(css);
     var d = document.createElement('div');
     d.id = 'bdia-cmp';
     d.setAttribute('role', 'dialog');
     d.setAttribute('aria-label', 'Votre choix sur les cookies');
     d.innerHTML =
-      '<p><b>Cookies de mesure et publicitaires</b><br>Avec votre accord, nous utilisons des cookies de mesure d\'audience (Google Analytics) et les traceurs de Meta, TikTok et Google pour mesurer la fréquentation du site et l\'efficacité de nos publicités. Refuser n\'a aucune conséquence sur votre visite. <a href="/confidentialite.html#cookies">En savoir plus</a></p>' +
+      '<p><b>Cookies de mesure et publicitaires</b><br>Avec votre accord : mesure d\'audience et publicité (Google, Meta, TikTok). <a href="/confidentialite.html#cookies">En savoir plus</a></p>' +
       '<div class="r"><button type="button" class="n" data-c="0">Refuser</button><button type="button" data-c="1">Accepter</button></div>';
     d.addEventListener('click', function (e) {
       var v = e.target.getAttribute && e.target.getAttribute('data-c');

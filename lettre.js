@@ -1,6 +1,6 @@
 /* Bloc d'inscription à « L'astuce du mardi » : <div data-lettre="source"></div> dans une page. */
 (function () {
-  var css = '.lettre{background:#0E1530;color:#F6F5F0;border-radius:18px;padding:24px;margin:30px 0}.lettre h2{color:#F6F5F0;margin:0 0 6px;font-size:24px}.lettre p{color:#C9CEE3;margin:0 0 14px}.lettre form{display:flex;flex-wrap:wrap;gap:10px}.lettre input[type=email]{flex:1 1 220px;font:inherit;padding:12px 14px;border-radius:10px;border:0}.lettre button{font:800 16px Inter,sans-serif;background:#D4FF3F;color:#0E1530;border:0;border-radius:10px;padding:12px 18px;cursor:pointer}.lettre label{display:block;font-size:14px;color:#C9CEE3;width:100%;line-height:1.45}.lettre label input{margin-right:8px;vertical-align:-2px}.lettre label a{color:#D4FF3F}.lettre .piege{position:absolute;left:-9999px}.lettre .msg{width:100%;font-weight:700;color:#D4FF3F;margin:6px 0 0}';
+  var css = '.lettre{background:#14204A;color:#fff;border-radius:18px;padding:24px;margin:30px 0}.lettre h2{color:#fff;margin:0 0 6px;font-size:24px}.lettre p{color:#E6ECFF;margin:0 0 14px}.lettre form{display:flex;flex-wrap:wrap;gap:10px}.lettre input[type=email]{flex:1 1 220px;font:inherit;min-height:48px;padding:12px 14px;border-radius:12px;border:0}.lettre button{font:800 16px \"Plus Jakarta Sans\",system-ui,sans-serif;min-height:48px;background:#2445D6;color:#fff;border:0;border-radius:12px;padding:12px 18px;cursor:pointer}.lettre label{display:block;font-size:14px;color:#E6ECFF;width:100%;line-height:1.45}.lettre label input{margin-right:8px;vertical-align:-2px}.lettre label a{color:#fff}.lettre .piege{position:absolute;left:-9999px}.lettre .msg{width:100%;font-weight:700;color:#fff;margin:6px 0 0}';
   var s = document.createElement('style'); s.textContent = css; document.head.appendChild(s);
   document.querySelectorAll('[data-lettre]').forEach(function (bloc) {
     bloc.className = 'lettre';
@@ -20,7 +20,7 @@
   });
   if (location.search.indexOf('inscription=ok') > -1) {
     var b = document.querySelector('[data-lettre]');
-    var ok = document.createElement('p'); ok.className = 'astuce'; ok.style.cssText = 'background:#EEF6D0;border-radius:12px;padding:14px 18px;margin:16px 0';
+    var ok = document.createElement('p'); ok.className = 'astuce'; ok.style.cssText = 'background:#E6ECFF;border-radius:12px;padding:14px 18px;margin:16px 0';
     ok.textContent = 'Inscription confirmée : votre première astuce arrive dans votre boîte mail.';
     var h = document.querySelector('h1'); if (h) h.parentNode.insertBefore(ok, h.nextSibling);
   }
