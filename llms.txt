@@ -1,6 +1,6 @@
 # Bras Droit IA
 
-> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : une page de demande de devis au nom de l'artisan (6 langues, photos), une alerte à chaque demande, et la relance des devis à 3 et 7 jours, préparée par l'appli et envoyée seulement si l'artisan la valide (y compris un devis papier pris en photo). Inscriptions en préparation : 14 jours d'essai gratuits sans carte, puis 39 € HT par mois pour les 30 premiers (prix bloqué 12 mois), 49 € HT ensuite, sans engagement. Réservé aux professionnels.
+> Bras Droit IA (marque de SCALINEA EURL, France) est un service pour les artisans du bâtiment (plombiers, chauffagistes, électriciens) : une page de demande de devis au nom de l'artisan (6 langues, photos), une alerte à chaque demande, et la relance des devis à 3 et 7 jours, préparée par l'appli et envoyée seulement si l'artisan la valide (y compris un devis papier pris en photo). Inscriptions en préparation : 14 jours d'essai gratuits sans carte, puis prix fondateur de 39 € HT par mois pendant 12 mois, réservé aux 30 premiers abonnés dont l'essai commence au plus tard le 13 janvier 2027, ensuite 49 € HT par mois (tarif standard), sans engagement. Réservé aux professionnels.
 
 ## Offre
 - [Accueil et démonstration](https://brasdroitia.com/): le service, la démonstration pas à pas, le prix du pilote, FAQ.
