@@ -7,6 +7,8 @@
    Compteur anonyme (suivi.js) : accueil_cta, accueil_cta_<position> sur l'accueil ; guide_cta ailleurs. */
 var OUVERT = false;
 var LIEN_ESSAI = ''; // adresse de l'appli, par exemple https://…/essai
+/* Lien « Gérer mon abonnement » (pieds de page) : masqué tant que personne n'est abonné. */
+var ABONNES = false;
 var BDIA_MAILTO = 'mailto:contact@brasdroitia.com?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture&body=M%C3%A9tier%20%3A%20%0AVille%20%3A%20';
 
 (function () {
@@ -29,6 +31,7 @@ var BDIA_MAILTO = 'mailto:contact@brasdroitia.com?subject=Pr%C3%A9venez-moi%20de
     });
     document.querySelectorAll('[data-ferme]').forEach(function (e) { e.hidden = ouvert; });
     document.querySelectorAll('[data-ouvert]').forEach(function (e) { e.hidden = !ouvert; });
+    document.querySelectorAll('[data-abonnes]').forEach(function (e) { e.hidden = !ABONNES; });
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', appliquer); else appliquer();
 })();

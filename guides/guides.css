@@ -1,7 +1,9 @@
 /* Gabarit des guides et astuces : charte v4 « Bleu outremer » (27/11/2026).
    Les anciens noms de variables (--navy, --lime…) sont gardés : les styles propres à certaines pages
    (guide-devis, outils) s'en servent. Ils pointent maintenant vers les couleurs v4. */
-@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/PlusJakartaSans-Variable.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:600;font-display:swap;src:url(/fonts/PlusJakartaSans-600.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/PlusJakartaSans-700.woff2) format('woff2')}
+@font-face{font-family:'Plus Jakarta Sans';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/PlusJakartaSans-800.woff2) format('woff2')}
 @font-face{font-family:'Atkinson Hyperlegible Next';font-style:normal;font-weight:200 800;font-display:swap;src:url(/fonts/AtkinsonHyperlegibleNext-Variable.woff2) format('woff2')}
 :root{
  --outremer:#2445D6;--nuit:#14204A;--ciel:#E6ECFF;--creme:#FFF8EF;--encre:#141A2E;--gris:#4D5468;--grisclair:#E6E8EE;
