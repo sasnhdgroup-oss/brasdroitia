@@ -81,3 +81,16 @@
   for = "/fonts/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+
+# Offre pilote à 99 € retirée le 27/11/2026 (décision d'Abdellah) : inscriptions en préparation, la page renvoie vers l'accueil.
+[[redirects]]
+  from = "/pilote/*"
+  to = "/#ouverture"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/pilote"
+  to = "/#ouverture"
+  status = 302
+  force = true

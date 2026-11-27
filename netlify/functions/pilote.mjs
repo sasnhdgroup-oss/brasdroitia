@@ -109,7 +109,7 @@ export default async (req, context) => {
         a: d.email, objet: "Votre demande d'installation Bras Droit IA",
         html: gabarit(`Merci ${d.prenom}, c'est bien reçu`,
           `<p>Nous vous appelons au ${esc(d.telephone)} : <b>${esc(d.jour)}, ${esc(d.moment)}</b>. L'appel dure 10 minutes : nous regardons ensemble comment arrivent vos demandes et vos devis, puis nous fixons l'installation (30 minutes, à distance).</p>
-<p>Rappel de l'offre pilote : 30 jours offerts, puis 99 € HT par mois, sans engagement. Rien n'est prélevé pendant les 30 premiers jours.</p>
+<p>Merci pour votre demande : nous vous écrivons dès l'ouverture des inscriptions. Rien n'est payé ni prélevé.</p>
 <p>Un empêchement ? Répondez simplement à cet e-mail.</p>`),
         repondreA: CONTACT, tags: ["pilote-accuse"],
       });

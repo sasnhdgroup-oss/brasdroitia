@@ -7,294 +7,98 @@
 <!-- Consentement par défaut refusé (mode Consentement de Google), puis Google Tag Manager -->
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied',wait_for_update:500});try{var bdiaC=JSON.parse(localStorage.getItem('bdia_consentement')||'null');if(bdiaC&&bdiaC.pub&&Date.now()-bdiaC.date<15724800000)gtag('consent','update',{ad_storage:'granted',ad_user_data:'granted',ad_personalization:'granted',analytics_storage:'granted'});}catch(e){}</script>
 <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-MDXSWKZP');</script>
-<title>Bras Droit IA : plus aucun appel ni devis perdu, pour les artisans</title>
-<meta name="description" content="Plombiers, chauffagistes, électriciens : chaque appel manqué reçoit un SMS à votre nom et chaque devis est relancé tout seul. Pilote : 30 jours offerts, puis 99 € HT/mois.">
-<meta property="og:title" content="Bras Droit IA : plus aucun appel ni devis perdu">
-<meta property="og:description" content="Appel manqué : votre client reçoit un SMS à votre nom et décrit son besoin. Devis : relancé à J+3 et J+7. Pilote : 30 jours offerts, puis 99 € HT par mois.">
+<title>Bras Droit IA : vos demandes de devis arrivent chez vous</title>
+<meta name="description" content="Pour les artisans : votre page de demande de devis à votre nom, et vos devis relancés à 3 et 7 jours quand vous le validez. Inscriptions en préparation.">
+<meta property="og:title" content="Bras Droit IA : vos demandes de devis arrivent chez vous">
+<meta property="og:description" content="Votre page de demande de devis à votre nom, et vos devis relancés quand vous le validez. Inscriptions en préparation.">
 <meta property="og:image" content="og.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="favicon.png">
 <link rel="canonical" href="https://brasdroitia.com/">
 <script type="application/ld+json">
-{"@context":"https://schema.org","@graph":[
- {"@type":"Organization","@id":"https://brasdroitia.com/#org","name":"Bras Droit IA","legalName":"SCALINEA","url":"https://brasdroitia.com/","logo":"https://brasdroitia.com/logo.png","sameAs":["https://www.instagram.com/bras_droit_ia/","https://www.facebook.com/1445083355348580"]},
- {"@type":"Service","name":"Bras Droit IA pour artisans","provider":{"@id":"https://brasdroitia.com/#org"},"areaServed":"FR","audience":{"@type":"BusinessAudience","audienceType":"Artisans du bâtiment : plombiers, chauffagistes, électriciens"},"serviceType":"Suivi des appels manqués et relance automatique des devis","description":"Après un appel manqué, le client reçoit un SMS au nom de l'artisan avec un lien pour décrire son besoin ; l'artisan reçoit une fiche et confirme le créneau d'un clic. Les devis mis en copie sont relancés à J+3 et J+7.","offers":{"@type":"Offer","price":"99.00","priceCurrency":"EUR","priceSpecification":{"@type":"UnitPriceSpecification","price":"99.00","priceCurrency":"EUR","valueAddedTaxIncluded":false,"unitText":"mois"},"url":"https://brasdroitia.com/pilote/"}}
-]}
+{"@context":"https://schema.org","@type":"Organization","@id":"https://brasdroitia.com/#org","name":"Bras Droit IA","legalName":"SCALINEA","url":"https://brasdroitia.com/","logo":"https://brasdroitia.com/logo.png","sameAs":["https://www.instagram.com/bras_droit_ia/","https://www.facebook.com/1445083355348580"]}
 </script>
 <style>@font-face{font-family:Inter;font-style:normal;font-weight:400;font-display:swap;src:url(fonts/Inter-Regular.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:500;font-display:swap;src:url(fonts/Inter-Medium.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:700;font-display:swap;src:url(fonts/Inter-Bold.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:800;font-display:swap;src:url(fonts/Inter-ExtraBold.woff2) format('woff2')}@font-face{font-family:Inter;font-style:normal;font-weight:900;font-display:swap;src:url(fonts/Inter-Black.woff2) format('woff2')}</style>
 <style>
-:root{--navy:#0E1530;--navy2:#1A2350;--navy3:#232D60;--lime:#D4FF3F;--cream:#F6F5F0;--muted:#B4BAD3;--line:rgba(246,245,240,.14);--ok:#7BE3A6}
+:root{--outremer:#2445D6;--nuit:#14204A;--ciel:#E6ECFF;--creme:#FFF8EF;--encre:#141A2E;--gris:#4D5468;--grisclair:#E6E8EE}
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,system-ui,sans-serif;background:var(--navy);color:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased}
+body{font-family:Inter,system-ui,sans-serif;background:var(--creme);color:var(--encre);line-height:1.5;font-size:17px;-webkit-font-smoothing:antialiased}
 a{color:inherit}
-.wrap{max-width:1080px;margin:0 auto;padding:0 20px}
-header{position:sticky;top:0;z-index:10;background:rgba(14,21,48,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px}
-.menu{display:flex;gap:22px;align-items:center}.menu a{text-decoration:none;font-weight:600;font-size:15px;opacity:.9}.menu a:hover{opacity:1;text-decoration:underline}
-@media (max-width:860px){header .wrap{flex-wrap:wrap;padding-top:10px;padding-bottom:6px;row-gap:6px}.menu{order:3;width:100%;overflow-x:auto;gap:18px;padding:4px 0 2px;white-space:nowrap}}
-.brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:19px;text-decoration:none}
-.brand img{width:34px;height:34px;border-radius:9px}
-.tag{background:var(--lime);color:var(--navy);border-radius:999px;padding:1px 9px;font-weight:800}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;background:var(--lime);color:var(--navy);font-weight:800;text-decoration:none;border:0;border-radius:14px;padding:14px 24px;font-size:17px;cursor:pointer;transition:transform .15s;text-align:center}
-.btn:hover{transform:translateY(-2px)}
-.btn.ghost{background:transparent;color:var(--cream);border:2px solid var(--line)}
-.btn.small{min-height:44px;padding:9px 16px;font-size:15px;border-radius:11px}
-section{padding:72px 0;border-bottom:1px solid var(--line)}
-h1{font-size:clamp(34px,5.6vw,60px);line-height:1.05;letter-spacing:-.03em;font-weight:900;max-width:880px}
-h2{font-size:clamp(27px,4vw,42px);line-height:1.1;letter-spacing:-.02em;font-weight:900;margin-bottom:14px}
-h3{font-size:20px;font-weight:800;margin-bottom:8px;line-height:1.25}
-.lime{color:var(--lime)}
-.lead{font-size:clamp(18px,2.1vw,20px);color:var(--muted);margin-top:16px;max-width:700px}
-.lead b{color:var(--cream)}
-.hero{padding:64px 0 60px}
-.eyebrow{display:inline-block;font-size:14px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--lime);margin-bottom:16px}
-.ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.reassure{margin-top:16px;color:var(--muted);font-size:15px}
-.reassure b{color:var(--cream)}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
-@media (max-width:900px){.grid3,.free{grid-template-columns:minmax(0,1fr)!important}}
-.card{background:var(--navy2);border-radius:20px;padding:24px;min-width:0}
-.card .num{width:46px;height:46px;border-radius:13px;background:var(--lime);color:var(--navy);font-weight:900;font-size:21px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;flex-shrink:0}
-.card p{color:var(--muted)}
-.card .opt{display:inline-block;margin-top:12px;font-size:14px;font-weight:700;color:var(--cream);background:var(--navy3);border-radius:8px;padding:4px 10px}
-.pains{list-style:none;margin-top:26px;display:grid;gap:12px;max-width:760px}
-.pains li{background:var(--navy2);border-radius:14px;padding:16px 18px;color:var(--muted)}
-.pains li b{color:var(--cream)}
-/* Démonstration */
-.demo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,360px);gap:32px;margin-top:30px;align-items:start}
-@media (max-width:820px){.demo{grid-template-columns:minmax(0,1fr)}}
-.steps{list-style:none;display:grid;gap:10px;min-width:0}
-.step{width:100%;text-align:left;font:inherit;color:var(--cream);background:var(--navy2);border:2px solid transparent;border-radius:16px;padding:14px 16px;cursor:pointer;display:grid;grid-template-columns:40px minmax(0,1fr);gap:12px;align-items:start}
-.step:hover{border-color:var(--line)}
-.step[aria-pressed=true]{border-color:var(--lime)}
-.step .n{width:36px;height:36px;border-radius:10px;background:var(--navy3);color:var(--lime);font-weight:900;display:flex;align-items:center;justify-content:center}
-.step[aria-pressed=true] .n{background:var(--lime);color:var(--navy)}
-.step b{display:block;font-size:17px}
-.step span{color:var(--muted);font-size:15px}
-.phone{background:#05091A;border-radius:34px;padding:12px;border:1px solid var(--line);max-width:360px;width:100%;margin:0 auto}
-.screen{background:#F4F6F8;color:#17212B;border-radius:24px;min-height:340px;padding:16px 14px;display:flex;flex-direction:column;gap:10px;overflow:hidden}
-.screen .who{font-size:13px;color:#5B6774;text-align:center;font-weight:600}
-.bubble{background:#E3E8EE;border-radius:16px 16px 16px 4px;padding:10px 12px;font-size:15px;max-width:92%;line-height:1.4}
-.bubble small{display:block;color:#5B6774;font-size:12px;margin-top:4px}
-.missed{background:#FFFFFF;border:1px solid #D5DCE3;border-radius:14px;padding:12px;display:flex;gap:10px;align-items:center;font-size:15px}
-.missed i{font-style:normal;width:34px;height:34px;border-radius:50%;background:#FDE7E4;color:#B42318;display:flex;align-items:center;justify-content:center;font-weight:900;flex-shrink:0}
-.form{background:#fff;border:1px solid #D5DCE3;border-radius:14px;padding:12px;display:grid;gap:8px;font-size:14px}
-.form .f{border:1px solid #B4BEC8;border-radius:8px;padding:8px 10px;background:#fff}
-.form .f b{display:block;font-size:12px;color:#5B6774;font-weight:600}
-.fiche{background:#fff;border:1px solid #D5DCE3;border-radius:14px;padding:12px;font-size:14px;display:grid;gap:6px}
-.fiche .t{font-weight:800;font-size:15px}
-.fiche .r{display:grid;grid-template-columns:78px minmax(0,1fr);gap:6px}
-.fiche .r b{color:#5B6774;font-weight:600}
-.acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
-.acts span{border-radius:10px;padding:10px 6px;text-align:center;font-weight:800;border:1.5px solid #1D5A96;color:#1D5A96}
-.acts span:first-child{background:#1D5A96;color:#fff}
-.timeline{display:grid;gap:8px}
-.timeline div{background:#fff;border:1px solid #D5DCE3;border-radius:12px;padding:10px 12px;font-size:14px}
-.timeline div b{display:block;font-size:13px;color:#1D5A96}
-.timeline .ok{border-color:#1E7A4E;background:#E6F4EC}
-.timeline .ok b{color:#1E7A4E}
-.result{background:#fff;border:1px solid #D5DCE3;border-radius:14px;padding:14px;display:grid;gap:10px}
-.result .k{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.result .k div{border:1px solid #D5DCE3;border-radius:10px;padding:8px}
-.result .k b{display:block;font-size:22px;font-weight:900}
-.result .k span{font-size:12.5px;color:#5B6774}
-.cap{margin-top:12px;font-size:14px;color:var(--muted);text-align:center}
-.demo-nav{display:flex;gap:10px;margin-top:14px;justify-content:center}
-.demo-nav button{font:700 15px Inter,sans-serif;min-height:46px;padding:8px 16px;border-radius:11px;border:2px solid var(--line);background:transparent;color:var(--cream);cursor:pointer}
-/* Ce que vous gardez */
-.keep{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px;list-style:none}
-@media (max-width:1000px){.keep{grid-template-columns:repeat(2,minmax(0,1fr))}}@media (max-width:560px){.keep{grid-template-columns:minmax(0,1fr)}}
-.keep li{background:var(--navy2);border-radius:14px;padding:16px 18px;color:var(--muted)}
-.keep li b{display:block;color:var(--cream);margin-bottom:4px}
-/* Prix */
-.price{background:var(--cream);color:var(--navy);border-radius:28px;padding:34px;max-width:600px;margin-top:30px}
-.price .pill{display:inline-block;background:var(--navy);color:var(--lime);border-radius:999px;padding:4px 12px;font-weight:800;font-size:14px;margin-bottom:14px}
-.price .big{font-size:clamp(40px,7vw,58px);font-weight:900;letter-spacing:-.03em;line-height:1}
-.price .then{font-size:20px;font-weight:700;margin-top:10px}
-.price ul{list-style:none;margin:22px 0;display:grid;gap:10px}
-.price li{padding-left:24px;position:relative}
-.price li::before{content:"✓";position:absolute;left:0;color:#4A5D00;font-weight:900}
-.price .btn{background:var(--navy);color:var(--lime);width:100%}
-.price small{display:block;margin-top:14px;color:#454C6B;font-size:14px}
-.free{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:26px}
-.gcard{display:block;background:var(--navy2);border-radius:16px;padding:20px;text-decoration:none;border:1px solid var(--line);transition:transform .15s}
-.gcard:hover{transform:translateY(-2px);border-color:var(--lime)}
-.gcard b{display:block;font-size:18px;margin-bottom:4px}
-.gcard span{color:var(--muted)}
-details{background:var(--navy2);border-radius:14px;padding:18px 20px;margin-top:12px;max-width:800px}
-summary{font-weight:800;cursor:pointer;font-size:17px}
-details p{color:var(--muted);margin-top:10px}
-footer{padding:40px 0 90px;color:var(--muted);font-size:14px}
-footer a{color:var(--muted)}
-footer .links{display:flex;gap:18px;flex-wrap:wrap;margin-top:10px}
-.sticky{position:fixed;left:12px;right:12px;bottom:12px;z-index:20;display:none}
-@media(max-width:640px){.sticky{display:block}.sticky .btn{width:100%;box-shadow:0 8px 30px rgba(0,0,0,.45)}section{padding:52px 0}header .btn{display:none}.ctas .btn{width:100%}.price{padding:26px 20px}}
-@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.gcard{transition:none}}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{background:var(--nuit);color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;min-height:64px;gap:12px}
+.brand{display:flex;align-items:center;gap:8px;font-weight:800;font-size:20px;text-decoration:none;color:#fff}
+.bulle{background:var(--outremer);color:#fff;border-radius:12px 12px 12px 3px;padding:2px 9px;font-size:16px}
+header nav a{color:#fff;font-size:15px;text-decoration:underline;text-underline-offset:3px}
+.hero{background:var(--nuit);color:#fff;padding:36px 0 44px}
+h1{font-size:34px;line-height:1.15;font-weight:800;letter-spacing:-.01em}
+.hero p{margin-top:14px;font-size:18px;color:var(--ciel);max-width:560px}
+section{padding:40px 0}
+h2{font-size:24px;font-weight:800;margin-bottom:18px}
+.f{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px}
+.ic{flex:0 0 44px;height:44px;border-radius:12px;background:var(--ciel);color:var(--outremer);display:flex;align-items:center;justify-content:center;font-weight:800}
+.f b{display:block}
+.f span{color:var(--gris)}
+.carte{background:#fff;border:1px solid var(--grisclair);border-radius:18px;padding:22px}
+.prix{font-size:20px;font-weight:800}
+.note{color:var(--gris);font-size:15px;margin-top:8px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:54px;padding:12px 20px;border-radius:14px;background:var(--outremer);color:#fff;font-weight:700;text-decoration:none;font-size:18px;margin-top:18px}
+.btn.second{background:#fff;color:var(--outremer);border:2px solid var(--outremer)}
+footer{border-top:1px solid var(--grisclair);padding:28px 0 40px;color:var(--gris);font-size:15px}
+footer .links{display:flex;flex-wrap:wrap;gap:14px;margin-top:10px}
+@media(min-width:720px){h1{font-size:44px}}
 </style>
 </head>
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDXSWKZP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header><div class="wrap">
-<a class="brand" href="/"><img src="logo.png" alt="">Bras Droit <span class="tag">IA</span></a>
-<nav class="menu" aria-label="Menu principal"><a href="/#service">Le service</a><a href="/#demo">Démonstration</a><a href="/#prix">Prix</a><a href="/relance-devis/">Relance de devis gratuite</a><a href="/guides/">Guides</a><a href="/#faq">FAQ</a></nav>
-<a class="btn small" href="/pilote/" data-cta="entete">Essayer 30 jours gratuitement</a>
+<a class="brand" href="/">Bras Droit <span class="bulle">IA</span></a>
+<nav><a href="/relance-devis/">Relance de devis gratuite</a></nav>
 </div></header>
 
+<div class="hero"><div class="wrap">
+<h1>Vos demandes de devis arrivent chez vous. Rien qu'à vous.</h1>
+<p>L'assistant des artisans : il prépare, vous validez. Pour les plombiers, chauffagistes et électriciens.</p>
+</div></div>
+
 <main>
-<section class="hero"><div class="wrap">
-<p class="eyebrow">Plombiers · chauffagistes · électriciens</p>
-<h1>Vous êtes sur un chantier. <span class="lime">Plus aucun appel ni aucun devis ne se perd.</span></h1>
-<p class="lead">Quand vous ne pouvez pas décrocher, votre client reçoit un SMS <b>à votre nom</b> et décrit son besoin en une minute. Vous recevez une fiche claire et vous confirmez le créneau d'un clic. Vos devis sans réponse sont <b>relancés tout seuls</b>, à 3 jours et à 7 jours.</p>
-<div class="ctas">
-<a class="btn" href="/pilote/" data-cta="hero">Essayer 30 jours gratuitement</a>
-<a class="btn ghost" href="#demo">Voir comment ça marche</a>
-</div>
-<p class="reassure"><b>Rien à payer aujourd'hui.</b> Pilote : 30 jours offerts, puis 99 € HT par mois. Mise en place offerte (30 minutes, à distance), sans engagement. Vous gardez votre numéro.</p>
-</div></section>
-
 <section><div class="wrap">
-<h2>Ce qui vous coûte des chantiers</h2>
-<ul class="pains">
-<li><b>L'appel que vous ne pouvez pas prendre.</b> Les mains dans une chaudière ou sur un tableau électrique, vous laissez sonner. Le client n'attend pas : il appelle l'entreprise suivante.</li>
-<li><b>Le devis envoyé, puis oublié.</b> Vous avez passé une heure à le chiffrer. Sans réponse, personne ne relance, et le chantier part ailleurs.</li>
-<li><b>Le soir, vous n'avez plus la tête à ça.</b> Rappeler, relancer, demander un avis : tout ce qui rapporte passe après le travail du jour.</li>
-</ul>
-<p class="lead">Si le service vous fait gagner <b>un seul chantier par mois</b>, il est remboursé.</p>
+<h2>Ce que fait votre Bras Droit</h2>
+<div class="f"><div class="ic" aria-hidden="true">1</div><div><b>Votre page de demande de devis, à votre nom</b><span>Vos clients décrivent leurs travaux, photos comprises, en 6 langues.</span></div></div>
+<div class="f"><div class="ic" aria-hidden="true">2</div><div><b>Une alerte à chaque demande</b><span>Avec le téléphone du client et un bouton « Appeler ».</span></div></div>
+<div class="f"><div class="ic" aria-hidden="true">3</div><div><b>Vos devis relancés à 3 et 7 jours</b><span>La relance est prête, elle part seulement si vous la validez. Même un devis papier, pris en photo.</span></div></div>
+<div class="f"><div class="ic" aria-hidden="true">4</div><div><b>Le suivi de vos devis</b><span>Vous voyez où en est chaque devis, et la prochaine relance.</span></div></div>
 </div></section>
 
-<section id="service"><div class="wrap">
-<h2>Trois choses, faites pour vous, chaque jour</h2>
-<div class="grid3">
-<div class="card"><div class="num">1</div><h3>Zéro appel perdu</h3><p>Appel manqué : votre client reçoit un SMS à votre nom avec un lien. Il indique son besoin, son adresse et le créneau qui l'arrange. Vous recevez la fiche et vous confirmez, ou vous proposez un autre créneau, d'un clic.</p><span class="opt">En option : rappel du client par une personne de notre équipe</span></div>
-<div class="card"><div class="num">2</div><h3>Devis relancés tout seuls</h3><p>Mettez notre adresse en copie quand vous envoyez un devis. Sans réponse, votre client reçoit une relance polie à 3 jours puis à 7 jours, en heures ouvrées. Dès que vous marquez le devis signé ou perdu, tout s'arrête.</p></div>
-<div class="card"><div class="num">3</div><h3>Vos résultats, chaque semaine</h3><p>Dans votre appli : les demandes à traiter, vos devis en cours, et les chantiers gagnés grâce au service, en euros, tels que vous les saisissez. Le vendredi, le bilan de la semaine arrive par e‑mail. Un bouton demande un avis Google à vos clients satisfaits.</p></div>
+<section id="ouverture" style="padding-top:0"><div class="wrap">
+<div class="carte">
+<h2 style="margin-bottom:8px">Inscriptions en préparation</h2>
+<p class="prix">14 jours d'essai gratuits, sans carte bancaire</p>
+<p class="note">Puis 39 € HT par mois pour les 30 premiers artisans inscrits jusqu’au 13 janvier 2027, prix bloqué 12 mois (49 € HT ensuite). Sans engagement. Réservé aux professionnels.</p>
+<a class="btn" data-cta="ouverture" href="mailto:contact@brasdroitia.com?subject=Pr%C3%A9venez-moi%20de%20l%27ouverture&amp;body=M%C3%A9tier%20%3A%20%0AVille%20%3A%20">Être prévenu de l'ouverture</a>
+<p class="note">Un e-mail s'ouvre : indiquez votre métier et votre ville. Personne ne vous appellera.</p>
+<a class="btn second" href="/relance-devis/">Essayer la relance de devis gratuite</a>
 </div>
-</div></section>
-
-<section id="demo"><div class="wrap">
-<h2>Démonstration : un mardi chez Paul, plombier</h2>
-<p class="lead">Exemple fictif, avec les vrais messages du service. Cliquez sur chaque étape.</p>
-<div class="demo">
-<ol class="steps" id="steps">
-<li><button class="step" type="button" aria-pressed="true" data-s="0"><span class="n">1</span><span><b>10 h 32 : appel manqué</b><span>Paul est sous un évier. Mme Lefèvre appelle pour une fuite.</span></span></button></li>
-<li><button class="step" type="button" aria-pressed="false" data-s="1"><span class="n">2</span><span><b>10 h 33 : SMS au nom de Paul</b><span>La cliente reçoit un message, pas une messagerie.</span></span></button></li>
-<li><button class="step" type="button" aria-pressed="false" data-s="2"><span class="n">3</span><span><b>10 h 35 : elle décrit son besoin</b><span>Un formulaire simple, pensé pour le téléphone.</span></span></button></li>
-<li><button class="step" type="button" aria-pressed="false" data-s="3"><span class="n">4</span><span><b>10 h 36 : Paul reçoit la fiche</b><span>Il confirme le créneau d'un clic à sa pause.</span></span></button></li>
-<li><button class="step" type="button" aria-pressed="false" data-s="4"><span class="n">5</span><span><b>Le devis est relancé tout seul</b><span>À 3 jours, puis à 7 jours, sans qu'il y pense.</span></span></button></li>
-<li><button class="step" type="button" aria-pressed="false" data-s="5"><span class="n">6</span><span><b>Vendredi : le bilan</b><span>Ce que le service lui a rapporté, en chiffres qu'il a saisis.</span></span></button></li>
-</ol>
-<div>
-<div class="phone" aria-live="polite"><div class="screen" id="screen"></div></div>
-<p class="cap" id="cap"></p>
-<div class="demo-nav"><button type="button" id="prev">Précédent</button><button type="button" id="next">Suivant</button></div>
-</div>
-</div>
-</div></section>
-
-<section><div class="wrap">
-<h2>Ce qui ne change pas pour vous</h2>
-<ul class="keep">
-<li><b>Votre numéro</b>Vous le gardez. Un renvoi d'appel « si pas de réponse » suffit, nous le réglons ensemble.</li>
-<li><b>Vos proches</b>Les numéros de votre famille et de vos amis ne reçoivent jamais de SMS.</li>
-<li><b>Votre nom</b>Les messages partent à votre nom et les réponses arrivent chez vous.</li>
-<li><b>Rien à installer</b>L'appli s'ouvre depuis l'écran d'accueil de votre téléphone. Pause en un clic pendant vos congés.</li>
-</ul>
-</div></section>
-
-<section id="prix"><div class="wrap">
-<h2>Un prix de <span class="lime">pilote</span></h2>
-<p class="lead">Nous ouvrons le service à quelques entreprises pilotes, que nous installons et suivons nous-mêmes.</p>
-<div class="price">
-<span class="pill">Pilote · places limitées</span>
-<div class="big">30 jours offerts</div>
-<div class="then">puis 99 € HT par mois, sans engagement</div>
-<ul>
-<li>Zéro appel perdu : SMS à votre nom, formulaire, fiche avec confirmation en un clic</li>
-<li>Relance automatique de vos devis à 3 jours et à 7 jours</li>
-<li>Votre appli : demandes, devis, résultats, réglages</li>
-<li>Demande d'avis Google et bilan du vendredi</li>
-<li>Mise en place offerte : 30 minutes à distance, avec vous</li>
-<li>Résiliable à tout moment, avec effet à la fin du mois en cours</li>
-</ul>
-<a class="btn" href="/pilote/" data-cta="prix">Essayer 30 jours gratuitement</a>
-<p style="text-align:center;margin-top:8px;font-weight:700;font-size:14px">Rien à payer aujourd'hui · sans engagement</p>
-<small>Réservé aux professionnels. Le moyen de paiement (carte ou prélèvement SEPA) est enregistré à l'installation ; rien n'est prélevé pendant les 30 premiers jours, et vous pouvez arrêter avant sans rien payer. SMS inclus dans un usage normal (détail dans les <a href="/cgv.html#sms">conditions</a>).</small>
-</div>
-</div></section>
-
-<section id="gratuit"><div class="wrap">
-<h2>Gratuit, tout de suite</h2>
-<p class="lead">Pas encore prêt pour le pilote ? Commencez par ces outils, sans inscription.</p>
-<div class="free">
-<a class="gcard" href="/relance-devis/?utm_source=site&amp;utm_medium=accueil"><b>Générateur de relance de devis</b><span>Choisissez le délai et le ton : votre message de relance est prêt en 30 secondes.</span></a>
-<a class="gcard" href="/guide-devis/?utm_source=site&amp;utm_medium=accueil&amp;utm_campaign=gratuit"><b>5 modèles pour vos devis</b><span>Répondre à une demande, envoyer, relancer : prêts à copier, reçus par e‑mail.</span></a>
-<a class="gcard" href="/outils/generateur-reponse-avis-google/"><b>Réponses aux avis Google</b><span>Collez un avis, obtenez des réponses prêtes à copier.</span></a>
-</div>
-<p style="margin-top:22px"><a class="btn ghost" href="/guides/">Tous les guides</a> <a class="btn ghost" href="/astuces/">Les astuces</a></p>
-</div></section>
-
-<section><div class="wrap"><div data-lettre="accueil"></div></div></section>
-
-<section id="faq"><div class="wrap">
-<h2>Questions fréquentes</h2>
-<details><summary>Dois-je changer de numéro ou de téléphone ?</summary><p>Non. Vous gardez votre numéro et votre téléphone. Pendant l'installation, nous activons avec vous un renvoi d'appel « si pas de réponse » : quand vous décrochez, rien ne change.</p></details>
-<details><summary>Mes clients savent-ils que le message est automatique ?</summary><p>Oui : le SMS porte le nom de votre entreprise et indique « message automatique ». Nous ne nous faisons jamais passer pour vous au téléphone.</p></details>
-<details><summary>Et si un proche ou un fournisseur m'appelle ?</summary><p>Vous indiquez les numéros à ne jamais contacter. Un même numéro ne reçoit qu'un SMS par 24 heures, et les numéros masqués ou de fixes ne reçoivent rien : vous êtes simplement prévenu.</p></details>
-<details><summary>Et si c'est une urgence, une fuite de gaz par exemple ?</summary><p>Le formulaire affiche immédiatement les consignes de sécurité et les numéros d'urgence, et la demande vous arrive marquée « urgence ». Le service ne remplace pas les secours.</p></details>
-<details><summary>Qui écrit les relances de devis ?</summary><p>Des modèles courts et polis, que vous pouvez modifier dans vos réglages. Elles partent en heures ouvrées, et s'arrêtent dès que vous marquez le devis signé ou perdu.</p></details>
-<details><summary>Combien de temps cela me prend-il ?</summary><p>30 minutes pour l'installation, à distance. Ensuite, quelques secondes par demande pour confirmer un créneau, et un clic quand un devis est signé.</p></details>
-<details><summary>Et si j'arrête ?</summary><p>Pendant les 30 jours offerts, vous arrêtez sans rien payer. Ensuite, le service est sans engagement : vous résiliez quand vous voulez, avec effet à la fin du mois en cours, et vous récupérez vos données.</p></details>
-<details><summary>Que deviennent les données de mes clients ?</summary><p>Elles servent uniquement à votre service : nous agissons pour votre compte, comme sous-traitant au sens du RGPD. Elles ne sont ni vendues ni utilisées pour notre publicité. Détail dans notre <a href="/confidentialite.html">politique de confidentialité</a>.</p></details>
-<details><summary>Je suis particulier, puis-je m'abonner ?</summary><p>Non : le service est réservé aux professionnels, artisans et entreprises du bâtiment en priorité.</p></details>
 </div></section>
 </main>
 
 <footer><div class="wrap">
-<div><b>Bras Droit IA</b> est une marque de SCALINEA, SARL à associé unique (EURL). Service réservé aux professionnels. Non affilié à Anthropic, OpenAI, Meta ni Google.</div>
+<p>Bras Droit IA est une marque de SCALINEA (France). Service réservé aux professionnels.</p>
 <div class="links">
 <a href="mentions-legales.html">Mentions légales</a>
 <a href="cgv.html">CGV</a>
 <a href="confidentialite.html">Confidentialité</a>
-<a href="/pilote/">Devenir entreprise pilote</a>
-<a href="/relance-devis/">Relance de devis gratuite</a>
 <a href="/guides/">Guides pratiques</a>
 <a href="/astuces/">Astuces</a>
 <a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Gérer mon abonnement</a>
-<a href="https://www.instagram.com/bras_droit_ia/">Instagram</a>
 <a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a>
 </div>
 </div></footer>
 
-<div class="sticky"><a class="btn" href="/pilote/" data-cta="mobile">Essayer 30 jours gratuitement</a></div>
-
 <script src="/suivi.js"></script>
 <script>
-(function(){
-'use strict';
-var S=[
- {who:'Téléphone de Paul · 10 h 32', cap:'Paul ne peut pas décrocher. D’habitude, la cliente appellerait le plombier suivant.',
-  h:'<div class="missed"><i>✕</i><div><b>Appel manqué</b><br>Mme Lefèvre · 06 •• •• •• 41</div></div>'},
- {who:'Téléphone de Mme Lefèvre · 10 h 33', cap:'Une minute après, un SMS au nom de l’entreprise, qui dit clairement qu’il est automatique.',
-  h:'<div class="bubble">Plomberie Durand : nous avons manqué votre appel. Si c’est pour des travaux, décrivez votre besoin ici, on vous recontacte vite : brasdroitia.com/d/… (message automatique)<small>SMS · 10:33</small></div>'},
- {who:'Téléphone de Mme Lefèvre · 10 h 35', cap:'Le formulaire tient sur un écran : le besoin, l’adresse, le créneau qui l’arrange.',
-  h:'<div class="form"><b style="font-size:15px">Plomberie Durand</b><div class="f"><b>Votre besoin</b>Fuite sous l’évier de la cuisine</div><div class="f"><b>Code postal et ville</b>76000 Rouen</div><div class="f"><b>Créneau souhaité</b>Aujourd’hui, 14 h - 16 h</div><div class="f"><b>Urgent ?</b>Oui</div></div>'},
- {who:'Téléphone de Paul · 10 h 36', cap:'Paul lit la fiche à sa pause et confirme. La cliente reçoit la confirmation par SMS.',
-  h:'<div class="fiche"><div class="t">URGENT · Mme Lefèvre</div><div class="r"><b>Besoin</b><span>Fuite sous l’évier de la cuisine</span></div><div class="r"><b>Lieu</b><span>76000 Rouen</span></div><div class="r"><b>Créneau</b><span>Aujourd’hui, 14 h - 16 h</span></div><div class="acts"><span>Confirmer</span><span>Autre créneau</span></div></div>'},
- {who:'Les devis de Paul', cap:'Paul a mis l’adresse du service en copie de son devis. Les relances partent seules et s’arrêtent dès qu’il marque le devis.',
-  h:'<div class="timeline"><div><b>Lundi · devis envoyé</b>Remplacement du chauffe-eau · M. Benali</div><div><b>Jeudi · relance à 3 jours</b>« Avez-vous pu regarder le devis que je vous ai envoyé ? Je reste disponible pour toute question. »</div><div><b>Lundi suivant · relance à 7 jours</b>Envoyée seulement s’il n’y a toujours pas de réponse.</div><div class="ok"><b>Devis signé</b>Paul le marque d’un clic : les relances s’arrêtent.</div></div>'},
- {who:'Appli de Paul · vendredi', cap:'Exemple fictif : les montants sont ceux que l’artisan saisit lui-même, jamais des estimations.',
-  h:'<div class="result"><b style="font-size:16px">Bilan de la semaine</b><div class="k"><div><b>6</b><span>appels manqués suivis</span></div><div><b>4</b><span>fiches reçues</span></div><div><b>2</b><span>chantiers gagnés</span></div><div><b>3 relances</b><span>de devis envoyées</span></div></div><div style="font-size:14px;color:#5B6774">Bouton « Demander un avis Google » proposé après chaque chantier gagné.</div></div>'}
-];
-var i=0, btns=[].slice.call(document.querySelectorAll('.step'));
-function show(n){i=(n+S.length)%S.length;document.getElementById('screen').innerHTML='<div class="who">'+S[i].who+'</div>'+S[i].h;document.getElementById('cap').textContent=S[i].cap;btns.forEach(function(b,k){b.setAttribute('aria-pressed',k===i?'true':'false');});}
-btns.forEach(function(b){b.addEventListener('click',function(){show(+b.dataset.s);if(window.bdiaSuivi)bdiaSuivi('accueil_vu10s');});});
-document.getElementById('prev').addEventListener('click',function(){show(i-1);});
-document.getElementById('next').addEventListener('click',function(){show(i+1);});
-show(0);
 if(window.bdiaSuivi){bdiaSuivi('accueil');setTimeout(function(){bdiaSuivi('accueil_vu10s');},10000);}
-document.querySelectorAll('[data-cta]').forEach(function(a){a.addEventListener('click',function(){if(window.bdiaSuivi)bdiaSuivi('accueil_cta');if(window.bdiaEvenement)bdiaEvenement('clic_pilote',{});});});
-})();
+document.querySelectorAll('[data-cta]').forEach(function(a){a.addEventListener('click',function(){if(window.bdiaSuivi)bdiaSuivi('accueil_cta');if(window.bdiaEvenement)bdiaEvenement('clic_ouverture',{});});});
 </script>
 <script src="consent.js"></script>
 <script src="/lettre.js" defer></script>
