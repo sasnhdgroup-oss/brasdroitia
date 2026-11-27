@@ -73,9 +73,8 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MDXSWKZP" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header><div class="wrap">
- <a class="brand" href="/"><img src="/logo.png" alt="" width="34" height="34">Bras Droit <span class="tag">IA</span></a>
- <nav class="menu" aria-label="Menu principal"><a href="/#offre">L\'offre</a><a href="/#metier">Exemples</a><a href="/#prix">Prix</a><a href="/guides/" class="g">Guides</a><a href="/astuces/" class="g">Astuces</a><a href="/#faq">FAQ</a></nav>
- <a class="btn" href="/#metier">Voir un exemple</a>
+ <a class="brand" href="/" aria-label="Bras Droit IA, accueil">Bras Droit <span class="tag">IA</span></a>
+ <nav class="menu" aria-label="Menu"><a href="/#service">Ce qu\'il fait</a><a href="/#prix">Prix</a><a href="/#faq">Questions</a><a href="/guides/">Guides</a></nav>
 </div></header>
 <main class="wrap">
 <nav class="fil" aria-label="Fil d'Ariane"><a href="/">Accueil</a> › Guides</nav>
@@ -88,8 +87,10 @@ hub = tete + f'''<style>.hub{{list-style:none;padding:0}}.hub li{{padding:12px 0
 </main>
 <footer><div class="wrap">
  <div><b>Bras Droit IA</b> est une marque de SCALINEA EURL.</div>
- <div class="links"><a href="/">Accueil</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Résilier mon abonnement</a></div>
+ <div class="links"><a href="/guides/">Guides pratiques</a><a href="/astuces/">Astuces</a><a href="/relance-devis/">Relance de devis gratuite</a><a href="/mentions-legales.html">Mentions légales</a><a href="/cgv.html">CGV</a><a href="/confidentialite.html">Confidentialité</a><a href="https://billing.stripe.com/p/login/00w14odWDdx7bTCfMP4gg00" rel="noopener">Gérer mon abonnement</a><a href="mailto:contact@brasdroitia.com">contact@brasdroitia.com</a></div>
 </div></footer>
+<script src="/suivi.js"></script>
+<script src="/cta.js"></script>
 <script src="/consent.js"></script>
 </body>
 </html>

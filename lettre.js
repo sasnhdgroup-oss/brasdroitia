@@ -1,7 +1,11 @@
 /* Bloc d'inscription à « L'astuce du mardi » : <div data-lettre="source"></div> dans une page. */
 (function () {
+  // Lettre « L'astuce du mardi » suspendue le 27/11/2026 (décision d'Abdellah) : les blocs sont retirés des pages.
+  // Remettre LETTRE_ACTIVE = true quand la lettre reprend. La confirmation ?inscription=ok reste affichée.
+  var LETTRE_ACTIVE = false;
   var css = '.lettre{background:#14204A;color:#fff;border-radius:18px;padding:24px;margin:30px 0}.lettre h2{color:#fff;margin:0 0 6px;font-size:24px}.lettre p{color:#E6ECFF;margin:0 0 14px}.lettre form{display:flex;flex-wrap:wrap;gap:10px}.lettre input[type=email]{flex:1 1 220px;font:inherit;min-height:48px;padding:12px 14px;border-radius:12px;border:0}.lettre button{font:800 16px \"Plus Jakarta Sans\",system-ui,sans-serif;min-height:48px;background:#2445D6;color:#fff;border:0;border-radius:12px;padding:12px 18px;cursor:pointer}.lettre label{display:block;font-size:14px;color:#E6ECFF;width:100%;line-height:1.45}.lettre label input{margin-right:8px;vertical-align:-2px}.lettre label a{color:#fff}.lettre .piege{position:absolute;left:-9999px}.lettre .msg{width:100%;font-weight:700;color:#fff;margin:6px 0 0}';
   var s = document.createElement('style'); s.textContent = css; document.head.appendChild(s);
+  if (!LETTRE_ACTIVE) document.querySelectorAll('[data-lettre]').forEach(function (b) { b.remove(); });
   document.querySelectorAll('[data-lettre]').forEach(function (bloc) {
     bloc.className = 'lettre';
     bloc.innerHTML = '<h2>Une astuce de 2 minutes, chaque mardi</h2><p>Photos, avis, fiche Google, réseaux sociaux : une idée concrète à appliquer tout de suite. Gratuit, sans pub, désinscription en un clic.</p>' +

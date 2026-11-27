@@ -81,7 +81,9 @@ var BDIA_TRACEURS = {
     vue_offre: { meta: 'ViewContent', tiktok: 'ViewContent', google: 'view_item' },
     inscription: { meta: 'CompleteRegistration', tiktok: 'CompleteRegistration', google: 'sign_up' },
     // Clic sur « Essayer 14 jours, sans carte » (accueil v4) : un prospect, pas un début de paiement.
-    clic_essai: { meta: 'Lead', tiktok: 'Contact', google: 'generate_lead' }
+    clic_essai: { meta: 'Lead', tiktok: 'Contact', google: 'generate_lead' },
+    // Clic sur « Être prévenu de l'ouverture » (avant l'ouverture de l'appli).
+    clic_ouverture: { meta: 'Lead', tiktok: 'Contact', google: 'generate_lead' }
   };
   // Correspondance avancée : e-mail haché (SHA-256, minuscules, sans espaces) côté navigateur, jamais en clair.
   var identite = null;
@@ -153,7 +155,8 @@ var BDIA_TRACEURS = {
       else if (avant && avant.pub && charges) { if (window.ttq && ttq.revokeConsent) ttq.revokeConsent(); location.reload(); } // retrait : décharger les traceurs
     });
     document.body.appendChild(d);
-    d.querySelector('button').focus();
+    // Focus sur le bandeau lui-même (sans cadre) : Tab mène à « Refuser » ; le cadre de focus n'apparaît qu'au clavier.
+    d.tabIndex = -1; d.style.outline = 'none'; d.focus({ preventScroll: true });
   }
 
   window.bdiaGererCookies = function () { if (actifs()) bandeau(); else alert('Ce site n\'utilise actuellement aucun cookie publicitaire.'); };

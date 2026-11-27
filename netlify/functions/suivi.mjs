@@ -13,7 +13,9 @@ const ETAPES = ["arrivee", "vu10s", "touche", "q2", "q3", "q4", "q5", "q6", "q7"
   // Service artisans (25/11/2026) : accueil, page Pilote, générateur de relance de devis.
   "accueil", "accueil_vu10s", "accueil_cta",
   // Accueil v4 (charte v4, 27/11/2026) : bouton par position, question ouverte, démonstration touchée.
-  "accueil_cta_haut", "accueil_cta_prix", "accueil_cta_fin", "accueil_faq", "accueil_demo", "pilote_vue", "pilote_debut", "pilote_envoi", "pilote_erreur",
+  "accueil_cta_haut", "accueil_cta_prix", "accueil_cta_fin", "accueil_faq", "accueil_demo",
+  // Bouton du bloc final des guides et astuces (site v4).
+  "guide_cta", "pilote_vue", "pilote_debut", "pilote_envoi", "pilote_erreur",
   "generateur_arrivee", "generateur_choix", "generateur_copie", "generateur_envoi", "generateur_guide", "generateur_pilote"];
 const SOURCES = ["meta", "autre"];
 
